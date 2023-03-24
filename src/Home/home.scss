@@ -1,0 +1,12 @@
+.fade-out-text {
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+.fade-out-text:hover {
+  opacity: 0;
+}
+
+.banner {
+  font-size: 18px;
+}
