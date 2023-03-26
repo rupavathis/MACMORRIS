@@ -2,14 +2,14 @@ import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
-function Header({ changeIrish, setChangeIrish }) {
+function Header({ changeIrish, setChangeIrish, setAbout }) {
 
    return (
       <header className="site-header">
          <nav className="navbar navbar-expand-lg bg-transparent-light static-nav">
             <div className="container">
                <Link to='/' className="navbar-brand" href="index.html">
-                  <div class="logo-item"><img style={{ 'object-fit': 'contain', 'width': '200px' }} alt="" src="images/logos/macmorris.png" /></div>
+                  <div class="logo-item"><img style={{ 'height':'80px', 'width': '250px' }} alt="" src="images/logos/macmorris.png" /></div>
                </Link>
                <button className="navbar-toggler navbar-toggler-right collapsed d-none" type="button" data-bs-toggle="collapse"
                   data-bs-target="#xenav">
@@ -17,7 +17,7 @@ function Header({ changeIrish, setChangeIrish }) {
                   <span> </span>
                   <span> </span>
                </button>
-               <div className="collapse navbar-collapse" id="xenav">
+               <div className="collapse navbar-collapse" id="xenav" onClick={() => setAbout(false)}>
                   <ul className="navbar-nav ms-auto">
                      <li className="nav-item active">
                         <Link to='/' className="nav-link pagescroll">Home</Link>

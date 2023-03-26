@@ -47,7 +47,7 @@ function a11yProps(index) {
 }
 
 export default function Search({ networkData, setNetworkData, workNetworkData, setWorkNetworkData, setSelectContent,
-    setDisplayNames, displayNames, setLoading, id }) {
+    setDisplayNames, displayNames, setLoading, id, setSearchID }) {
     const [value, setValue] = React.useState(0);
     library.add(fas)
     const [showAdvanced, setShowAdvanced] = React.useState(false);
@@ -68,7 +68,7 @@ export default function Search({ networkData, setNetworkData, workNetworkData, s
                 </Box>
                 {!showAdvanced && <TabPanel value={value} index={0}>
                     <SearchName setNetworkData={setNetworkData} setSelectContent={setSelectContent}
-                    setDisplayNames={setDisplayNames} displayNames={displayNames} id={id}
+                    setDisplayNames={setDisplayNames} displayNames={displayNames} id={id} setSearchID={setSearchID}
                     />
                 </TabPanel>}
                 {!showAdvanced &&

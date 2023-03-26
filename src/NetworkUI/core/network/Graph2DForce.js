@@ -66,9 +66,10 @@ const Graph2DForce = ({ data1, show3DText, setFgRef }) => {
 
         if (node.batch === "work1" || node.batch === "work2") {
             ctx.font = '10px Sans-Serif blue'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-
+            // ctx.strokeText(id, x + 8, y + 1);
             ctx.fillText(id, x + 8, y + 1);
-            ctx.fillStyle = node.color;
+            // ctx.fillStyle = node.color;
+
             ctx.beginPath(); ctx.moveTo(x, y - 5); ctx.lineTo(x - 5, y + 5); ctx.lineTo(x + 5, y + 5); ctx.fill();
         }
 
@@ -97,7 +98,7 @@ const Graph2DForce = ({ data1, show3DText, setFgRef }) => {
             ctx.beginPath(); 
             ctx.moveTo(x, y - 5); ctx.lineTo(x - 5, y + 5); ctx.lineTo(x + 5, y + 5); ctx.fill();
             ctx.font = '10px Sans-Serif'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-            ctx.fillStyle = node.color;
+            // ctx.fillStyle = node.color;
             ctx.fillText(id, x + 8, y + 1);
             ctx.fillStyle = node === hoverNode ? '#ffff00' : 'orange';
         }
@@ -145,6 +146,7 @@ const Graph2DForce = ({ data1, show3DText, setFgRef }) => {
 
 
     const handleNodeClick = useCallback(node => {
+        console.log('node click', node);
         setShowInfo(true)
         setShowLinkInfo(false)
         setInfo(node.people_id)

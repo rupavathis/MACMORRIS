@@ -10,19 +10,24 @@ import CaseStudiesIrish from "./CaseStudiesIrish";
 import { useState } from 'react';
 import Header from "./Header";
 import Sponsors from "./Sponsors";
+import About from './About';
+
 
 function Home({ setOpenNetwork, changeIrish, setSelectedCS, setRemoveHeader, setChangeIrish }) {
+
+   const [about, setAbout] = useState(false)
    return (
       <>
-         <Header changeIrish={changeIrish} setChangeIrish={setChangeIrish} />
-         <Banner />
-         <Intro changeIrish={changeIrish} />
-         <Viz changeIrish={changeIrish} setRemoveHeader={setRemoveHeader} />
-         {!changeIrish && <CaseStudies setSelectedCS={setSelectedCS} />}
-         {changeIrish && <CaseStudiesIrish />}
-         <Team />
+         <Header changeIrish={changeIrish} setChangeIrish={setChangeIrish} setAbout={setAbout}/>
+         {about && <About about={about} setAbout={setAbout}/>}
+         {!about && <Banner />}
+         {!about && <Intro changeIrish={changeIrish} setAbout={setAbout} about={about}/>}
+         {!about && <Viz changeIrish={changeIrish} setRemoveHeader={setRemoveHeader} />}
+         {!about && !changeIrish && <CaseStudies setSelectedCS={setSelectedCS} />}
+         {!about && changeIrish && <CaseStudiesIrish />}
+         {!about && <Team />}
          {/* <Tweet /> */}
-         <Sponsors />
+         {!about && <Sponsors />}
       </>
    );
 }

@@ -5,7 +5,8 @@ import AsyncSelect from 'react-select/async';
 import '../../Network.scss';
 
 
-export default function SearchName({ setNetworkData, setSelectContent, setDisplayNames, displayNames, id }) {
+export default function SearchName({ setNetworkData, setSelectContent, setDisplayNames, displayNames, id,
+    setSearchID}) {
 
 
     const [searchData, setSearchData] = React.useState(false);
@@ -70,6 +71,7 @@ export default function SearchName({ setNetworkData, setSelectContent, setDispla
         const peopleJson = await peopleRes.json();
         console.log("people json in 12345", peopleJson);
         setNetworkData(peopleJson);
+        setSearchID(() => id)
     }
 
     const onSearchChange = async (

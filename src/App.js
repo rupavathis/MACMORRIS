@@ -49,7 +49,7 @@ function App() {
         <Route path="/site/*" element={<Site changeIrish={changeIrish} setChangeIrish={setChangeIrish} />} />
         <Route path="/network/" element={<Network />} />
         <Route path="/networkWithId/*" element={<Network />} />
-        <Route path="/about-us/" element={<About />} />
+        {/* <Route path="/about-us/" element={<About />} /> */}
         <Route path='/works/*' element={<Work />} />
 
       </Routes>

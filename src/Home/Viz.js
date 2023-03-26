@@ -34,7 +34,7 @@ function Viz({ changeIrish, setRemoveHeader }) {
                                         <p className="heading_space wow fadeIn" data-wow-delay="400ms">
                                             Comhéadan cuardaigh a chabhraíonn leat na daoine agus na téacsanna
                                             sa bhunachar sonraí a aimsiú</p>
-                                        <Link to='search' target="_blank" rel="noopener noreferrer">
+                                        <Link to='search'>
                                             <div className="button btnsecondary pagescroll wow fadeInUp"
                                                 data-wow-delay="450ms">Explore Search!</div>
                                         </Link>
@@ -45,7 +45,7 @@ function Viz({ changeIrish, setRemoveHeader }) {
                                         <p className="heading_space wow fadeIn" data-wow-delay="400ms">
                                             A Search interface to aid exploration of the different people and texts in our
                                             database </p>
-                                        <Link to='search' target="_blank" rel="noopener noreferrer">
+                                        <Link to='search'>
                                             <div className="button btnsecondary pagescroll wow fadeInUp"
                                                 data-wow-delay="450ms">Explore Search!</div>
                                         </Link>
@@ -94,9 +94,9 @@ function Viz({ changeIrish, setRemoveHeader }) {
                 <section className="half-section">
                     <div className="container-fluid">
                         <div className="row">
-                            <div className="col-lg-6 nopadding">
+                            <div className="col-lg-6 nopadding" onClick={(() => <Link to='map' target="_blank" rel="noopener noreferrer"></Link>)}>
                                 {/* <div className="image hover-effect img-container"> */}
-                                <div className="img-container" onClick={(() => <Link to='map' target="_blank" rel="noopener noreferrer"></Link>)}>
+                                <div className="img-container">
                                     <Network className="equalheight" />
                                 </div>
                             </div>

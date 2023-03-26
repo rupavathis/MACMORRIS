@@ -8,7 +8,7 @@ import Spinner from 'react-bootstrap/Spinner';
 
 
 function PanelContent({ networkData, settings, tab, setTab, workNetworkData, selectContent, show3DText,
-    displayNames, loading }) {
+    displayNames, loading , searchID }) {
     console.log({ networkData, workNetworkData, selectContent })
     const [secondDegree, setSecondDegree] = useState(false);
     const [threeD, setThreeD] = useState(false);
@@ -53,7 +53,8 @@ function PanelContent({ networkData, settings, tab, setTab, workNetworkData, sel
             {
                 networkData.length != 0 && selectContent === 0 &&
                 <People networkData={networkData} settings={settings} tab={tab} setTab={setTab} secondDegree={secondDegree}
-                    threeD={threeD} show3DText={show3DText} displayNames={displayNames} setFgRef={setFgRef} />
+                    threeD={threeD} show3DText={show3DText} displayNames={displayNames} setFgRef={setFgRef}
+                    searchID={searchID} />
             }
             {
                 workNetworkData.length != 0 && selectContent === 1 &&

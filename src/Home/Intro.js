@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 
-function intro({ changeIrish }) {
+function intro({ changeIrish, setAbout, about }) {
     return (
         <section id="about-us" className="padding single-feature">
             <div className="container">
@@ -62,9 +62,9 @@ function intro({ changeIrish }) {
                                 </p>
                             </>}
 
-                        <Link to="about-us" target="_blank" rel="noopener noreferrer">
-                        <div className="button btnsecondary pagescroll">About us</div>
-                        </Link>
+                        {/* <Link to="about-us"> */}
+                            <div className="button btnsecondary pagescroll" onClick={() => setAbout(!about)}>About us</div>
+                        {/* </Link> */}
                     </div>
                     <div className="col-md-6 col-sm-5 wow fadeInRight" data-wow-delay="350ms">
 

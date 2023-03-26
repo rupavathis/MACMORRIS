@@ -13,7 +13,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 
 function PanelLeft({ networkData, setNetworkData, setSelectedColor, setSelectedSize, selectedColor, setSelectedLabelSize,
     setShow3DText, show3DText, tab, setTab, setWorkNetworkData, setSelectContent, setDisplayNames, displayNames,
-    setLoading, id }) {
+    setLoading, id, setSearchID}) {
     library.add(fas)
 
     console.log('doing uid in left',{id})
@@ -36,7 +36,7 @@ function PanelLeft({ networkData, setNetworkData, setSelectedColor, setSelectedS
             </div>
             {tab === "show-search" && <Search setNetworkData={setNetworkData} setWorkNetworkData={setWorkNetworkData}
                 setSelectContent={setSelectContent} setDisplayNames={setDisplayNames} displayNames={displayNames}
-                setLoading={setLoading} id={id}/>}
+                setLoading={setLoading} id={id} setSearchID={setSearchID}/>}
             {tab === "show-settings" && <Setting setSelectedColor={setSelectedColor}
                 setSelectedSize={setSelectedSize} selectedColor={selectedColor}
                 setSelectedLabelSize={setSelectedLabelSize} setShow3DText={setShow3DText} show3DText={show3DText} />}

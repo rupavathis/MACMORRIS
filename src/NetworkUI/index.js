@@ -39,6 +39,7 @@ function Network() {
   const [selectContent, setSelectContent] = React.useState(0);
   const [displayNames, setDisplayNames] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
+  const [searchID, setSearchID] = useState(0)
 
   const settings = [{ ...selectedColor }, { ...selectedSize }, { ...selectedLabelSize }, { show3DText }]
 
@@ -49,12 +50,12 @@ function Network() {
           setSelectedSize={setSelectedSize} selectedColor={selectedColor} setSelectedLabelSize={setSelectedLabelSize}
           setShow3DText={setShow3DText} show3DText={show3DText}
           tab={tab} setTab={setTab} setSelectContent={setSelectContent} setDisplayNames={setDisplayNames}
-          displayNames={displayNames} setLoading={setLoading} id={id} />
+          displayNames={displayNames} setLoading={setLoading} id={id} setSearchID={setSearchID}/>
         <PanelTop />
         
         <PanelContent networkData={networkData} workNetworkData={workNetworkData} selectedColor={selectedColor} selectedSize={selectedSize}
           settings={settings} tab={tab} setTab={setTab} selectContent={selectContent} show3DText={show3DText}
-          displayNames={displayNames} loading={loading} />
+          displayNames={displayNames} loading={loading} searchID={searchID}/>
       </div>
     </div>
   )

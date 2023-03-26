@@ -9,36 +9,11 @@ function About() {
 
     return (
         <>
-            <Header />
-
             <React.Fragment>
                 <CssBaseline />
                 <Container fixed>
                     <Box sx={{ bgcolor: '#f5f2f', textAlign: "justify" }}>
 
-                        {/* <img src="images/banner/map-banner.png"
-                            style={{
-                                width: '100%',
-                                height: '50px',
-                                objectFit: 'cover',
-                                // objectPosition: `0 ${position}px`,
-                                opacity: 0.4,
-                                filter: "blur(3px)"
-                                // transform: "rotate(180deg)"
-                            }} /> */}
-
-
-                        {/* <div style={{
-                            position: "absolute",
-                            // top: "50%",
-                            left: "50%",
-                            // transform: "translate(-50%, -50%)",
-                            fontWeight: 500,
-                            // padding: "30px 60px"
-                        }}> */}
-
-                            {/* <h2>About</h2> */}
-                        {/* </div> */}
 
                         <h3 style={{ textAlign: "center", padding: "10px", color: 'maroon' }}>About</h3>
 

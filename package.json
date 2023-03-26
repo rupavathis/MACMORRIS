@@ -30,6 +30,7 @@
     "jquery": "^3.6.3",
     "mapbox-gl": "^2.12.0",
     "material-react-table": "^1.8.4",
+    "mdb-react-ui-kit": "^5.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-d3-graph": "^2.6.0",

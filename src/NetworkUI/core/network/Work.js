@@ -55,13 +55,13 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
         const source1 = networkData1.map((c) => {
             return {
                 id: c.display_title === null ? "" : c.display_title,
-                uid: 'w'+c.id,
+                uid: c.id,
                 batch: "work1"
             }
         })
         const assoc_author = networkData1.map((c) => {
             const a = c.author_id_id === null ? "" : obj[`${c.author_id_id}`];
-            return { id: a, batch: "people1", uid: 'p'+c.author_id_id }
+            return { id: a, batch: "people1", uid: c.author_id_id }
         })
 
         const assoc_people = networkData1.map((c) => [c.patron_id_ids, c.patron_id_ids, c.publisher_id_ids, c.bookseller_id_ids]
@@ -69,7 +69,7 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
                 d.map(e => {
                     console.log("assoc people", { d, e })
                     const v = e === null ? "" : obj[`${e}`];
-                    return { id: v, uid: 'p'+e, batch: "people2" }
+                    return { id: v, uid: e, batch: "people2" }
                 }))
         ).flat(2)
 
@@ -85,7 +85,7 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
             const source2 = networkData2.map((c) => {
                 return {
                     id: c.display_title === null ? "" : c.display_title,
-                    uid: 'w'+c.id,
+                    uid: c.id,
                     batch: "work2",
                 }
             })
@@ -98,7 +98,19 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
 
         console.log('after else', { nodes })
 
-        const uniqueNode = uniqueNodes(nodes)
+
+        const unode = uniqueNodes(nodes)
+
+        const uniqueNode = unode.map((a) => {
+            if (networkData1.some(e => e.id === a.uid)) {
+                return { ...a, batch: "work1" }
+            }
+            else if (networkData2.some(e => e.id === a.uid)) {
+                return { ...a, batch: "node1Targets" }
+            }
+            else return { ...a, batch: "work2" }
+
+        })
 
 
         uniqueNode.forEach((u) => {
@@ -106,11 +118,11 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
                 u.color = settings[0].node1;
                 u.val = settings[1].node1 === '0' ? 1 : settings[1].node1 * 2;
             }
-            if (u.batch === "people1") {
+            if (u.batch === "node1Targets") {
                 u.color = settings[0].node2;
                 u.val = settings[1].node2 === '0' ? 1 : settings[1].node2 * 2;
             }
-            if (u.batch === "work1") {
+            if (u.batch === "work2") {
                 u.color = settings[0].node3;
                 u.val = settings[1].node3 === '0' ? 1 : settings[1].node3 * 2;
             }
@@ -121,16 +133,16 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
             console.log('links author', c.author_id_id, nodes)
             // const a = c.author_id_id === null ? "" : obj[`${c.author_id_id}`];
             return {
-                source: nodes.find(e => e.uid === c.id),
-                target: nodes.find(e => e.uid === c.author_id_id)
+                source: uniqueNode.find(e => e.uid === c.id),
+                target: uniqueNode.find(e => e.uid === c.author_id_id)
             }
         })
 
         const w2p = networkData1.map(w => {
             // input: array of people ids, output array of src tgt objects
             const ids2p = (ids) => ids.map(id => ({
-                source: nodes.find(e => e.uid === w.id),
-                target: nodes.find(e => e.uid === id)
+                source: uniqueNode.find(e => e.uid === w.id),
+                target: uniqueNode.find(e => e.uid === id)
             }));
             return [w.patron_id_ids, w.printer_id_ids, w.publisher_id_ids, w.bookseller_id_ids].map(ids => ids2p(ids));
         }).flat(2);
@@ -139,7 +151,7 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
 
         const link1 = [...author_works, ...w2p]
         setLinks(link1)
-        console.log({"out assoc" : assoc_author, networkData2 })
+        console.log({ "out assoc": assoc_author, networkData2 })
 
 
         if (secondDegree) {
@@ -153,15 +165,15 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
             //     }
             // })
 
-            const author_works_2 = networkData2.filter((c) => c.author_id_id === assoc_author[0].uid).map((e) =>{
+            const author_works_2 = networkData2.filter((c) => c.author_id_id === assoc_author[0].uid).map((e) => {
                 return {
-                    source: nodes.find(el => el.uid === e.author_id_id),
-                    target: nodes.find(el => el.uid === e.id),
+                    source: uniqueNode.find(el => el.uid === e.author_id_id),
+                    target: uniqueNode.find(el => el.uid === e.id),
                 }
             })
 
-            console.log({author_works_2, "assoc" : assoc_author[0].uid, networkData2 })
-                
+            console.log({ author_works_2, "assoc": assoc_author[0].uid, networkData2 })
+
             //     return {
             //         source: nodes.find(el => el.uid === c.author_id_id),
             //         target: nodes.find(el => el.uid === c.id),
@@ -177,8 +189,8 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
             const link2 = networkData1.map(n1 =>
                 getAllIds(n1).map(id =>
                     networkData2.filter(e => getAllIds(e).includes(id)).map(e => ({
-                        source: nodes.find(el => el.uid === n1.id),
-                        target: nodes.find(el => el.uid === e.id)
+                        source: uniqueNode.find(el => el.uid === n1.id),
+                        target: uniqueNode.find(el => el.uid === e.id)
                     }))
                 ).flat()
             ).flat()

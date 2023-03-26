@@ -21,7 +21,7 @@ const uniqueNodes = (nodes) => {
     });
 }
 
-const People = ({ networkData, settings, tab, setTab, secondDegree, threeD, show3DText, displayNames, zoom, setFgRef }) => {
+const People = ({ networkData, settings, tab, setTab, secondDegree, threeD, show3DText, displayNames, zoom, setFgRef, searchID }) => {
     console.log({ networkData, tab, displayNames })
 
     const [nodes, setNodes] = useState([]);
@@ -37,29 +37,78 @@ const People = ({ networkData, settings, tab, setTab, secondDegree, threeD, show
         // fetchLinks(networkData[0], networkData[1]);
     }, [networkData, secondDegree, settings[0], settings[1], settings[2]]);
 
+
+    // const findBatch = () => {
+    //     c.source_id_id === searchID ? "node1" : "node1Targets"}
+    // }
+
     const fetchNodes = (networkData2, networkData3) => {
 
         // const networkData2Filtered = networkData2.filter(n => n.target_id_id != null && n.source_id_id != null)
         // const networkData3Filtered = networkData3.filter(n => n.target_id_id != null && n.source_id_id != null)
 
-        const source1 = networkData2.map((c) => { return { id: displayNamesHm[c.source_id_id].display_name, people_id: c.source_id_id, batch: "node1" } })
-        const target1 = networkData2.map((c) => { return { id: displayNamesHm[c.target_id_id].display_name, people_id: c.target_id_id, batch: "node1Targets" } })
+        const source1 = networkData2.map((c) => {
+            let batchNodes = ""
+            if (searchID != 0) {
+                console.log("Am in in searchID?", searchID)
+                batchNodes = c.source_id_id === searchID ? "node1" : "node1Targets"
+            }
+            else batchNodes = "node1"
+            return {
+                id: displayNamesHm[c.source_id_id].display_name, people_id: c.source_id_id,
+                // batch: batchNodes
+            }
+        })
+
+        const target1 = networkData2.map((c) => {
+            return {
+                id: displayNamesHm[c.target_id_id].display_name, people_id: c.target_id_id,
+                // batch: "node1Targets"
+            }
+        })
         const nodes1 = [...source1, ...target1]
         console.log({ source1, target1 })
         console.log({ networkData3, displayNamesHm })
 
-        const target2 = networkData3.map((c) => { return { id: displayNamesHm[c.target_id_id].display_name, people_id: c.target_id_id, batch: "nodes2" } })
-        const source2 = networkData3.map((c) => { return { id: displayNamesHm[c.source_id_id].display_name, people_id: c.source_id_id, batch: "nodes2" } })
-        const nodes2 = [...source2, ...target2]
-        console.log({ source2, target2 })
-        let nodes = []
-        if (secondDegree) nodes = [...nodes1, ...nodes2]
-        else nodes = [...nodes1]
+        let nodes = [...nodes1]
+        // let nodes = []
+        if (secondDegree) {
+            const target2 = networkData3.map((c) => { return { id: displayNamesHm[c.target_id_id].display_name, people_id: c.target_id_id, batch: "nodes2" } })
+            const source2 = networkData3.map((c) => { return { id: displayNamesHm[c.source_id_id].display_name, people_id: c.source_id_id, batch: "nodes2" } })
+            const nodes2 = [...source2, ...target2]
+            console.log({ source2, target2 })
+            nodes = [...nodes, ...nodes2]
+        }
         // const nodes = [...nodes1, ...nodes2]
-        const uniqueNode = uniqueNodes(nodes)
+        const unode = uniqueNodes(nodes)
+
+        const uniqueNode = unode.map((a) => {
+            if (searchID === null) {
+                if (networkData2.some(e => e.source_id_id === a.people_id)) {
+                    return { ...a, batch: "node1" }
+                }
+                else if (networkData2.some(e => e.target_id_id === a.people_id)) {
+                    return { ...a, batch: "node1Targets" }
+                }
+                else return { ...a, batch: "nodes2" }
+            }
+            else {
+                if (networkData2.some(e => e.source_id_id === searchID || e.target_id_id === searchID)) {
+                    console.log({ searchID })
+                    return { ...a, batch: "node1" }
+                }
+                else if (networkData2.some(e => e.target_id_id === a.people_id)) {
+                    console.log({ searchID })
+                    return { ...a, batch: "node1Targets" }
+                }
+                else return { ...a, batch: "nodes2" }
+            }
+
+        })
 
         uniqueNode.forEach((u) => {
             if (u.batch === "node1") {
+                console.log("im in if node1");
                 u.color = settings[0].node1;
                 u.val = settings[1].node1 === '0' ? 1 : settings[1].node1 * 2;
             }
@@ -72,6 +121,9 @@ const People = ({ networkData, settings, tab, setTab, secondDegree, threeD, show
                 u.val = settings[1].node3 === '0' ? 1 : settings[1].node3 * 2;
             }
         })
+
+        console.log({ uniqueNode, unode })
+
         setNodes(uniqueNode)
 
         // }
@@ -81,8 +133,8 @@ const People = ({ networkData, settings, tab, setTab, secondDegree, threeD, show
         // const links2 = networkData3.map((c) => { return { source: displayNamesHm[c.source_id_id], target: displayNamesHm[c.target_id_id]} })
         const links1 = networkData2.map(c => {
             return {
-                source: nodes.find(e => e.people_id === c.source_id_id),
-                target: nodes.find(e => e.people_id === c.target_id_id),
+                source: uniqueNode.find(e => e.people_id === c.source_id_id),
+                target: uniqueNode.find(e => e.people_id === c.target_id_id),
                 id: c.id
             }
         });
@@ -90,8 +142,8 @@ const People = ({ networkData, settings, tab, setTab, secondDegree, threeD, show
         if (secondDegree) {
             const links2 = networkData3.map(c => {
                 return {
-                    source: nodes.find(e => e.people_id === c.source_id_id),
-                    target: nodes.find(e => e.people_id === c.target_id_id),
+                    source: uniqueNode.find(e => e.people_id === c.source_id_id),
+                    target: uniqueNode.find(e => e.people_id === c.target_id_id),
                     id: c.id
                 }
             });
@@ -110,6 +162,8 @@ const People = ({ networkData, settings, tab, setTab, secondDegree, threeD, show
 
 
     const data = { nodes: nodes, links: links }
+    console.log("data 453728", data)
+
     // const data3D = {...data}
     // setTab(() => "")
     // setTab((tab) => tab === "show-filter" ? "hide-filter" : "")
@@ -119,7 +173,7 @@ const People = ({ networkData, settings, tab, setTab, secondDegree, threeD, show
     console.log("people.js", { data })
     return (
         <>
-            {!threeD && !noResults &&  <Graph2DForce data1={data} zoom={zoom} setFgRef={setFgRef} />}
+            {!threeD && !noResults && <Graph2DForce data1={data} zoom={zoom} setFgRef={setFgRef} />}
             {threeD && !noResults && <Graph3D data={data} show3DText={show3DText} />}
             {tab === "show-filter" && <Filter nodes={data.nodes} setNodes={setNodes} settings={settings} />}
             {noResults && <div className="no-results"> No results to display</div>}
