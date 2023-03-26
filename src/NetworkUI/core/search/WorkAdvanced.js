@@ -63,7 +63,7 @@ export default function SearchWorkNetwork({ workNetworkData, setWorkNetworkData,
 
 
     async function searchPeople() {
-        let url = `worksPeopleSearch?authors=${selectedAuthor}&patrons=${selectedPatrons}&
+        let url = `/worksPeopleSearch?authors=${selectedAuthor}&patrons=${selectedPatrons}&
                 printers=${selectedPrinters}&publishers=${selectedPublishers}&booksellers=${selectedBooksellers}`
         console.log(url)
         const worksRes = await fetch(url);

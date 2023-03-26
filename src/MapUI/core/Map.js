@@ -124,9 +124,6 @@ export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, 
                 <Map mapboxAccessToken={MAPBOX_ACCESS_TOKEN}
                     mapStyle={mapStyle} />
 
-                {historicMap === "munster" && <BitmapLayer id='bitmap-layer' bounds={[-10.927044, 51.482099, -8.142172, 52.657056]}
-                    image={'/images/map/munster.png'} />}
-
 
                 {layer.includes(1) && <IconLayer
                     id='IconMapLayer'
@@ -183,6 +180,11 @@ export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, 
                     wireframe={false}
                     color={[255, 255, 255]}
                 />}
+
+                {historicMap === "munster" && <BitmapLayer id='bitmap-layer' bounds={[-11.333592, 50.959666, -6.321837, 53.307926]}
+                    image={'/images/map/munster_rotated.webp'} />}
+
+
             </DeckGL>
         </  >
     );

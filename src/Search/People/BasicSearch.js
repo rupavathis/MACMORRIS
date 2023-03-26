@@ -93,6 +93,8 @@ export default function BasicSearch({ setSearchData, setPeopleData, displayNames
   return (
     <>
       {displayNames.length != 0 && <AsyncSelect
+        className="react-select-container"
+        styles={{ container: base => ({ ...base, zIndex: 9999 }) }}  
         cacheOptions
         loadOptions={loadOptions}
         defaultOptions

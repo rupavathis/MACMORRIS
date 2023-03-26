@@ -1,5 +1,4 @@
 import Home from './Home/Home';
-import Test from './Test';
 import { useState } from 'react';
 import PreLoader from "./Home/PreLoader";
 import Header from "./Home/Header";

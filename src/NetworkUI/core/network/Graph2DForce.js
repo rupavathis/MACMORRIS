@@ -31,7 +31,7 @@ const Graph2DForce = ({ data1, show3DText, setFgRef }) => {
         gData.links.forEach((link, i) => {
             const a = gData.nodes.find(e => e === link.source);
             const b = gData.nodes.find(e => e === link.target);
-            (a == null || b == null) && console.log({ a, b, i });
+            (a == null || b == null) && console.log({ source: link.source, a, target: link.target, b, i, });
             !a.neighbors && (a.neighbors = []);
             !b.neighbors && (b.neighbors = []);
             a.neighbors.push(b);

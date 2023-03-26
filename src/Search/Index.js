@@ -17,6 +17,7 @@ import Content from './People/Content';
 import WorkContent from './Works/Content';
 import Spinner from 'react-bootstrap/Spinner';
 import Header from "../Home/Header";
+import "./search.scss";
 
 function Index({changeIrish, setChangeIrish}) {
     const [selectedValue, setSelectedValue] = useState('people');
@@ -36,10 +37,12 @@ function Index({changeIrish, setChangeIrish}) {
         console.log("basic search useeefect people")
         const displayNamesRes = await fetch("/names");
         var displayNamesJson = await displayNamesRes.json();
+        // setDisplayNames(displayNamesJson)
         setDisplayNames(displayNamesJson)
 
         const displayTitlesRes = await fetch("/titles");
         var displayTitlesJson = await displayTitlesRes.json();
+        // setDisplayTitles(displayTitlesJson)
         setDisplayTitles(displayTitlesJson)
     };
 

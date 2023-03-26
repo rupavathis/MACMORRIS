@@ -3239,10 +3239,10 @@ iframe  {
     height: 60px;
 	overflow: hidden;
 }
-#partners-slider .logo-item, #partners-slider  .logo-item > img{
+#partners-slider .logo-item, #partners-slider  .logo-item img{
    display: inline-block;
 }
-.logo-item > img {
+.logo-item img {
    object-fit: contain;
    height: 55px;
    position: absolute;

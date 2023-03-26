@@ -25,7 +25,7 @@ export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSe
 
     async function fetchWorkNetWorkData(value) {
         if (value != null) {
-            let url = `showWorkTitleConnections/${value.id}`;
+            let url = `/showWorkTitleConnections/${value.id}`;
             console.log(url)
             const worksRes = await fetch(url);
             const worksJson = await worksRes.json();
@@ -37,7 +37,7 @@ export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSe
 
     async function fetchWorkClassificationData(value) {
         if (value != null) {
-            let url = `advancedWorkSearch?wClassification=${value.id}`;
+            let url = `/advancedWorkSearch?wClassification=${value.id}`;
             console.log(url)
             const worksRes = await fetch(url);
             const worksJson = await worksRes.json();

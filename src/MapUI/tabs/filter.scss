@@ -14,6 +14,15 @@
     // padding: 10px;
 }
 
+.info-wrapper {
+    position: absolute;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    // padding: 10px;
+}
+
 .filter-container {
     // position: absolute;
     // background-color: white;
@@ -206,7 +215,7 @@
 .pointer {
     height: 50px;
     width: 50px;
-    transform: scale(0.7) rotate(-45deg);
+    transform: scale(0.6) rotate(-45deg);
 }
 
 .pointer-1 { fill: rgb(76, 0, 153) }

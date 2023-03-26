@@ -27,80 +27,33 @@ function Banner() {
         // };
     }, []);
 
-    useEffect(() => {
-        $("#banner-main").show().revolution({ // eslint-disable-line
-            sliderType: "standard",
+    useEffect(() => { 
+        $("#rev_single").show().revolution({ // eslint-disable-line
+            sliderType: "hero",
+            jsFileLocation: "js/revolution",
             sliderLayout: "fullscreen",
             scrollbarDrag: "true",
             dottedOverlay: "none",
-            navigation: {
-               keyboardNavigation: "off",
-               keyboard_direction: "horizontal",
-               mouseScrollNavigation: "off",
-               bullets: {
-                  style: "",
-                  enable: true,
-                  rtl: false,
-                  hide_onmobile: false,
-                  hide_onleave: false,
-                  hide_under: 767,
-                  hide_over: 9999,
-                  tmp: '',
-                  direction: "vertical",
-                  space: 10,
-                  h_align: "right",
-                  v_align: "center",
-                  h_offset: 40,
-                  v_offset: 0
-               },
-               arrows: {
-                  enable: false,
-                  hide_onmobile: true,
-                  hide_onleave: false,
-                  hide_under: 767,
-                  left: {
-                     h_align: "left",
-                     v_align: "center",
-                     h_offset: 20,
-                     v_offset: 30,
-                  },
-                  right: {
-                     h_align: "right",
-                     v_align: "center",
-                     h_offset: 20,
-                     v_offset: 30
-                  },
-               },
-               touch: {
-                  touchenabled: "on",
-                  swipe_threshold: 75,
-                  swipe_min_touches: 1,
-                  swipe_direction: "horizontal",
-                  drag_block_vertical: false,
-               }
-            },
-            viewPort: {
-               enable: true,
-               outof: "pause",
-               visible_area: "90%"
-            },
-            responsiveLevels: [4096, 1024, 778, 480],
-            gridwidth: [1140, 1024, 768, 480],
-            gridheight: [600, 500, 500, 350],
+            delay: 9000,
+            navigation: {},
+            responsiveLevels: [1240, 1024, 778, 480],
+            visibilityLevels: [1240, 1024, 778, 480],
+            gridwidth: [1170, 1024, 778, 480],
+            gridheight: [868, 768, 960, 720],
             lazyType: "none",
             parallax: {
-               type: "mouse",
+               type: "scroll",
                origo: "slidercenter",
-               speed: 9000,
-               levels: [2, 3, 4, 5, 6, 7, 12, 16, 10, 50],
+               speed: 400,
+               levels: [10, 15, 20, 25, 30, 35, 40, -10, -15, -20, -25, -30, -35, -40, -45, 55]
             },
             shadow: 0,
             spinner: "off",
-            stopLoop: "off",
-            stopAfterLoops: -1,
-            stopAtSlide: -1,
-            shuffle: "off",
             autoHeight: "off",
+            fullScreenAutoWidth: "off",
+            fullScreenAlignForce: "off",
+            fullScreenOffsetContainer: "",
+            disableProgressBar: "on",
             hideThumbsOnMobile: "off",
             hideSliderAtLimit: 0,
             hideCaptionAtLimit: 0,
@@ -108,8 +61,7 @@ function Banner() {
             debugMode: false,
             fallbacks: {
                simplifyAll: "off",
-               nextSlideOnWindowFocus: "off",
-               disableFocusListener: false,
+               disableFocusListener: false
             }
          });
     }, []);

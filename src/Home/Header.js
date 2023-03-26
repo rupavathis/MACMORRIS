@@ -23,22 +23,22 @@ function Header({ changeIrish, setChangeIrish }) {
                         <Link to='/' className="nav-link pagescroll">Home</Link>
                      </li>
                      <li className="nav-item active">
-                        <HashLink className="nav-link pagescroll" href="/#about-us">What is MACMORRIS?</HashLink>
+                        <HashLink className="nav-link pagescroll" to="/#about-us">What is MACMORRIS?</HashLink>
                      </li>
                      <li className="nav-item">
-                        <HashLink className="nav-link pagescroll" href="/#our-viz">Expore</HashLink>
+                        <HashLink className="nav-link pagescroll" to="/#our-viz">Explore</HashLink>
                      </li>
                      <li className="nav-item">
-                        <HashLink className="nav-link pagescroll" href="/#our-casestudies">Case Studies</HashLink>
+                        <HashLink className="nav-link pagescroll" to="/#our-casestudies">Case Studies</HashLink>
                      </li>
                      <li className="nav-item">
-                        <HashLink className="nav-link pagescroll" href="/#our-team">Team</HashLink>
+                        <HashLink className="nav-link pagescroll" to="/#our-team">Team</HashLink>
                      </li>
                      <li className="nav-item">
                         <HashLink className="nav-link pagescroll" to="/#our-sponsors">Sponsors</HashLink>
                      </li>
                      <li className="nav-item">
-                        <HashLink className="nav-link pagescroll" href="/#our-tweet">Tweet</HashLink>
+                        <HashLink className="nav-link pagescroll" to="/#our-tweet">Tweet</HashLink>
                      </li>
                      {/* <li className="nav-item">
                         <HashLink className="nav-link pagescroll" href="/#contactus">contact</HashLink>

@@ -32,7 +32,7 @@ function CaseStudies({ setSelectedCS }) {
   }, []);
 
   return (
-    <section id="our-portfolio" className="bglight padding">
+    <section id="our-casestudies" className="bglight padding">
       <div className="container">
         <div className="row">
           <div className="col-md-8 offset-md-2 col-sm-12 text-center">
@@ -48,7 +48,6 @@ function CaseStudies({ setSelectedCS }) {
           <div className="cbp-item web logo">
             <img src="images/case-studies/historic.jpg" alt="" />
             <div className="overlay center-block whitecolor">
-              <a className="plus" data-fancybox="gallery" href="images/gallery-flat1.jpg"></a>
               <h4 className="top30">Extending the Cast List</h4>
               <p style={{ "padding": "10px" }}>Learn more about the minor figures in our database</p>
             </div>
@@ -59,7 +58,6 @@ function CaseStudies({ setSelectedCS }) {
             <Link to="networking-women">
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
                 onClick={() => setSelectedCS("network-women")}>
-                <a className="plus" data-fancybox="gallery" href="images/gallery-flat4.jpg"></a>
                 <h4 className="top30">Networking Women</h4>
                 <p style={{ "padding": "10px" }}>Learn about our network and some of the women in our
                   database</p>
@@ -87,7 +85,6 @@ function CaseStudies({ setSelectedCS }) {
             <Link to="spenser-in-munster">
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
                 onClick={() => setSelectedCS("munster")}>
-                <a className="plus" data-fancybox="gallery" href="images/gallery-flat4.jpg"></a>
                 <h4 className="top30">Spenser in Munster</h4>
                 <p style={{ "padding": "10px" }}>Who was Edmund Spenser and what was his connection to Munster?</p>
               </div>
@@ -98,7 +95,6 @@ function CaseStudies({ setSelectedCS }) {
             <Link to="early-modern-drama">
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
                 onClick={() => setSelectedCS("modern-drama")}>
-                <a className="plus" data-fancybox="gallery" href="images/gallery-flat4.jpg"></a>
                 <h4 className="top30">Staging Early Modern Drama today</h4>
                 <p style={{ "padding": "10px" }}>A reflection on the staging of Hic Et
                   Ubique in Smock Alley Theatre</p>
@@ -133,7 +129,6 @@ function CaseStudies({ setSelectedCS }) {
             <img src="images/case-studies/bardic.jpg" alt="" />
             <Link to="what-is-bardic-poetry">
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
-
                 onClick={() => setSelectedCS("bardic-poetry")}>
                 <h4 className="top30">What is Bardic Poetry?</h4>
                 <p style={{ "padding": "10px" }}>Learn more about the literary landscape of Early Modern Ireland and
@@ -143,7 +138,6 @@ function CaseStudies({ setSelectedCS }) {
               </div>
             </Link>
           </div>
-         
         </div>
       </div>
     </section>

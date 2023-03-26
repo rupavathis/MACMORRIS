@@ -21,7 +21,7 @@ function Home({ setOpenNetwork, changeIrish, setSelectedCS, setRemoveHeader, set
          {!changeIrish && <CaseStudies setSelectedCS={setSelectedCS} />}
          {changeIrish && <CaseStudiesIrish />}
          <Team />
-         <Tweet />
+         {/* <Tweet /> */}
          <Sponsors />
       </>
    );

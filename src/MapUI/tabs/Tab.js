@@ -1,17 +1,22 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGripLines } from '@fortawesome/free-solid-svg-icons'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import './tabs.scss';
 import { FormatColorTextSharp } from '@material-ui/icons';
 import clsx from 'clsx';
 import {
   Link
 } from "react-router-dom";
-import Site from '../../Sites/Index'
+import Site from '../../Sites/Index';
+import './filter.scss';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,6 +52,9 @@ function a11yProps(index) {
 }
 
 export default function TabInfo({ info, countSites, sites }) {
+
+  const [isExpandSection, setIsExpandSection] = useState(false);
+
 
   const image = info.place.location;
 
@@ -84,12 +92,45 @@ export default function TabInfo({ info, countSites, sites }) {
     const sitesInfo = sites.filter((site) => site.place_id === info?.place_id)
     console.log("sitesInfo", sitesInfo);
     let indexCount = -1;
+
+
+    const expandSection = () => {
+      console.log("expand section")
+      setIsExpandSection(!isExpandSection)
+    }
+
+
     return (
       sitesInfo.map((site) => {
         indexCount = indexCount + 1;
         console.log("indexCount", indexCount, value, site)
         return <TabPanel value={value} index={indexCount}>
-          <div>{site.name}</div>
+          <div className="info-wrapper">
+            <div className="filter-container">
+              <div className='filter-body'>
+                <div className='section-info'>
+                  <div className='collapsible'>
+                    <div className='collapse-icon-wrapper'>
+                      <div className='collapse-header'>
+                        <div className='icon hoverable' onClick={() => expandSection()}>
+                          <FontAwesomeIcon icon={faChevronRight} className={clsx("turn-icon", { "active": isExpandSection })} />
+                        </div>
+                        <div className='title'>
+                          Description                 </div>
+                        <div className='hline'>
+                        {site.description}
+                        </div>
+                        <Link className='link' to={`/site/${info.id}`} target="_blank" rel="noopener noreferrer">Read More/Translate</Link>
+    
+                      </div>
+                      <div className='header-end-wrapper'>
+                      </div>
+                    </div>
+                    {isExpandSection && <div className='collapse-content'>
+                      collapse content              </div>}
+                  </div>
+                </div>
+                {/* <div>{site.name}</div>
           <div>{site.gaelic_name}</div>
           <hr />
           <div className="two-lines">{site.description}
@@ -99,7 +140,10 @@ export default function TabInfo({ info, countSites, sites }) {
           <div>People Connected </div>
           {site.person_id.map((p) =>
           (<div><Link className='link' to={`/profile/${p.id}`}>{p.name}</Link></div>
-          ))}
+          ))} */}
+              </div>
+            </div>
+          </div>
         </TabPanel>
       }))
   }

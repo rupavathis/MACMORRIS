@@ -1,12 +1,45 @@
 .map-container {
-    flex: 1;
-    .mapboxgl-ctrl-bottom-left {
-      display: none;
-    }
-    .mapboxgl-ctrl-bottom-right {
-      display: none;
-    }
+  flex: 1;
+
+  .mapboxgl-ctrl-bottom-left {
+    display: none;
   }
+
+  .mapboxgl-ctrl-bottom-right {
+    display: none;
+  }
+}
+
+.top-panel {
+  color: wheat;
+  // padding: 10%;
+  font-size: xx-large;
+  // background-color: orange;
+  right: 0;
+  top: 0;
+  position: absolute;
+  z-index: 101
+}
+
+
+.loading-wrapper {
+  background-color: #e3f9fc;
+  z-index: 100;
+  // #e3f9fc;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  transition: all 1s ease-in-out;
+
+  &:not(.active) {
+    opacity: 0;
+    // transform: scale(0.1);
+  }
+
+}
+
 
 
 $indigo: rgb(63, 81, 181);
