@@ -22,7 +22,7 @@ const uniqueNodes = (nodes) => {
 }
 
 const People = ({ networkData, settings, tab, setTab, secondDegree, threeD, show3DText, displayNames, zoom, setFgRef, searchID }) => {
-    console.log({ networkData, tab, displayNames })
+    console.log({ networkData, tab, displayNames, searchID })
 
     const [nodes, setNodes] = useState([]);
     const [links, setLinks] = useState([]);
@@ -81,30 +81,37 @@ const People = ({ networkData, settings, tab, setTab, secondDegree, threeD, show
         }
         // const nodes = [...nodes1, ...nodes2]
         const unode = uniqueNodes(nodes)
+        console.log({ unode })
+
 
         const uniqueNode = unode.map((a) => {
+            console.log({ a })
+
             if (searchID === null) {
+                console.log("im in search id if 2321")
                 if (networkData2.some(e => e.source_id_id === a.people_id)) {
                     return { ...a, batch: "node1" }
                 }
-                else if (networkData2.some(e => e.target_id_id === a.people_id)) {
+                else {
                     return { ...a, batch: "node1Targets" }
                 }
-                else return { ...a, batch: "nodes2" }
             }
             else {
-                if (networkData2.some(e => e.source_id_id === searchID || e.target_id_id === searchID)) {
-                    console.log({ searchID })
+
+                console.log(searchID, a, "2323", networkData2)
+
+                if (networkData2.some(e => e.target_id_id === searchID)) {
+                    console.log(searchID, "2322")
                     return { ...a, batch: "node1" }
                 }
-                else if (networkData2.some(e => e.target_id_id === a.people_id)) {
-                    console.log({ searchID })
+                else {
+                    console.log(searchID, a, "2323")
                     return { ...a, batch: "node1Targets" }
                 }
-                else return { ...a, batch: "nodes2" }
             }
-
         })
+
+        console.log(uniqueNode, "uniq node")
 
         uniqueNode.forEach((u) => {
             if (u.batch === "node1") {

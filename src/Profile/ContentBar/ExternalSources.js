@@ -14,6 +14,8 @@ export default function ExternalSources({ sources }) {
 
   console.log({sources})
 
+  const isData =  sources.every(element => element === null);
+
   function createData(value1, value2, value3 ) {
       return { value1, value2 , value3};   
   }
@@ -29,7 +31,7 @@ export default function ExternalSources({ sources }) {
 
   return (
     <Container>
-      <TableContainer component={Paper}>
+      {!isData && <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableBody>
             {rows.map((row) => (
@@ -46,7 +48,8 @@ export default function ExternalSources({ sources }) {
             ))}
           </TableBody>
         </Table>
-      </TableContainer>
+      </TableContainer>}
+      {isData && <div className='NoWorkLabel'>No external sources to show</div>}
     </Container>
   );
 }

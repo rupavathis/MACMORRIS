@@ -65,11 +65,10 @@ const ELEVATION_DECODER = {
 };
 
 
-export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, countSites, setHoverInfo, layer }) {
+export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, countSites, setHoverInfo, layer, showImage, setShowImage , setShowCard }) {
 
     const [tabClose, setTabClose] = useState(false);
     const [iconClick, setIconClick] = useState(false);
-
 
     function setSiteColor(d) {
         let countingSites = []
@@ -84,9 +83,19 @@ export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, 
     }
 
     const expandTooltip = info => {
-        setHoverInfo(info);
+        setHoverInfo(info.object);
         console.log("im in hoverInfo", info)
         setTabClose(true);
+        setShowImage(true)
+        setShowCard(true)
+    };
+
+    const expandHexagon = info => {
+        setHoverInfo(info.object.points[0].source);
+        console.log("im in hoverInfo", info)
+        setTabClose(true);
+        setShowImage(true)
+        setShowCard(true)
     };
 
     // const getTooltipInfo = (object) => {
@@ -103,7 +112,8 @@ export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, 
         if (object.points != undefined) {
             const count = object.points.length;
             const place = object.points[0].source.place.name
-            return `${place} - ${count} texts`;
+            if(count > 1) return `${place} - ${count} texts`;
+            else return `${place} - ${count} text`;
         }
         else {
             return object && `${object.place.name}`
@@ -164,7 +174,7 @@ export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, 
                     radius={3000}
                     material={material}
                     // upperPercentile={100}
-                    onClick={expandTooltip}
+                    onClick={expandHexagon}
                 // transitions= {
                 //   elevationScale= 50000
                 // }

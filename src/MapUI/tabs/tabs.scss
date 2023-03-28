@@ -115,3 +115,16 @@ img {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.list-header {
+    font-size: 10px;
+    left: 0;
+    position: absolute;
+    color: gray;
+}
+
+.card-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

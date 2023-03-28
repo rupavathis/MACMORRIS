@@ -3,8 +3,7 @@ import Title from './TitleBar/Title'
 import ContentBar from './ContentBar/ContentBar.js'
 import Roles from './ContentBar/Roles.js';
 import './home.css';
-import { useNavigate } from 'react-router-dom'
-
+import { useNavigate, Link } from 'react-router-dom'
 function Home() {
   // console.log("ID", id)
   // if (id == null)
@@ -16,6 +15,7 @@ function Home() {
   const [authorName, setAuthorName] = useState("");
   const history = useNavigate()
 
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     console.log("In profile page")
@@ -45,25 +45,26 @@ function Home() {
 
 
   const fetchData = useCallback(async (id) => {
+    setLoading(true)
     const url = `/profile/${id}`
     console.log({ url })
     const res = await fetch(url);
     console.log({ res });
 
-    
+
 
     const urlConn = `/people/${id}/connections`;
     const connectionsRes = await fetch(urlConn);
     console.log({ urlConn })
     const connectionsResJson = await connectionsRes.json();
-    console.log("connections1234", {connectionsResJson})
+    console.log("connections1234", { connectionsResJson })
     setConnections(connectionsResJson);
 
     const urlSite = `/people/${id}/sites`
     console.log({ urlSite })
     const resSite = await fetch(urlSite);
     const siteJson = await resSite.json();
-    console.log("sites123", {siteJson})
+    console.log("sites123", { siteJson })
     setSites(siteJson);
 
     const resJson = await res.json();
@@ -85,33 +86,47 @@ function Home() {
     sources.push(resJson.ainm_id);
     sources.push(resJson.sdfb);
     // console.log(sources);
-    console.log("ESources",{resJson}, {sources})
+    console.log("ESources", { resJson }, { sources })
 
     setSources(sources);
 
 
     const url1 = `/people/${id}/works`
     const workRes = await fetch(url1);
-    console.log({url1})
+    console.log({ url1 })
     const workResJson = await workRes.json();
-    console.log({workResJson});
+    console.log({ workResJson });
 
 
     let worksRes = workResJson.reduce((ac, a) => ac.find(x => x.id === a.id) ? [...ac] : [...ac, a], []);
     setWorks(worksRes)
 
 
-    
+    setLoading(false)
+
 
   }, [])
 
   return (
     <div className="Profile">
-      <h1 className='Title'><Title author={authorName} /></h1>
-      <div><Roles roles={roles} /></div>
-      <div className='ContentBar'>
-        <ContentBar bioInfo={bioInfo} roles={roles} sources={sources} connections={connections} works={works} sites={sites}/>
+      <div className="top-panel">
+        <Link to='/' href="index.html">
+          <img style={{
+            objectFit: 'contain', 'width': '200px', height: '80px', margin: '10px',
+            opacity: '0.8'
+          }} alt="" src="/images/logos/macmorris.png" />
+        </Link>
       </div>
+
+
+      <h1 className='Title'><Title author={authorName} /></h1>
+      {/* {loading && <div> Loading </div>} */}
+      <>
+        <div><Roles roles={roles} /></div>
+        <div className='ContentBar'>
+          <ContentBar bioInfo={bioInfo} roles={roles} sources={sources} connections={connections} works={works} sites={sites} />
+        </div>
+      </>
     </div>
 
   );

@@ -9,6 +9,7 @@ import Paper from '@mui/material/Paper';
 import WebLink from '@mui/material/Link';
 import { Link } from "react-router-dom";
 import Box from '@mui/material/Box';
+import './sites.scss'
 
 
 function Sites() {
@@ -52,39 +53,51 @@ function Sites() {
 
 
     function createData(name, value, id) {
-        console.log(name, value)
         return { name, value, id }
     }
 
     const rows = [
-        createData('Site Type', sites.site_type?.name),
-        createData('Name', sites.name),
+        // createData('Name', sites.name),
         createData('Other name', sites.gaelic_name),
+        createData('Site Type', sites.site_type?.name),
         createData('Place', sites.place?.name),
         // createData('Description', sites.description),
-        createData('Gaelic description', sites.gaelic_decription)
+        // createData('Gaelic description', sites.gaelic_decription)
     ].filter((e) => e.value !== null)
 
     return (
         <div>
+            <div className="top-panel">
+                <Link to='/' href="index.html">
+                    <img style={{
+                        objectFit: 'contain', 'width': '200px', height: '80px', margin: '10px',
+                        opacity: '0.8'
+                    }} alt="" src="/images/logos/macmorris.png" />
+                </Link>
+            </div>
+
             <Container>
-                <h2>{sites.place?.name}</h2>
+                <h2 style={{paddingTop: 20}}>{sites.name}</h2>
                 <Container>
                     <Box
                         sx={{
                             display: 'flex',
+                            justifyContent: 'space-evenly',
                             '& > :not(style)': {
                                 m: 1,
                                 width: 800,
                             },
                         }}
                     >
-                        <Paper variant="outlined" style={{ justifyContent: 'center'}}>
-                            {sites.description}
+                        <Paper variant="outlined" style={{ textAlign: 'justify', padding: 10}}>
+                            <div className='desc-header'>Description</div>
+                            <div style={{ paddingTop: 20 }}>{sites.description} </div>
                         </Paper>
-                        {/* <Paper variant="outlined">
-                            {sites.description}
-                        </Paper> */}
+
+                        {sites.gaelic_description && <Paper variant="outlined" style={{ textAlign: 'justify', padding: 10 }}>
+                            <div className='desc-header'>Gaelic Description</div>
+                            <div style={{ paddingTop: 20 }}>{sites.gaelic_description}</div>
+                        </Paper>}
                     </Box>
                 </Container>
                 <TableContainer component={Paper}>

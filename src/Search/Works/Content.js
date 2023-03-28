@@ -21,7 +21,6 @@ const Content = ({ data }) => {
                 accessorKey: 'display_title',
                 header: 'Title',
                 Cell: ({ renderedCellValue, row }) => {
-                    console.log({row})
                     return (<Link className='link' to={`/works/${row.original.id}`}>
                         <span>{renderedCellValue}</span>
                     </Link>)
@@ -60,7 +59,7 @@ const Content = ({ data }) => {
     const handleExportData = () => {
         const datacsv = data.map((e) => {
             const {author_id, display_title, work_date, languages} = e
-            const author = {"author_id" : author_id.name}
+            const author = {"author_id" : author_id?.name}
             const l = {"languages": languages.reduce((acc, e) => {
                 if(!acc.includes(e.name)){ acc.push(e.name)}
                 return acc

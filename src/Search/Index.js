@@ -18,8 +18,9 @@ import WorkContent from './Works/Content';
 import Spinner from 'react-bootstrap/Spinner';
 import Header from "../Home/Header";
 import "./search.scss";
+import { Link } from 'react-router-dom'
 
-function Index({changeIrish, setChangeIrish}) {
+function Index({ changeIrish, setChangeIrish }) {
     const [selectedValue, setSelectedValue] = useState('people');
     const [searchData, setSearchData] = useState('');
     const [peopleData, setPeopleData] = useState([]);
@@ -57,7 +58,7 @@ function Index({changeIrish, setChangeIrish}) {
     };
 
     function getUniqData(data) {
-        console.log("getUniq", {data})
+        console.log("getUniq", { data })
         return [...new Set(data.map(d => d.id))].map(
             d => {
                 return data.find(e => e.id === d)
@@ -67,7 +68,16 @@ function Index({changeIrish, setChangeIrish}) {
 
     return (
         <>
-              <Header changeIrish={changeIrish} setChangeIrish={setChangeIrish} />
+            <Header changeIrish={changeIrish} setChangeIrish={setChangeIrish} />
+            {/* <div className="top-panel">
+                <Link to='/' href="index.html">
+                    <img style={{
+                        objectFit: 'contain', 'width': '200px', height: '80px', margin: '10px',
+                        opacity: '0.8'
+                    }} alt="" src="/images/logos/macmorris.png" />
+                </Link>
+            </div> */}
+
 
             <Box sx={{}}>
                 <h2 style={{ textAlign: "center", padding: "20px", color: '#a22828' }}>Search our Database</h2>
@@ -93,17 +103,19 @@ function Index({changeIrish, setChangeIrish}) {
                         displayNames={displayNames} setLoading={setLoading} />}
                     {selectedValue === "works" && <Works setSearchData={setSearchData} setWorksData={setWorksData}
                         displayTitles={displayTitles} setLoading={setLoading} loading={loading} />}
-                    <Accordion>
-                        <Accordion.Item eventKey="0">
-                            {<Accordion.Header>Advanced Search</Accordion.Header>}
-                            <Accordion.Body>
-                                {selectedValue === "people" && <AdvancedPeople setSearchData={setSearchData} setPeopleData={setPeopleData} 
-                                setLoading={setLoading} />}
-                                {selectedValue === "works" && <AdvancedWorks setSearchData={setSearchData} setWorksData={setWorksData} 
-                                setLoading={setLoading} />}
-                            </Accordion.Body>
-                        </Accordion.Item>
-                    </Accordion>
+                    <div style={{ paddingTop: '20px' }}>
+                        <Accordion>
+                            <Accordion.Item eventKey="0">
+                                {<Accordion.Header>Advanced Search</Accordion.Header>}
+                                <Accordion.Body>
+                                    {selectedValue === "people" && <AdvancedPeople setSearchData={setSearchData} setPeopleData={setPeopleData}
+                                        setLoading={setLoading} />}
+                                    {selectedValue === "works" && <AdvancedWorks setSearchData={setSearchData} setWorksData={setWorksData}
+                                        setLoading={setLoading} />}
+                                </Accordion.Body>
+                            </Accordion.Item>
+                        </Accordion>
+                    </div>
                 </Container>
                 <Container style={{ padding: "40px", overflow: "hidden" }}>
                     {console.log({ selectedValue })}

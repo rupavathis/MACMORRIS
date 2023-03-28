@@ -73,7 +73,7 @@ const Content = ({ data }) => {
     const handleExportData = () => {
 
         const datacsv = data.map((e) => {
-            const {macmorris_id, gender, attribs, ...newObj} = e
+            const {id, macmorris_id, gender, attribs, ...newObj} = e
             const g = {"gender" : gender.name}
             const a = {"attribs": attribs.reduce((acc, e) => {
                 if(!acc.includes(e.name)){ acc.push(e.name)}
@@ -90,6 +90,7 @@ const Content = ({ data }) => {
         enableColumnActions={false}
         enableDensityToggle={false}
         initialState={{ density: 'compact' }}
+        enableStickyHeader
         renderTopToolbarCustomActions={({ table }) => (
             <button onClick={handleExportData}>
                 <FileDownloadIcon />

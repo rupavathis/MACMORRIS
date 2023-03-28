@@ -7,6 +7,7 @@ import Panel from './panels/Panel';
 import globe from '../images/map/globe.gif';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 const darkStyle = 'mapbox://styles/rupavathi/clf0c3up6003l01mdfutm3sz7';
 
@@ -21,7 +22,25 @@ function Home() {
   const [layer, setLayer] = useState([1]);
   const [loading, setLoading] = useState(true);
   const [loading2, setLoading2] = useState(true);
+  const [showImage, setShowImage] = useState(true)
+  const [showCard, setShowCard] = useState(false);
 
+  const history = useNavigate()
+  const [id, setId] = useState(0);
+
+
+  useEffect(() => {
+    console.log("In map page")
+
+    if (document.URL.includes('?')) {
+      const url = document.URL;
+      const searchParams = new URLSearchParams(url.substring(url.lastIndexOf('?')));
+      const id = searchParams.get('id');
+      console.log(id, id);
+      setId(id);
+      console.log("in useeffect if", id);
+    }
+  }, [history])
 
 
   const fetchSiteData = async () => {
@@ -33,10 +52,18 @@ function Home() {
     const siteTypesRes = await fetch("site_types");
     var siteTypesJson = await siteTypesRes.json();
     setSites(sitesJson)
-    setFilteredSites(sitesJson);
+    console.log("out if", { id });
+
+    if (id != 0) {
+      console.log("format", { id });
+      const filtered = sitesJson.filter(s => s.id === parseInt(id))
+      console.log("filtered", { filtered }, sitesJson);
+      setFilteredSites(filtered)
+    }
+    else setFilteredSites(sitesJson);
     setSiteTypes(siteTypesJson)
 
-    console.log("date", date - new Date)
+    console.log("filtered sites 2", filteredSites)
 
 
     const countSites = sitesJson.reduce((a, c) => {
@@ -79,12 +106,13 @@ function Home() {
     <div className='map-container'>
 
       <Map sites={filteredSites} siteTypes={siteTypes} mapStyle={mapStyle} historicMap={historicMap}
-        countSites={countSites} setHoverInfo={setHoverInfo} layer={layer} />
+        countSites={countSites} setHoverInfo={setHoverInfo} layer={layer} setShowImage={setShowImage} 
+        setShowCard={setShowCard} />
 
       <Panel siteTypes={siteTypes} sites={sites} setFilteredSites={setFilteredSites}
         filteredSites={filteredSites} setMapStyle={setMapStyle} setHistoricMap={setHistoricMap}
         setCountSites={setCountSites} countSites={countSites} hoverInfo={hoverInfo} setLayer={setLayer}
-        layer={layer} />
+        layer={layer} showImage={showImage} setShowImage={setShowImage} setShowCard={setShowCard} showCard={showCard}/>
 
 
       <div className="top-panel">

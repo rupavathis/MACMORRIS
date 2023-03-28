@@ -31,7 +31,7 @@ export default function Sites({ sites }) {
               >
 
                 <TableCell component="th" scope="row">
-                <Link to={`/site/${row.value1}`}>
+                <Link to={`/map?id=${row.value1}`}  target="_blank" rel="noopener noreferrer">
                     {row.value2}
                   </Link>
                 </TableCell>
@@ -43,7 +43,7 @@ export default function Sites({ sites }) {
           </TableBody>
         </Table>
       </TableContainer>
-      {sites.length == 0 && <div className='NoWorkLabel'>No Sites to show</div>}
+      {sites.length == 0 && <div className='NoWorkLabel'>No sites to show</div>}
     </Container>
   );
 }

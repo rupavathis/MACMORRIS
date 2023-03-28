@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 
 
 function Works() {
+    console.log("hi", 5679045);
+
 
     const [workID, setWorkId] = useState(-1);
     const [works, setWorks] = useState({});
@@ -27,7 +29,6 @@ function Works() {
         }
     }, [])
 
-
     useEffect(() => {
         (async () => {
             console.log("hello");
@@ -37,12 +38,9 @@ function Works() {
                 const workResJson = await workRes.json();
                 console.log(workResJson);
                 setWorks(workResJson);
-
             }
-
         })();
     }, [workID])
-
 
     function createData(name, value, id) {
         console.log(name, id)
@@ -73,7 +71,7 @@ function Works() {
         <div>
             <Container>
                 <h2>Details of Work</h2>
-                <TableContainer component={Paper}>
+               {works.length != 0 && <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 650 }} aria-label="Details of works table">
                         <TableBody>
                             {rows.map((row) => {
@@ -107,7 +105,7 @@ function Works() {
 
                         </TableBody>
                     </Table>
-                </TableContainer>
+                </TableContainer>}
             </Container>
         </div>
     );

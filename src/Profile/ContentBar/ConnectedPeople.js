@@ -20,8 +20,8 @@ export default function Connections({ connections }) {
     return { value1, value2, value3, value4, value5, value6, value7 };
   }
 
-  const rows = connections.map((conn) => createData(conn.id, conn.source_id?.macmorris_id, conn.source_id?.name, 
-    conn.target_id?.macmorris_id, conn.target_id?.name, [... new Set(conn.relationship_types.map((r) => r.name))],
+  const rows = connections.map((conn) => createData(conn.id, conn.source_id?.macmorris_id, conn.source_id?.name,
+    conn.target_id?.macmorris_id, conn.target_id?.name, [... new Set(conn.relationship_types.map((r) => r.name).join('/ '))],
     conn.source_id?.id));
   // const rows = rows_duplicates.filter((item, index) => rows_duplicates(item) === index);
 
@@ -32,16 +32,16 @@ export default function Connections({ connections }) {
 
   return (
     <Container>
-      <TableContainer component={Paper}>
+      {connections.length != 0 && <TableContainer component={Paper}>
         <Table sx={{ minWidth: 150 }} size="small" aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell align="right"></TableCell>
               <TableCell align="right"></TableCell>
               <TableCell align="right">
-               <Link to={`/networkWithId/${connections[0].source_id?.id}`}>
+                <Link to={`/networkWithId/${connections[0].source_id?.id}`}>
                   View the networks
-                </Link> 
+                </Link>
               </TableCell>
             </TableRow>
           </TableHead>
@@ -67,6 +67,8 @@ export default function Connections({ connections }) {
           </TableBody>
         </Table>
       </TableContainer>
-    </Container>
+      }
+      {connections.length == 0 && <div className='NoWorkLabel'>No connections to show</div>}
+    </Container >
   );
 }

@@ -21,10 +21,10 @@ function Viz({ changeIrish, setRemoveHeader }) {
                 <section className="half-section">
                     <div className="container-fluid">
                         <div className="row">
-                            <div className="col-lg-6 nopadding" onClick={(() => <Link to='map' target="_blank" rel="noopener noreferrer"></Link>)}>
-
-                                <SearchWrapper />
-
+                            <div className="col-lg-6 nopadding">
+                                <Link to='search'>
+                                    <SearchWrapper />
+                                </Link>
                             </div>
                             <div className="col-lg-6 nopadding">
                                 <div className="split-box text-center center-block container-padding equalheight">
@@ -84,9 +84,11 @@ function Viz({ changeIrish, setRemoveHeader }) {
                                 </div>
                             </div>
                             <div className="col-lg-6 nopadding">
-                                <div className="img-container" style={{ height: 500 }} onClick={(() => <Link to='map' target="_blank" rel="noopener noreferrer"></Link>)}>
-                                    <MapHome className="equalheight" />
-                                </div> 
+                                <div className="img-container" style={{ height: 500 }}>
+                                    <Link to='map' target="_blank" rel="noopener noreferrer">
+                                        <MapHome className="equalheight" />
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -94,10 +96,11 @@ function Viz({ changeIrish, setRemoveHeader }) {
                 <section className="half-section">
                     <div className="container-fluid">
                         <div className="row">
-                            <div className="col-lg-6 nopadding" onClick={(() => <Link to='map' target="_blank" rel="noopener noreferrer"></Link>)}>
-                                {/* <div className="image hover-effect img-container"> */}
+                            <div className="col-lg-6 nopadding">
                                 <div className="img-container">
-                                    <Network className="equalheight" />
+                                    <Link to='network' target="_blank" rel="noopener noreferrer">
+                                        <Network className="equalheight" />
+                                    </Link>
                                 </div>
                             </div>
                             <div className="col-lg-6 nopadding">
@@ -132,8 +135,8 @@ function Viz({ changeIrish, setRemoveHeader }) {
                         </div>
                     </div>
                 </section>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }
 

@@ -65,8 +65,9 @@
 .filter-body {
     flex: 1;
     font-size: 13px;
-    background-color: #e8e3da;
+    background-color: #ffffff;
     padding: 10px;
+    min-width: 250px;
 
     .section-legend {
         display: flex;
@@ -84,7 +85,7 @@
         .collapse-icon-wrapper {
             padding-bottom: 5px;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             align-items: center;
             opacity: 0.75;
             transition: opacity 0.3s ease-in-out;
@@ -207,7 +208,7 @@
 .siteTypeClick.active {
     font-weight: bolder;
     stroke: black;
-    // transform: translateX(5px) scale(1); 
+    transform: translateX(5px) scale(1); 
     // font-size: 10px; 
     // color: #530e85;
 }
@@ -215,7 +216,11 @@
 .pointer {
     height: 50px;
     width: 50px;
-    transform: scale(0.6) rotate(-45deg);
+    transform: scale(0.7);
+    transition: 1ms ease-in-out;
+    &:hover {
+        transform: scale(0.9);
+    }
 }
 
 .pointer-1 { fill: rgb(76, 0, 153) }
