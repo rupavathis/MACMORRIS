@@ -4,6 +4,8 @@ import '../Network.scss';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
+import { API_URL } from '../../constants';
+
 
 function Filter({ nodes, setNodes, settings }) {
     useEffect(() => { fetchFilters(); fetchNodeData() }, [])
@@ -26,19 +28,19 @@ function Filter({ nodes, setNodes, settings }) {
 
 
     async function fetchFilters() {
-        const res = await fetch("/genders");
+        const res = await fetch(`${API_URL}/genders`);
         const gendersJson = await res.json();
         setGenders(gendersJson);
-        const rolesRes = await fetch("/roles");
+        const rolesRes = await fetch(`${API_URL}/roles`);
         const rolesJson = await rolesRes.json();
         setRoles(rolesJson);
-        const attribsRes = await fetch("/attribs");
+        const attribsRes = await fetch(`${API_URL}/attribs`);
         const attribsJson = await attribsRes.json();
         setAttribs(attribsJson);
-        const rDesignationRes = await fetch("/religious_designations");
+        const rDesignationRes = await fetch(`${API_URL}/religious_designations`);
         const rDesignationJson = await rDesignationRes.json();
         setRDesignations(rDesignationJson);
-        const rOrderRes = await fetch("/religious_orders");
+        const rOrderRes = await fetch(`${API_URL}/religious_orders`);
         const rOrderJson = await rOrderRes.json();
         setROrders(rOrderJson);
     }
@@ -46,7 +48,7 @@ function Filter({ nodes, setNodes, settings }) {
     async function fetchNodeData() {
         if (nodes != null) {
             const nodeIds = nodes.map((n) => n.people_id)
-            const res = await fetch(`/filterData/${nodeIds}`);
+            const res = await fetch(`${API_URL}/filterData/${nodeIds}`);
             const peopleJson = await res.json();
             setNodeData(peopleJson);
             console.log({ peopleJson })

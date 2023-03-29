@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom'
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
+import { API_URL } from '../../constants';
+
 
 function Info({ info }) {
     console.log("info", { info })
@@ -17,7 +19,7 @@ function Info({ info }) {
     useEffect(() => {
         async function fetchInfo() {
             if (info != null) {
-                const connectionsRes = await fetch(`/info/connections/${info}`);
+                const connectionsRes = await fetch(`${API_URL}/info/connections/${info}`);
                 const connectionsResJson = await connectionsRes.json();
                 setInfoData(connectionsResJson)
                 console.log("info json connectionsResJson", { connectionsResJson })

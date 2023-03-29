@@ -10,6 +10,7 @@ import WebLink from '@mui/material/Link';
 import { Link } from "react-router-dom";
 import Box from '@mui/material/Box';
 import './sites.scss'
+import { API_URL } from '../constants';
 
 
 function Sites() {
@@ -42,7 +43,7 @@ function Sites() {
 
             // if (siteID !== -1) {
             console.log("useeffect sites");
-            const sitesRes = await fetch(`/sites/${id}`);
+            const sitesRes = await fetch(`${API_URL}/sites/${id}`);
             const sitesResJson = await sitesRes.json();
             console.log("sitesResJson", sitesResJson);
             setSites(sitesResJson);

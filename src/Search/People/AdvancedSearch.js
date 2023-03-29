@@ -6,6 +6,8 @@ import Autocomplete from "@mui/material/Autocomplete";
 // import Button from 'react-bootstrap/Button';
 import Button from '@mui/material/Button';
 import '../search.scss'
+import { API_URL } from '../../constants';
+
 
 import Spinner from 'react-bootstrap/Spinner';
 
@@ -31,7 +33,7 @@ export default function AdvancedSearch({ setSearchData, setPeopleData, setLoadin
 
     setSearch(true)
     setLoading(true)
-    let url = 'advancedSearch/people?';
+    let url = `${API_URL}/advancedSearch/people?`;
     if (selectedGender != null) url += `gender=${selectedGender}`
     if (!(selectedRSubtype && selectedRSubtype.length === 0)) url += `&rSubtypes=${selectedRSubtype}`
     if (selectedROrder != null) url += `&rOrder=${selectedROrder}`
@@ -66,16 +68,16 @@ export default function AdvancedSearch({ setSearchData, setPeopleData, setLoadin
 
 
   const fetchData = async () => {
-    const res = await fetch("/genders");
+    const res = await fetch(`${API_URL}/genders`);
     const resJson = await res.json();
     console.log("I'm in fetchGenders");
     setGenders(resJson);
 
-    const rDesignation = await fetch("/religious_designations");
+    const rDesignation = await fetch(`${API_URL}/religious_designations`);
     const rDesignationJson = await rDesignation.json();
     setRDesignations(rDesignationJson);
 
-    const rOrders = await fetch("/religious_orders");
+    const rOrders = await fetch(`${API_URL}/religious_orders`);
     const rOrdersJson = await rOrders.json();
     setROrders(rOrdersJson);
 
@@ -83,13 +85,13 @@ export default function AdvancedSearch({ setSearchData, setPeopleData, setLoadin
     // const rSubTypesJson = await rSubTypes.json();
     // setRSubTypes(rSubTypesJson);
 
-    const roles = await fetch("/roles");
+    const roles = await fetch(`${API_URL}/roles`);
     const rolesJson = await roles.json();
     setRoles(rolesJson);
   };
 
   const onRoleChange = async (e, v) => {
-    const attribsRes = await fetch(`/attribs`);
+    const attribsRes = await fetch(`${API_URL}/attribs`);
     const attribsJson = await attribsRes.json();
     if (v != null) {
       const attribs = v.map(item => attribsJson.filter(a => a.role_id === item.id)).reduce((a, c) => a.concat(c), [])
@@ -100,7 +102,7 @@ export default function AdvancedSearch({ setSearchData, setPeopleData, setLoadin
 
   const onChangeRDesignation = async (v) => {
     console.log("RDesign", v)
-    const rSubTypes = await fetch("/religious_subtypes");
+    const rSubTypes = await fetch(`${API_URL}/religious_subtypes`);
     const rSubTypesJson = await rSubTypes.json();
     const rSubtypes = rSubTypesJson.filter((r) => r.religious_designation_id === v)
     console.log({ rSubtypes })

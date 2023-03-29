@@ -5,6 +5,8 @@ import Container from "@mui/material/Container";
 import AsyncSelect from 'react-select/async';
 import AdvancedSearch from './AdvancedSearch';
 import Content from './Content1';
+import { API_URL } from '../../constants';
+
 
 export default function BasicSearch({ setSearchData, setPeopleData, displayNames, setLoading }) {
 
@@ -18,7 +20,7 @@ export default function BasicSearch({ setSearchData, setPeopleData, displayNames
     actionMeta
   ) => {
     setLoading(true)
-    const peopleRes = await fetch(`/search/people/${newValue.id}`);
+    const peopleRes = await fetch(`${API_URL}/search/people/${newValue.id}`);
     const peopleJson = await peopleRes.json();
     console.log("people json", peopleJson);
     setPeopleData(peopleJson);

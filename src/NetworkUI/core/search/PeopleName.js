@@ -3,6 +3,7 @@ import React from 'react';
 import { useEffect } from "react";
 import AsyncSelect from 'react-select/async';
 import '../../Network.scss';
+import { API_URL } from '../../../constants';
 
 
 export default function SearchName({ setNetworkData, setSelectContent, setDisplayNames, displayNames, id,
@@ -36,7 +37,7 @@ export default function SearchName({ setNetworkData, setSelectContent, setDispla
     const fetchNames = async () => {
 
         const start = new Date();
-        const displayNamesRes = await fetch("/names");
+        const displayNamesRes = await fetch(`${API_URL}/names`);
         var displayNamesJson = await displayNamesRes.json();
         // setDisplayNames(displayNamesJson.slice(0, 100))
 
@@ -66,8 +67,7 @@ export default function SearchName({ setNetworkData, setSelectContent, setDispla
     }, [id!='-1'])
 
     const fetchData = async(id) => {
-        const url = `/showConnection/${id}`
-        const peopleRes = await fetch(url);
+        const peopleRes = await fetch(`${API_URL}/showConnection/${id}`);
         const peopleJson = await peopleRes.json();
         console.log("people json in 12345", peopleJson);
         setNetworkData(peopleJson);

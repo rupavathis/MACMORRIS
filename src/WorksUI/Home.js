@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import WebLink from '@mui/material/Link';
 import { Link } from "react-router-dom";
+import { API_URL } from '../constants';
 
 
 function Works() {
@@ -34,7 +35,7 @@ function Works() {
             console.log("hello");
             if (workID !== -1) {
                 console.log("hi");
-                const workRes = await fetch(`/works/${workID}`);
+                const workRes = await fetch(`${API_URL}/works/${workID}`);
                 const workResJson = await workRes.json();
                 console.log(workResJson);
                 setWorks(workResJson);

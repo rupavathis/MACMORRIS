@@ -5,7 +5,9 @@ import '../Network.scss';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import infoData from '../../Profile/ContentBar/Biography';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { API_URL } from '../../constants';
+
 
 function Info({ info }) {
     console.log("info", { info })
@@ -14,7 +16,7 @@ function Info({ info }) {
     useEffect(() => {
         async function fetchInfo() {
             if (info != null) {
-                let url = `people/${info}`;
+                let url = `${API_URL}/people/${info}`;
                 console.log(url)
                 const res = await fetch(url);
                 const infoJson = await res.json();

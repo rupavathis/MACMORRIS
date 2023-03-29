@@ -8,6 +8,8 @@ import globe from '../images/map/globe.gif';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'
+import { API_URL } from '../constants';
+
 
 const darkStyle = 'mapbox://styles/rupavathi/clf0c3up6003l01mdfutm3sz7';
 
@@ -45,11 +47,11 @@ function Home() {
 
   const fetchSiteData = async () => {
     const date = new Date
-    const sitesRes = await fetch("/sites");
+    const sitesRes = await fetch(`${API_URL}/sites`);
     console.log(sitesRes)
     var sitesJson = await sitesRes.json();
     console.log(sitesJson)
-    const siteTypesRes = await fetch("site_types");
+    const siteTypesRes = await fetch(`${API_URL}site_types`);
     var siteTypesJson = await siteTypesRes.json();
     setSites(sitesJson)
     console.log("out if", { id });

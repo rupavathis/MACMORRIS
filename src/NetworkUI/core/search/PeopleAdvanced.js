@@ -3,6 +3,8 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Button from '@mui/material/Button';
 import '../../Network.scss';
+import { API_URL } from '../../../constants';
+
 
 function AdvancedSearchPeople({ setNetworkData,setSelectContent, setLoading}) {
 
@@ -16,17 +18,17 @@ function AdvancedSearchPeople({ setNetworkData,setSelectContent, setLoading}) {
     useEffect(() => { fetchData() }, []);
 
     const fetchData = async () => {
-        const rOrders = await fetch("/religious_orders");
+        const rOrders = await fetch(`${API_URL}/religious_orders`);
         const rOrdersJson = await rOrders.json();
         console.log(rOrdersJson)
         setROrders(rOrdersJson);
 
-        const attribsRes = await fetch(`/attribs`);
+        const attribsRes = await fetch(`${API_URL}/attribs`);
         const attribsJson = await attribsRes.json();
         console.log(attribsJson)
         setAttribs(attribsJson);
 
-        const genderRes = await fetch(`/genders`);
+        const genderRes = await fetch(`${API_URL}/genders`);
         const genderJson = await genderRes.json();
         console.log(genderJson)
         setGender(genderJson);
@@ -41,7 +43,7 @@ function AdvancedSearchPeople({ setNetworkData,setSelectContent, setLoading}) {
             if (selectedAttribs.length != 0) url += `attribs=${selectedAttribs}&`
             if (selectedGender.length != 0) url += `gender=${selectedGender}`
             console.log({url})
-            const res = await fetch(url);
+            const res = await fetch(`${API_URL}/${url}`);
             const output = await res.json();
             setNetworkData(output);
         }

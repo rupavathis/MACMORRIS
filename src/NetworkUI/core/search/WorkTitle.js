@@ -4,6 +4,8 @@ import { useEffect, useState, useMemo } from "react";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import '../../Network.scss';
+import { API_URL } from '../../../constants';
+
 
 export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSelectContent }) {
 
@@ -14,18 +16,18 @@ export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSe
     console.log("In search title") }, [])
 
     async function fetchWorkTitles() {
-        const worksRes = await fetch("/titles");
+        const worksRes = await fetch(`${API_URL}/titles`);
         const worksJson = await worksRes.json();
         setDisplayTitles(worksJson);
         console.log({ worksJson })
-        const workClassicationsRes = await fetch("/work_classifications");
+        const workClassicationsRes = await fetch(`${API_URL}/work_classifications`);
         const workClassicationsJson = await workClassicationsRes.json();
         setWorkClassifications(workClassicationsJson)
     }
 
     async function fetchWorkNetWorkData(value) {
         if (value != null) {
-            let url = `/showWorkTitleConnections/${value.id}`;
+            let url = `${API_URL}/showWorkTitleConnections/${value.id}`;
             console.log(url)
             const worksRes = await fetch(url);
             const worksJson = await worksRes.json();
@@ -37,7 +39,7 @@ export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSe
 
     async function fetchWorkClassificationData(value) {
         if (value != null) {
-            let url = `/advancedWorkSearch?wClassification=${value.id}`;
+            let url = `${API_URL}/advancedWorkSearch?wClassification=${value.id}`;
             console.log(url)
             const worksRes = await fetch(url);
             const worksJson = await worksRes.json();

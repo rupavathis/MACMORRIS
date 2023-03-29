@@ -4,6 +4,9 @@ import ContentBar from './ContentBar/ContentBar.js'
 import Roles from './ContentBar/Roles.js';
 import './home.css';
 import { useNavigate, Link } from 'react-router-dom'
+import { API_URL } from '../constants';
+
+
 function Home() {
   // console.log("ID", id)
   // if (id == null)
@@ -46,21 +49,21 @@ function Home() {
 
   const fetchData = useCallback(async (id) => {
     setLoading(true)
-    const url = `/profile/${id}`
+    const url = `${API_URL}/profile/${id}`
     console.log({ url })
     const res = await fetch(url);
     console.log({ res });
 
 
 
-    const urlConn = `/people/${id}/connections`;
+    const urlConn = `${API_URL}/people/${id}/connections`;
     const connectionsRes = await fetch(urlConn);
     console.log({ urlConn })
     const connectionsResJson = await connectionsRes.json();
     console.log("connections1234", { connectionsResJson })
     setConnections(connectionsResJson);
 
-    const urlSite = `/people/${id}/sites`
+    const urlSite = `${API_URL}/people/${id}/sites`
     console.log({ urlSite })
     const resSite = await fetch(urlSite);
     const siteJson = await resSite.json();
@@ -91,7 +94,7 @@ function Home() {
     setSources(sources);
 
 
-    const url1 = `/people/${id}/works`
+    const url1 = `${API_URL}/people/${id}/works`
     const workRes = await fetch(url1);
     console.log({ url1 })
     const workResJson = await workRes.json();

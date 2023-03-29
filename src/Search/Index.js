@@ -18,7 +18,9 @@ import WorkContent from './Works/Content';
 import Spinner from 'react-bootstrap/Spinner';
 import Header from "../Home/Header";
 import "./search.scss";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { API_URL } from '../constants';
+
 
 function Index({ changeIrish, setChangeIrish }) {
     const [selectedValue, setSelectedValue] = useState('people');
@@ -36,12 +38,14 @@ function Index({ changeIrish, setChangeIrish }) {
 
     const fetchData = async () => {
         console.log("basic search useeefect people")
-        const displayNamesRes = await fetch("/names");
+        const displayNamesRes = await fetch(`${API_URL}/names`);
+        console.log(displayNamesRes)
         var displayNamesJson = await displayNamesRes.json();
         // setDisplayNames(displayNamesJson)
         setDisplayNames(displayNamesJson)
 
-        const displayTitlesRes = await fetch("/titles");
+        const displayTitlesRes = await fetch(`${API_URL}/titles`);
+        console.log(displayTitlesRes)
         var displayTitlesJson = await displayTitlesRes.json();
         // setDisplayTitles(displayTitlesJson)
         setDisplayTitles(displayTitlesJson)

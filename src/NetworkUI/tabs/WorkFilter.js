@@ -4,6 +4,8 @@ import '../Network.scss';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Button from '@mui/material/Button';
+import { API_URL } from '../../constants';
+
 
 function WorkFilter({ nodes, setNodes, settings }) {
     console.log("in work filter", nodes)
@@ -22,13 +24,13 @@ function WorkFilter({ nodes, setNodes, settings }) {
 
 
     async function fetchFilters() {
-        const res = await fetch("/languages");
+        const res = await fetch(`${API_URL}/languages`);
         const languagesJson = await res.json();
         setLanguages(languagesJson);
-        const placesRes = await fetch("/places");
+        const placesRes = await fetch(`${API_URL}/places`);
         const placesJson = await placesRes.json();
         setPlaces(placesJson);
-        const workClassRes = await fetch("/work_classifications");
+        const workClassRes = await fetch(`${API_URL}/work_classifications`);
         const workClassJson = await workClassRes.json();
         setWClassifications(workClassJson); 
         console.log("in work filter fetch filters", )
@@ -38,7 +40,7 @@ function WorkFilter({ nodes, setNodes, settings }) {
     async function fetchNodeData() {
         if (nodes != null) {
             const nodeIds = nodes.map((n) => n.work_id)
-            const res = await fetch(`/filterWorkData/${nodeIds}`);
+            const res = await fetch(`${API_URL}/filterWorkData/${nodeIds}`);
             const worksJson = await res.json();
             setNodeData(worksJson);
             console.log({ worksJson })

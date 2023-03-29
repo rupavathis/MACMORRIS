@@ -5,6 +5,8 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 // import { Button } from 'bloomer/lib/elements/Button';
 import Button from '@mui/material/Button';
+import { API_URL } from '../../../constants';
+
 
 export default function SearchWorkNetwork({ workNetworkData, setWorkNetworkData, setSelectContent}) {
 
@@ -23,7 +25,7 @@ export default function SearchWorkNetwork({ workNetworkData, setWorkNetworkData,
     useEffect(() => { fetchWorkTitles(); }, [])
 
     async function fetchWorkTitles() {
-        const res = await fetch("/authorship_types");
+        const res = await fetch(`${API_URL}/authorship_types`);
         const peopleJson = await res.json();
 
         // const authors = unique(worksJson.map((m) => { return { id: m.author_id_id, display_name: m.author_id.display_name } }))
@@ -63,10 +65,10 @@ export default function SearchWorkNetwork({ workNetworkData, setWorkNetworkData,
 
 
     async function searchPeople() {
-        let url = `/worksPeopleSearch?authors=${selectedAuthor}&patrons=${selectedPatrons}&
+        let url = `${API_URL}/worksPeopleSearch?authors=${selectedAuthor}&patrons=${selectedPatrons}&
                 printers=${selectedPrinters}&publishers=${selectedPublishers}&booksellers=${selectedBooksellers}`
         console.log(url)
-        const worksRes = await fetch(url);
+        const worksRes = await fetch(`${API_URL}/${url}`);
         const worksJson = await worksRes.json();
         setWorkNetworkData(worksJson);
         console.log("workNetworkData in Search", worksJson)

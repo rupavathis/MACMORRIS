@@ -4,6 +4,8 @@ import { useEffect, useState, useMemo } from "react";
 import Container from "@mui/material/Container";
 import AsyncSelect from 'react-select/async';
 import AdvancedSearch from './AdvancedSearch';
+import { API_URL } from '../../constants';
+
 
 export default function BasicSearch( {setWorksData, setSearchData, displayTitles, setLoading }) {
 
@@ -15,7 +17,7 @@ export default function BasicSearch( {setWorksData, setSearchData, displayTitles
     event   
   ) => {
     setLoading(true)
-    const workRes = await fetch(`/search/works/${event.id}`);
+    const workRes = await fetch(`${API_URL}/search/works/${event.id}`);
     const workJson = await workRes.json();
     console.log("works json", workJson);
     setWorksData(workJson);
