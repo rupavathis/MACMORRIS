@@ -21,9 +21,9 @@ const uniqueNodes = (nodes) => {
 }
 
 
-const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText, displayNames }) => {
+const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText, displayNames, searchID, zoom, setFgRef }) => {
 
-    console.log('works 54321')
+    console.log('works 54321', searchID)
 
 
     const obj = displayNames.reduce((obj, item) => Object.assign(obj, { [item.id]: item.display_name }), {})
@@ -39,38 +39,41 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
         fetchNodes();
     }, [workNetworkData, secondDegree, settings[0], settings[1], settings[2]]);
 
-    // useEffect(() => {
-    //     console.log('useEffect works 54321')
-    // }, []);
-
+ 
     const firstDegree = workNetworkData[0]
     const networkData1 = [...firstDegree]
     const networkData2 = workNetworkData[1]
-    console.log({ networkData1 })
+    console.log({ networkData1, networkData2, workNetworkData })
 
     const fetchNodes = () => {
 
         console.log("Fetch nodes 654321")
 
+        const firstDegreeProps = { color: "#3f48cc", val: 1 };
+        const secondDegreeProps = { color: "#8cb316", val: 1 };
+        const searchedNodeProps = { color: "#ee0000", val: 1, batch: 'work1', type: "work"  };
+
         const source1 = networkData1.map((c) => {
             return {
                 id: c.display_title === null ? "" : c.display_title,
                 uid: c.id,
-                batch: "work1"
+                ...firstDegreeProps 
             }
         })
         const assoc_author = networkData1.map((c) => {
             const a = c.author_id_id === null ? "" : obj[`${c.author_id_id}`];
-            return { id: a, batch: "people1", uid: c.author_id_id }
+            return { id: a, batch: "people1", uid: c.author_id_id, ...firstDegreeProps, type: "people"  }
         })
 
-        const assoc_people = networkData1.map((c) => [c.patron_id_ids, c.patron_id_ids, c.publisher_id_ids, c.bookseller_id_ids]
-            .map(d =>
-                d.map(e => {
-                    console.log("assoc people", { d, e })
-                    const v = e === null ? "" : obj[`${e}`];
-                    return { id: v, uid: e, batch: "people2" }
-                }))
+        const assoc_people = networkData1.map((c) => [c.patron_id_ids, c.printer_id_ids, c.publisher_id_ids, c.bookseller_id_ids]
+            .map(d => {
+            console.log("assoc people eye", { d })
+            return d?.map(e => {
+                console.log("assoc people", { d, e })
+                const v = e === null ? "" : obj[`${e}`];
+                return { id: v, uid: e, ...firstDegreeProps, type: "people"  }
+            }) || [];
+            })
         ).flat(2)
 
         const nodes1 = [...source1, ...assoc_author, ...assoc_people]
@@ -82,13 +85,14 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
 
         if (secondDegree) {
 
-            const source2 = networkData2.map((c) => {
+            const source2 = networkData2?.map((c) => {
                 return {
                     id: c.display_title === null ? "" : c.display_title,
                     uid: c.id,
-                    batch: "work2",
-                }
-            })
+                    ...secondDegreeProps,
+                    type: "work"
+                };
+            }) || []; // provide a default value of []
             nodes = [...nodes1, ...source2]
         }
         else {
@@ -101,84 +105,63 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
 
         const unode = uniqueNodes(nodes)
 
-        const uniqueNode = unode.map((a) => {
-            if (networkData1.some(e => e.id === a.uid)) {
-                return { ...a, batch: "work1" }
-            }
-            else if (networkData2.some(e => e.id === a.uid)) {
-                return { ...a, batch: "node1Targets" }
-            }
-            else return { ...a, batch: "work2" }
+         // set searched node props
+         if(unode.length != 0){
+            console.log("set 3423", unode)
+            if (searchID !== null) {
+                console.log("set 34231", searchID, unode, "im in not null")
+                const searchedNode = unode.find(n => n.uid === parseInt(searchID))
+                Object.entries(searchedNodeProps).forEach(([k,v]) => searchedNode[k] = v)
+            } else {
+                console.log("set 34232", searchID, unode)
 
-        })
+                const searchedNodes = unode.filter(n => source1.includes(n));
+                searchedNodes.forEach(n => {
+                    Object.entries(searchedNodeProps).forEach(([k,v]) => n[k] = v)
+                });
+            }
+        }
 
-
-        uniqueNode.forEach((u) => {
-            if (u.batch === "work1") {
-                u.color = settings[0].node1;
-                u.val = settings[1].node1 === '0' ? 1 : settings[1].node1 * 2;
-            }
-            if (u.batch === "node1Targets") {
-                u.color = settings[0].node2;
-                u.val = settings[1].node2 === '0' ? 1 : settings[1].node2 * 2;
-            }
-            if (u.batch === "work2") {
-                u.color = settings[0].node3;
-                u.val = settings[1].node3 === '0' ? 1 : settings[1].node3 * 2;
-            }
-        })
-        setNodes(uniqueNode)
+        setNodes(unode)
 
         const author_works = networkData1.map((c) => {
             console.log('links author', c.author_id_id, nodes)
             // const a = c.author_id_id === null ? "" : obj[`${c.author_id_id}`];
             return {
-                source: uniqueNode.find(e => e.uid === c.id),
-                target: uniqueNode.find(e => e.uid === c.author_id_id)
+                source: nodes.find(e => e.uid === c.id),
+                target: nodes.find(e => e.uid === c.author_id_id)
             }
         })
 
         const w2p = networkData1.map(w => {
             // input: array of people ids, output array of src tgt objects
-            const ids2p = (ids) => ids.map(id => ({
-                source: uniqueNode.find(e => e.uid === w.id),
-                target: uniqueNode.find(e => e.uid === id)
+            const ids2p = (ids) => ids?.map(id => ({
+                source: nodes.find(e => e.uid === w.id),
+                target: nodes.find(e => e.uid === id)
             }));
             return [w.patron_id_ids, w.printer_id_ids, w.publisher_id_ids, w.bookseller_id_ids].map(ids => ids2p(ids));
         }).flat(2);
 
 
 
-        const link1 = [...author_works, ...w2p]
+        const link1 = [...author_works, ...w2p].filter(e => e != undefined)
+        console.log( "remove undefined", links )
         setLinks(link1)
         console.log({ "out assoc": assoc_author, networkData2 })
 
 
         if (secondDegree) {
 
-            // const author_works_2 = networkData2.map((c) => {
-            //     console.log('links author', c.author_id_id, nodes)
-            //     // const a = c.author_id_id === null ? "" : obj[`${c.author_id_id}`];
-            //     return {
-            //         source: nodes.find(el => el.uid === c.author_id_id),
-            //         target: nodes.find(el => el.uid === c.id),
-            //     }
-            // })
-
-            const author_works_2 = networkData2.filter((c) => c.author_id_id === assoc_author[0].uid).map((e) => {
+            const author_works_2 = networkData2?.filter((c) => c.author_id_id === assoc_author[0].uid).map((e) => {
                 return {
-                    source: uniqueNode.find(el => el.uid === e.author_id_id),
-                    target: uniqueNode.find(el => el.uid === e.id),
+                    source: nodes.find(el => el.uid === e.author_id_id),
+                    target: nodes.find(el => el.uid === e.id),
                 }
             })
 
             console.log({ author_works_2, "assoc": assoc_author[0].uid, networkData2 })
 
-            //     return {
-            //         source: nodes.find(el => el.uid === c.author_id_id),
-            //         target: nodes.find(el => el.uid === c.id),
-            //     }
-            // })
+   
             const getAllIds = (p) => [].concat(
                 p.bookseller_id_ids,
                 p.patron_id_ids,
@@ -187,10 +170,10 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
             );
             console.log({ networkData1, networkData2 });
             const link2 = networkData1.map(n1 =>
-                getAllIds(n1).map(id =>
+                getAllIds(n1)?.map(id =>
                     networkData2.filter(e => getAllIds(e).includes(id)).map(e => ({
-                        source: uniqueNode.find(el => el.uid === n1.id),
-                        target: uniqueNode.find(el => el.uid === e.id)
+                        source: unode.find(el => el.uid === n1.id),
+                        target: unode.find(el => el.uid === e.id)
                     }))
                 ).flat()
             ).flat()
@@ -204,8 +187,10 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
             //     })
             // }, [])
 
-            const links = [...link1, ...link2, ...author_works_2]
+            const links = [...link1, ...link2, ...author_works_2].filter(e => e != undefined)
             setLinks(links)
+            console.log( "remove undefined", links )
+
         }
     }
 
@@ -216,7 +201,7 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
 
     return (
         <>
-            {!threeD && data.nodes.length != 0 && <GraphForce2D data1={data} />}
+            {!threeD && data.nodes.length != 0 && <GraphForce2D data1={data}  zoom={zoom} setFgRef={setFgRef}  />}
             {threeD && data.nodes.length != 0 && <Graph3D data={data} show3DText={show3DText} />}
 
             {tab === "show-filter" && <Filter nodes={data.nodes} setNodes={setNodes} settings={settings} />}

@@ -28,7 +28,7 @@ function Banner() {
     }, []);
 
     useEffect(() => { 
-        $("#rev_single").show().revolution({ // eslint-disable-line
+        $("#rev_single").show().revolution({// eslint-disable-line
             sliderType: "hero",
             jsFileLocation: "js/revolution",
             sliderLayout: "fullscreen",
@@ -97,11 +97,11 @@ function Banner() {
 
                     <h1> MACMORRIS </h1>
 
-                    <div style={{padding: "10px", "padding-top": "30px"}}>
+                    <div style={{padding: "10px", "paddingTop": "30px"}}>
 
                     <p className="banner">
                         An IRC Laureate project that seeks to map the full range and richness of cultural activity,
-                        across languages and ethnic groups, in Ireland from 1541 to 1691.
+                        across languages and ethnic groups, in Ireland from 1541 to 1660.
                     </p>
 
                     <p className="banner">

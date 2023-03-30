@@ -10,8 +10,6 @@ const Graph2DForce = ({ data1, show3DText, setFgRef }) => {
     console.log("3d", { data1 }, show3DText)
     const fgRef = useRef();
     const ref = useRef();
-    const [config, setConfig] = useState(null);
-    const [linkStyle, setLinkStyle] = useState({});
     const [highlightNodes, setHighlightNodes] = useState(new Set());
     const [highlightLinks, setHighlightLinks] = useState(new Set());
     const [hoverNode, setHoverNode] = useState(null);
@@ -19,6 +17,8 @@ const Graph2DForce = ({ data1, show3DText, setFgRef }) => {
     const [info, setInfo] = useState(0);
     const [showLinkInfo, setShowLinkInfo] = useState(false);
     const [linkInfo, setLinkInfo] = useState(0);
+    const [close, setClose] = useState(false)
+    const [type, setType] = useState("")
 
 
     const NODE_R = 8;
@@ -65,16 +65,20 @@ const Graph2DForce = ({ data1, show3DText, setFgRef }) => {
         const { x, y, id } = node
 
         if (node.batch === "work1" || node.batch === "work2") {
-            ctx.font = '10px Sans-Serif blue'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-            // ctx.strokeText(id, x + 8, y + 1);
-            ctx.fillText(id, x + 8, y + 1);
-            // ctx.fillStyle = node.color;
-
+            ctx.font = '10px Sans-Serif black'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+            // Dont change the order
+            ctx.fillStyle = node.color;
             ctx.beginPath(); ctx.moveTo(x, y - 5); ctx.lineTo(x - 5, y + 5); ctx.lineTo(x + 5, y + 5); ctx.fill();
+
+            ctx.fillStyle = "black";
+            ctx.fillText(id, x + 8, y + 1);
+
+
         }
 
         else {
             ctx.font = '10px Sans-Serif'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+            ctx.fillStyle = node.color
             ctx.fillStyle = "black";
             ctx.fillText(id, x + 8, y + 1);
         }
@@ -95,12 +99,35 @@ const Graph2DForce = ({ data1, show3DText, setFgRef }) => {
 
         if (node.batch === "work1" || node.batch === "work2") {
             console.log("im in")
-            ctx.beginPath(); 
-            ctx.moveTo(x, y - 5); ctx.lineTo(x - 5, y + 5); ctx.lineTo(x + 5, y + 5); ctx.fill();
+            // ctx.beginPath();
+            // ctx.moveTo(x, y - 5); ctx.lineTo(x - 5, y + 5); ctx.lineTo(x + 5, y + 5); ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(x, y - 10);
+            ctx.lineTo(x - 10, y + 10);
+            ctx.lineTo(x + 10, y + 10);
+            ctx.closePath();
+            ctx.strokeStyle = node === hoverNode ? '#ffff00' : 'orange';
+            ctx.stroke(); // draw the outline of the triangle
+            ctx.fill();
+
+            ctx.fillStyle = node === hoverNode ? '#ffff00' : 'orange'; // set the fill color to yellow if node is hovered, otherwise orange
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(x, y - 5);
+            ctx.lineTo(x - 5, y + 5);
+            ctx.lineTo(x + 5, y + 5);
+            ctx.fillStyle = node.color // set the fill color to green
+            ctx.fill(); // fill the triangle with green color
+
+
             ctx.font = '10px Sans-Serif'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
             // ctx.fillStyle = node.color;
+            ctx.fillStyle = "black";
             ctx.fillText(id, x + 8, y + 1);
-            ctx.fillStyle = node === hoverNode ? '#ffff00' : 'orange';
+            // ctx.strokeText(id, x + 8, y + 1);
+            // ctx.fillStyle = node === hoverNode ? '#ffff00' : 'orange';
         }
 
         else {
@@ -108,8 +135,9 @@ const Graph2DForce = ({ data1, show3DText, setFgRef }) => {
             ctx.arc(x, y, NODE_R * 1, 0, 2 * Math.PI, false);
             ctx.fillStyle = node === hoverNode ? '#ffff00' : 'orange';
             ctx.fill();
-            ctx.font = '10px Sans-Serif'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-            ctx.fillStyle = "black"
+            ctx.font = '10px Sans-Serif black'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+            ctx.fillStyle = "green"
+            ctx.fillStyle = "black";
             ctx.fillText(id, x + 8, y + 1);
         }
     }, [hoverNode]);
@@ -149,7 +177,23 @@ const Graph2DForce = ({ data1, show3DText, setFgRef }) => {
         console.log('node click', node);
         setShowInfo(true)
         setShowLinkInfo(false)
-        setInfo(node.people_id)
+        // setInfo(node.people_id)
+        // console.log('node click', node.people_id);
+
+        setClose(true)
+
+        if(node?.type != null){
+            if(node.type === "work"){
+                console.log('work click', node);
+                setInfo(node.uid)
+                setType("work")
+            }
+        }
+
+        else {
+            setInfo(node.people_id)
+            setType("people")
+        }
     }, []);
 
     const handleLinkClick = useCallback(link => {
@@ -158,6 +202,7 @@ const Graph2DForce = ({ data1, show3DText, setFgRef }) => {
         console.log('Link ID 324', link);
 
         setLinkInfo(link.id)
+        setClose(true)
     }, []);
 
 
@@ -181,7 +226,8 @@ const Graph2DForce = ({ data1, show3DText, setFgRef }) => {
                     // nodeLabel="id"
                     // linkLabel="id"
                     nodeAutoColorBy="group"
-                    // linkColor={(() => 'rgb(211,211,211)')}
+                    // linkColor={((data) => data.linkColor = "black")}
+                    // linkColor={((link) => highlightLinks.has(link) ? 'rgb(100,100,100)' : 'rgb(200,200,200)')}
                     linkResolution={10}
                     linkOpacity={1}
 
@@ -189,7 +235,7 @@ const Graph2DForce = ({ data1, show3DText, setFgRef }) => {
                     cooldownTicks={100}
                     // onEngineStop={() => fgRef.current.zoomToFit(400)}
                     autoPauseRedraw={false}
-                    linkWidth={link => highlightLinks.has(link) ? 5 : 1}
+                    linkWidth={link => highlightLinks.has(link) ? 5 : 2}
                     linkDirectionalParticles={4}
                     linkDirectionalParticleWidth={link => highlightLinks.has(link) ? 4 : 0}
                     nodeCanvasObjectMode={node => {
@@ -212,8 +258,8 @@ const Graph2DForce = ({ data1, show3DText, setFgRef }) => {
 
                 />
             </div>
-            {showInfo && <PanelRight info={info} type="node" />}
-            {showLinkInfo && <PanelRight info={linkInfo} type="link" />}
+            {showInfo && <PanelRight info={info} type="node" nodeType={type} />}
+            {showLinkInfo && <PanelRight info={linkInfo} type="link" />} 
 
         </div>
     );

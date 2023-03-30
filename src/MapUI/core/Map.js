@@ -1,18 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import DeckGL from '@deck.gl/react';
 import { Map } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { IconLayer } from '@deck.gl/layers';
 import Pointer from '../../images/map/pointer.svg'
 import { HexagonLayer } from '@deck.gl/aggregation-layers';
-import { AmbientLight, PointLight, LightingEffect } from '@deck.gl/core';
+import { AmbientLight, PointLight, LightingEffect, LinearInterpolator } from '@deck.gl/core';
 import { TerrainLayer } from '@deck.gl/geo-layers';
 import { BitmapLayer } from '@deck.gl/layers';
-// import mapImg from '/images/map/darkstyle.png';
 
+// https://stackoverflow.com/questions/65434964/mapbox-blank-map-react-map-gl-reactjs
+// added the following 6 lines.
+import mapboxgl from 'mapbox-gl';
+
+// The following is required to stop "npm build" from transpiling mapbox code.
+// notice the exclamation point in the import.
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 // Set your mapbox access token here
-const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoicnVwYXZhdGhpIiwiYSI6ImNrdTRsZXAyOTE1M3IycXFrNHdjMWNiaDYifQ.CbNM214i-6-BZrn_uVIYCg';
+const MAPBOX_ACCESS_TOKEN = process.env.MAPBOX_ACCESS_TOKEN
+
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
@@ -31,7 +40,6 @@ const material = {
     shininess: 32,
     specularColor: [51, 51, 51]
 };
-
 
 const ambientLight = new AmbientLight({
     color: [255, 255, 255],
@@ -64,11 +72,44 @@ const ELEVATION_DECODER = {
     offset: -10000
 };
 
+const transitionInterpolator = new LinearInterpolator();
+
 
 export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, countSites, setHoverInfo, layer, showImage, setShowImage , setShowCard }) {
 
     const [tabClose, setTabClose] = useState(false);
     const [iconClick, setIconClick] = useState(false);
+    const [viewState, updateViewState] = useState(INITIAL_VIEW_STATE);
+    const [showAnimation, setShowAnimation] = useState(true);
+
+    // useEffect(() => {
+    //     setTimeout(() => setShowAnimation(false), 1000);
+    // }, [])
+
+
+    // const rotateCamera = useCallback(() => {
+    //     console.log('showAnimation', showAnimation);
+    //     if (showAnimation)
+    //         updateViewState(v => ({
+    //             ...v,
+    //             bearing: v.bearing + 5,
+    //             transitionDuration: 1000,
+    //             transitionInterpolator,
+    //             onTransitionEnd: () => {
+    //                 rotateCamera();
+    //                 setShowAnimation(false);
+    //             }
+    //         }));
+    //     // setShowAnimation(false);
+    // }, [showAnimation]);
+
+    const rotateCamera = () => updateViewState(v => ({
+                ...v,
+                bearing: v.bearing + 10,
+                transitionDuration: 10000,
+                transitionInterpolator,
+                // onTransitionEnd: rotateCamera,
+            }));
 
     function setSiteColor(d) {
         let countingSites = []
@@ -120,13 +161,14 @@ export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, 
         }
     }
 
-    console.log({ sites })
     return (
         <>
 
             <DeckGL
-                initialViewState={INITIAL_VIEW_STATE}
                 controller={true}
+                initialViewState={viewState}
+                onLoad={rotateCamera}
+                onViewStateChange={v => updateViewState(v.viewState)}
                 effects={[lightingEffect]}
                 getTooltip={getTooltipInfo}
             >
@@ -163,21 +205,26 @@ export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, 
                 {layer.includes(2) && <HexagonLayer
                     id='HexagonLayer'
                     data={sites}
-                    getColor={d => setSiteColor(d)}
+                    // getColor={d => setSiteColor(d)}
                     // getIcon={d => 'marker'}
                     getPosition={d => [d.place.longitude, d.place.latitude]}
                     // getSize={d => 4}        
                     elevationRange={[0, 50000]}
-                    elevationScale={sites && sites.length ? 1 : 0}
+                    // elevationScale={sites && sites.length ? 1 : 0}
                     extruded={true}
                     pickable={true}
+                    wireframe={true}
                     radius={3000}
                     material={material}
                     // upperPercentile={100}
+                    // getElevation={d => }
                     onClick={expandHexagon}
-                // transitions= {
-                //   elevationScale= 50000
-                // }
+                    transitions={{
+                        getElevationValue: {
+                          duration: 2000,
+                          enter: () => [0]
+                        },
+                    }}
                 />}
                 {layer.includes(3) && <TerrainLayer
                     id='terrain'

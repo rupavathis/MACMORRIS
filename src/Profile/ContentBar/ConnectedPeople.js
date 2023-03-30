@@ -39,7 +39,7 @@ export default function Connections({ connections }) {
               <TableCell align="right"></TableCell>
               <TableCell align="right"></TableCell>
               <TableCell align="right">
-                <Link to={`/networkWithId/${connections[0].source_id?.id}`}>
+                <Link to={`/Network?id=${connections[0].source_id?.id}`}>
                   View the networks
                 </Link>
               </TableCell>

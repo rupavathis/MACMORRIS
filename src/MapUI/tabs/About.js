@@ -17,7 +17,7 @@ function About() {
                 <a rel="noopener nofollow" target="_blank">
                     <FontAwesomeIcon icon={["fab", "github"]} />
 
-                    <span class="repo">Github</span>
+                    <span className="repo">Github</span>
                 </a>
             </div> */}
             <div className="section maps">

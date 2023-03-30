@@ -54,7 +54,7 @@ function Banner() {
                         data-splitout="none">
                         <h4 className="darkcolor font-light text-center">
                            An IRC Laureate project that seeks to map the full range and richness of cultural activity,
-                           across languages and ethnic groups, in Ireland from 1541 to 1691.
+                           across languages and ethnic groups, in Ireland from 1541 to 1660.
                         </h4>
                      </div>
 

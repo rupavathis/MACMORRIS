@@ -7,7 +7,7 @@ import '../../Network.scss';
 import { API_URL } from '../../../constants';
 
 
-export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSelectContent }) {
+export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSelectContent, setSearchID }) {
 
     const [displayTitles, setDisplayTitles] = useState([]);
     const [workClassifications, setWorkClassifications] = useState([]);
@@ -23,6 +23,7 @@ export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSe
         const workClassicationsRes = await fetch(`${API_URL}/work_classifications`);
         const workClassicationsJson = await workClassicationsRes.json();
         setWorkClassifications(workClassicationsJson)
+
     }
 
     async function fetchWorkNetWorkData(value) {
@@ -33,8 +34,11 @@ export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSe
             const worksJson = await worksRes.json();
             setWorkNetworkData(worksJson);
             console.log("workNetworkData in Search", worksJson)
+            setSearchID(value.id)
+
         }
         setSelectContent(1)
+
     }
 
     async function fetchWorkClassificationData(value) {
@@ -45,6 +49,7 @@ export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSe
             const worksJson = await worksRes.json();
             setWorkNetworkData(worksJson);
             console.log("workNetworkData in Search", worksJson)
+            setSearchID(null)
         }
         setSelectContent(1)
     }
@@ -58,7 +63,7 @@ export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSe
                 autoComplete
                 includeInputInList
                 renderInput={(params) => (
-                    <TextField {...params} label="Works Title" variant="standard" />
+                    <TextField {...params} lkey={params.id} abel="Works Title" variant="standard" />
                 )}
                 onChange={(event, value) =>  fetchWorkNetWorkData(value) }
             />
@@ -69,8 +74,8 @@ export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSe
                 id="auto-complete"
                 autoComplete
                 includeInputInList
-                renderInput={(params) => (
-                    <TextField {...params} label="Work Classifications" variant="standard" />
+                renderInput={(params, i) => (
+                    <TextField {...params} key={i} label="Work Classifications" variant="standard" />
                 )}
                 onChange={(event, value) => fetchWorkClassificationData(value)}
             />

@@ -4,11 +4,11 @@ import About from '../tabs/About';
 
 function Panel() {
     return (
-        <div class="panel-left">
-            <div class="top">
+        <div className="panel-left">
+            <div className="top">
               {/* <Filter /> */}
             </div>
-            <div class="bottom">
+            <div className="bottom">
                 <About />
             </div>
         </div>

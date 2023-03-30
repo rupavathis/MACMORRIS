@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import { API_URL } from '../../../constants';
 
 
-export default function SearchWorkNetwork({ workNetworkData, setWorkNetworkData, setSelectContent}) {
+export default function SearchWorkNetwork({ workNetworkData, setWorkNetworkData, setSelectContent, setSearchID}) {
 
     const [authors, setAuthors] = useState([]);
     const [selectedAuthor, setSelectedAuthor] = useState([]);
@@ -65,14 +65,16 @@ export default function SearchWorkNetwork({ workNetworkData, setWorkNetworkData,
 
 
     async function searchPeople() {
-        let url = `${API_URL}/worksPeopleSearch?authors=${selectedAuthor}&patrons=${selectedPatrons}&
-                printers=${selectedPrinters}&publishers=${selectedPublishers}&booksellers=${selectedBooksellers}`
+         let url = `worksPeopleSearch?authors=${selectedAuthor}&patrons=${selectedPatrons}&
+                 printers=${selectedPrinters}&publishers=${selectedPublishers}&booksellers=${selectedBooksellers}`
+        // let url = `worksPeopleSearch?authors=9`
         console.log(url)
         const worksRes = await fetch(`${API_URL}/${url}`);
         const worksJson = await worksRes.json();
         setWorkNetworkData(worksJson);
         console.log("workNetworkData in Search", worksJson)
         setSelectContent(1)
+        setSearchID(null)
 
     }
 
@@ -109,8 +111,8 @@ export default function SearchWorkNetwork({ workNetworkData, setWorkNetworkData,
                     id="auto-complete"
                     autoComplete
                     includeInputInList
-                    renderInput={(params) => (
-                        <TextField {...params} label={`${type.type}`} variant="standard" />
+                    renderInput={(params, i) => (
+                        <TextField {...params} key={i} label={`${type.type}`} variant="standard" />
                     )}
                     onChange={(event, value) => { type.func(value.id) }}
                 />))}

@@ -7,7 +7,7 @@ import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Button from '@mui/material/Button';
-
+import { API_URL } from '../../constants';
 
 export default function AdvancedSearch({ setSearchData, setWorksData, setLoading }) {
 
@@ -46,7 +46,7 @@ export default function AdvancedSearch({ setSearchData, setWorksData, setLoading
   const handleSearch = async () => {
     setLoading(true)
     setSearch(true);
-    let url = 'advancedSearch/works?';
+    let url =   `${API_URL}/advancedSearch/works?`;
     if (selectedWorkFormats != null) url += `&wFormat=${selectedWorkFormats}`
     if (selectedLanguages != null) url += `&language=${selectedLanguages}`
     if (selectedWorkClassifications != null) url += `&wClassification=${selectedWorkClassifications}`
@@ -63,19 +63,19 @@ export default function AdvancedSearch({ setSearchData, setWorksData, setLoading
 
 
   const fetchData = async () => {
-    const workFormatRes = await fetch("/work_formats");
+    const workFormatRes = await fetch(`${API_URL}/work_formats`);
     const workFormatJson = await workFormatRes.json();
     setWorkFormats(workFormatJson);
 
-    const languages = await fetch("/languages");
+    const languages = await fetch(`${API_URL}/languages`);
     const languagesJson = await languages.json();
     setLanguages(languagesJson)
 
-    const workClassificationsRes = await fetch("/work_classifications");
+    const workClassificationsRes = await fetch(`${API_URL}/work_classifications`);
     const workClassificationsJson = await workClassificationsRes.json();
     setWorkClassifications(workClassificationsJson);
 
-    const placesRes = await fetch("/places");
+    const placesRes = await fetch(`${API_URL}/places`);
     const placesJson = await placesRes.json();
     setPlaces(placesJson);
 
@@ -134,7 +134,7 @@ export default function AdvancedSearch({ setSearchData, setWorksData, setLoading
               autoComplete
               includeInputInList
               renderInput={(params) => (
-                <TextField {...params} label={item.label} variant="standard" />
+                <TextField key={item.id} {...params} label={item.label} variant="standard" />
               )}
               onChange={(event, value) => 
                 {

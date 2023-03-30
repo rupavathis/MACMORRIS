@@ -441,32 +441,32 @@ jQuery(function ($) {
 
    /* ------ CubePortfolio ------ */
    /*main gallery*/
-   $("#portfolio-measonry").cubeportfolio({
-      filters: '#measonry-filters',
-      loadMoreAction: 'click',
-      layoutMode: 'grid',
-      defaultFilter: '*',
-      animationType: "scaleSides",
-      gapHorizontal: 30,
-      gapVertical: 30,
-      gridAdjustment: "responsive",
-      mediaQueries: [{
-         width: 1500,
-         cols: 2
-      }, {
-         width: 1100,
-         cols: 2
-      }, {
-         width: 768,
-         cols: 2
-      }, {
-         width: 480,
-         cols: 1
-      }, {
-         width: 320,
-         cols: 1
-      }],
-   });
+   // $("#portfolio-measonry").cubeportfolio({
+   //    filters: '#measonry-filters',
+   //    loadMoreAction: 'click',
+   //    layoutMode: 'grid',
+   //    defaultFilter: '*',
+   //    animationType: "scaleSides",
+   //    gapHorizontal: 30,
+   //    gapVertical: 30,
+   //    gridAdjustment: "responsive",
+   //    mediaQueries: [{
+   //       width: 1500,
+   //       cols: 2
+   //    }, {
+   //       width: 1100,
+   //       cols: 2
+   //    }, {
+   //       width: 768,
+   //       cols: 2
+   //    }, {
+   //       width: 480,
+   //       cols: 1
+   //    }, {
+   //       width: 320,
+   //       cols: 1
+   //    }],
+   // });
 
    /*Blog Measonry*/
    $("#blog-measonry").cubeportfolio({
@@ -790,42 +790,42 @@ jQuery(function ($) {
    });
 
    /*animated elements hero banner*/
-   $("#rev_single").show().revolution({
-      sliderType: "hero",
-      jsFileLocation: "js/revolution",
-      sliderLayout: "fullscreen",
-      scrollbarDrag: "true",
-      dottedOverlay: "none",
-      delay: 9000,
-      navigation: {},
-      responsiveLevels: [1240, 1024, 778, 480],
-      visibilityLevels: [1240, 1024, 778, 480],
-      gridwidth: [1170, 1024, 778, 480],
-      gridheight: [868, 768, 960, 720],
-      lazyType: "none",
-      parallax: {
-         type: "scroll",
-         origo: "slidercenter",
-         speed: 400,
-         levels: [10, 15, 20, 25, 30, 35, 40, -10, -15, -20, -25, -30, -35, -40, -45, 55]
-      },
-      shadow: 0,
-      spinner: "off",
-      autoHeight: "off",
-      fullScreenAutoWidth: "off",
-      fullScreenAlignForce: "off",
-      fullScreenOffsetContainer: "",
-      disableProgressBar: "on",
-      hideThumbsOnMobile: "off",
-      hideSliderAtLimit: 0,
-      hideCaptionAtLimit: 0,
-      hideAllCaptionAtLilmit: 0,
-      debugMode: false,
-      fallbacks: {
-         simplifyAll: "off",
-         disableFocusListener: false
-      }
-   });
+   // $("#rev_single").show().revolution({
+   //    sliderType: "hero",
+   //    jsFileLocation: "js/revolution",
+   //    sliderLayout: "fullscreen",
+   //    scrollbarDrag: "true",
+   //    dottedOverlay: "none",
+   //    delay: 9000,
+   //    navigation: {},
+   //    responsiveLevels: [1240, 1024, 778, 480],
+   //    visibilityLevels: [1240, 1024, 778, 480],
+   //    gridwidth: [1170, 1024, 778, 480],
+   //    gridheight: [868, 768, 960, 720],
+   //    lazyType: "none",
+   //    parallax: {
+   //       type: "scroll",
+   //       origo: "slidercenter",
+   //       speed: 400,
+   //       levels: [10, 15, 20, 25, 30, 35, 40, -10, -15, -20, -25, -30, -35, -40, -45, 55]
+   //    },
+   //    shadow: 0,
+   //    spinner: "off",
+   //    autoHeight: "off",
+   //    fullScreenAutoWidth: "off",
+   //    fullScreenAlignForce: "off",
+   //    fullScreenOffsetContainer: "",
+   //    disableProgressBar: "on",
+   //    hideThumbsOnMobile: "off",
+   //    hideSliderAtLimit: 0,
+   //    hideCaptionAtLimit: 0,
+   //    hideAllCaptionAtLilmit: 0,
+   //    debugMode: false,
+   //    fallbacks: {
+   //       simplifyAll: "off",
+   //       disableFocusListener: false
+   //    }
+   // });
 
 
 

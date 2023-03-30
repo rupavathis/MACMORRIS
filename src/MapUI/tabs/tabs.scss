@@ -94,9 +94,12 @@ a {
 
 
 
-.tab-wrapper {
+.tab-wrapper-map {
     display: flex;
     flex-direction: column;
+    background: white;
+   
+    // margin: 5px 15px;
 }
 
 .read-more-button {

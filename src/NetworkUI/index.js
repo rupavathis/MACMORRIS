@@ -15,10 +15,10 @@ function Network() {
   useEffect(() => {
     console.log("In network page")
 
-    if (document.URL.includes('/networkWithId')) {
+    if (document.URL.includes('?')) {
       const url = document.URL;
-      const id = url.substring(url.lastIndexOf('/'));
-      console.log(id, id);
+      const searchParams = new URLSearchParams(url.substring(url.lastIndexOf('?')));
+      const id = searchParams.get('id');
       setId(id);
       console.log("in useeffect if", id);
 
@@ -39,7 +39,7 @@ function Network() {
   const [selectContent, setSelectContent] = React.useState(0);
   const [displayNames, setDisplayNames] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
-  const [searchID, setSearchID] = useState(0)
+  const [searchID, setSearchID] = useState(null)
 
   const settings = [{ ...selectedColor }, { ...selectedSize }, { ...selectedLabelSize }, { show3DText }]
 

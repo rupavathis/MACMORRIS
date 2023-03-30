@@ -31,20 +31,20 @@ function Viz({ changeIrish, setRemoveHeader }) {
                                     {changeIrish && <div className="heading-title padding">
                                         <span className=" wow fadeIn" data-wow-delay="300ms">Léirshamhlú Idirghníomhach</span>
                                         <h2 className="darkcolor bottom20 wow fadeIn" data-wow-delay="350ms">Cuardaigh</h2>
-                                        <p className="heading_space wow fadeIn" data-wow-delay="400ms">
+                                        <div className="heading_space wow fadeIn" data-wow-delay="400ms">
                                             Comhéadan cuardaigh a chabhraíonn leat na daoine agus na téacsanna
-                                            sa bhunachar sonraí a aimsiú</p>
+                                            sa bhunachar sonraí a aimsiú</div>
                                         <Link to='search'>
                                             <div className="button btnsecondary pagescroll wow fadeInUp"
-                                                data-wow-delay="450ms">Explore Search!</div>
+                                                data-wow-delay="450ms">cuardach a iniúchadh!</div>
                                         </Link>
                                     </div>}
                                     {!changeIrish && <div className="heading-title padding">
                                         <span className=" wow fadeIn" data-wow-delay="300ms">Visualisation Interface</span>
                                         <h2 className="darkcolor bottom20 wow fadeIn" data-wow-delay="350ms">Search</h2>
-                                        <p className="heading_space wow fadeIn" data-wow-delay="400ms">
+                                        <div className="heading_space wow fadeIn" data-wow-delay="400ms">
                                             A Search interface to aid exploration of the different people and texts in our
-                                            database </p>
+                                            database </div>
                                         <Link to='search'>
                                             <div className="button btnsecondary pagescroll wow fadeInUp"
                                                 data-wow-delay="450ms">Explore Search!</div>
@@ -63,18 +63,18 @@ function Viz({ changeIrish, setRemoveHeader }) {
                                     {changeIrish && <div className="heading-title padding">
                                         <span className=" wow fadeIn" data-wow-delay="300ms">Léirshamhlú Idirghníomhach</span>
                                         <h2 className="darkcolor bottom20 wow fadeIn" data-wow-delay="350ms">Léarscáil</h2>
-                                        <p className="heading_space wow fadeIn" data-wow-delay="400ms">
-                                            Féach ar an Léarscáil Dhomhain de Chúige Mumhan</p>
+                                        <div className="heading_space wow fadeIn" data-wow-delay="400ms">
+                                            Féach ar an Léarscáil Dhomhain de Chúige Mumhan</div>
                                         <Link to='map' target="_blank" rel="noopener noreferrer">
                                             <div className="button btnsecondary pagescroll wow fadeInUp"
-                                                data-wow-delay="450ms">Explore Map!</div>
+                                                data-wow-delay="450ms">léarscáil a iniúchadh!</div>
                                         </Link>
                                     </div>}
                                     {!changeIrish && <div className="heading-title padding">
                                         <span className=" wow fadeIn" data-wow-delay="300ms">Visualisation interface</span>
                                         <h2 className="darkcolor bottom20 wow fadeIn" data-wow-delay="350ms">Map</h2>
-                                        <p className="heading_space wow fadeIn" data-wow-delay="400ms">
-                                            Interact with our cultural Deep Map of Munster </p>
+                                        <div className="heading_space wow fadeIn" data-wow-delay="400ms">
+                                            Interact with our cultural Deep Map of Munster </div>
                                         <Link to='map' target="_blank" rel="noopener noreferrer">
                                             <div className="button btnsecondary pagescroll wow fadeInUp"
                                                 onClick={() => setRemoveHeader(false)}
@@ -108,22 +108,22 @@ function Viz({ changeIrish, setRemoveHeader }) {
                                     {changeIrish && <div className="heading-title padding">
                                         <span className=" wow fadeIn" data-wow-delay="300ms">Léirshamhlú Idirghníomhach</span>
                                         <h2 className="darkcolor bottom20 wow fadeIn" data-wow-delay="350ms">Líonraí</h2>
-                                        <p className="heading_space wow fadeIn" data-wow-delay="400ms">
+                                        <div className="heading_space wow fadeIn" data-wow-delay="400ms">
                                             Bain triail as an chomhéadan líonraí seo chun na naisc idir na daoine agus
-                                            na téacsanna sa bhunachar sonraí a fheiceáil</p>
+                                            na téacsanna sa bhunachar sonraí a fheiceáil</div>
 
                                         <Link to='network' target="_blank" rel="noopener noreferrer">
                                             <div className="button btnsecondary pagescroll wow fadeInUp"
-                                                data-wow-delay="450ms">Explore Network!</div>
+                                                data-wow-delay="450ms">líonraí a iniúchadh!</div>
                                         </Link>
                                     </div>}
                                     {!changeIrish && <div className="heading-title padding">
                                         <span className=" wow fadeIn" data-wow-delay="300ms">Visualisation Interface</span>
                                         <h2 className="darkcolor bottom20 wow fadeIn" data-wow-delay="350ms">Network</h2>
-                                        <p className="heading_space wow fadeIn" data-wow-delay="400ms">
+                                        <div className="heading_space wow fadeIn" data-wow-delay="400ms">
                                             Discover our network interface
                                             to
-                                            see how people and texts connect in our database</p>
+                                            see how people and texts connect in our database</div>
 
                                         <Link to='network' target="_blank" rel="noopener noreferrer">
                                             <div className="button btnsecondary pagescroll wow fadeInUp"

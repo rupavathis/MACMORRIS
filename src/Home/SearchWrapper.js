@@ -39,7 +39,7 @@ function SearchWrapper() {
             <Search className="equalheight" />
             {/* <img src='/images/banner/tower.png' style={{ position: "absolute", top: `${position}px`}} /> */}
             <div style={{ maxHeight: '300px' }} ref={sRef}>
-                <img src='/images/banner/scroll-search.png' style={{
+                <img src='/images/banner/names-right.png' style={{
                     height: '100%',
                     objectFit: 'cover',
                     objectPosition: `0 ${position}px`

@@ -151,7 +151,7 @@ function WorkFilter({ nodes, setNodes, settings }) {
 
 
     return (
-        <div className='tab-wrapper'>
+        <div className='tab-wrapper-network'>
             {[{
                 "name": "Language",
                 "args": languages,
@@ -175,8 +175,8 @@ function WorkFilter({ nodes, setNodes, settings }) {
                     id="auto-complete-filter"
                     autoComplete
                     includeInputInList
-                    renderInput={(params) => (
-                        <TextField {...params} label={f.name} variant="standard" />
+                    renderInput={(params, i) => (
+                        <TextField {...params} key={i}  label={f.name} variant="standard" />
                     )}
                     onChange={(event, value) => { value === null ? f.func("") : f.func(value.id) }}
                 />)}

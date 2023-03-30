@@ -59,7 +59,8 @@ function PanelContent({ networkData, settings, tab, setTab, workNetworkData, sel
             {
                 workNetworkData.length != 0 && selectContent === 1 &&
                 <Work workNetworkData={workNetworkData} settings={settings} secondDegree={secondDegree} threeD={threeD}
-                    tab={tab} show3DText={show3DText} displayNames={displayNames} />
+                    tab={tab} show3DText={show3DText} displayNames={displayNames} searchID={searchID} setFgRef={setFgRef}
+                   />
             }
             {
                 (workNetworkData.length != 0 || networkData.length != 0) &&

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Container from "@mui/material/Container";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -30,43 +30,39 @@ function Works() {
         }
     }, [])
 
+   const fetchWorks = async () => {
+        console.log("hello", workID);
+        if (workID !== -1) {
+            console.log("hi");
+            const workRes = await fetch(`${API_URL}/works/${workID}`);
+            const workResJson = await workRes.json();
+            console.log(workResJson);
+            setWorks(workResJson);
+        }
+    }
+
     useEffect(() => {
-        (async () => {
-            console.log("hello");
-            if (workID !== -1) {
-                console.log("hi");
-                const workRes = await fetch(`${API_URL}/works/${workID}`);
-                const workResJson = await workRes.json();
-                console.log(workResJson);
-                setWorks(workResJson);
-            }
-        })();
+        fetchWorks();        
     }, [workID])
+
+
 
     function createData(name, value, id) {
         console.log(name, id)
         return { name, value, id }
     }
 
-    const rows = [
+    const rows = useMemo(() => works.display_title != null ? [
         createData('Brief Title', works.display_title),
-        createData('Author', works.author_id?.display_name, works.author_id_id),
+        createData('Author', works.author_id?.display_name),
         createData('Language', works.languages.map(n => n.name).join(', ')),
         createData('Work Classification', works.work_classification?.reduce((deletedData, name) => deletedData.concat(`${name.name}`), '')),
         createData('Title', works.title),
-        // createData('Patron', works.patron_id.map(n => n.display_name).join(', ')),
-        // // createData('Patron', works.patron_id?.reduce((deletedData, name) => deletedData.concat(`${name.display_name}`), ''), 
-        // //      works.patron_id?.reduce((deletedData, id) => deletedData.concat(`${id.id}`), '')),
-        // createData('Printer', works.printer_id?.reduce((deletedData, name) => deletedData.concat(`${name.display_name}`), ''), 
-        //     works.printer_id?.reduce((deletedData, id) => deletedData.concat(`${id.id}`), '')),
-        // createData('Publisher', works.publisher_id?.reduce((deletedData, name) => deletedData.concat(`${name.display_name}`), ''),
-        //     works.publisher_id?.reduce((deletedData, id) => deletedData.concat(`${id.id}`), '')),
-        // createData('Bookseller', works.bookseller_id?.reduce((deletedData, name) => deletedData.concat(`${name.display_name}`), ''), 
-        //     works.bookseller_id?.reduce((deletedData, id) => deletedData.concat(`${id.id}`), '')),
+
         createData('Date', works.work_date),
         createData('Place', works.places.map(n => n.name).join(', ')),
         createData('Read the text', works.link_uri)
-    ].filter((e) => e.values !== null)
+    ].filter(e => e.values !== null) : [])
 
     return (
         <div>

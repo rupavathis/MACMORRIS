@@ -17,8 +17,8 @@ export default function Roles({ roles }) {
   return (
     <Container>
       <Stack direction="row" spacing={1} justifyContent={"center"}>
-        {[...new Set(roles)].map((role) =>
-          <Chip label={role} />
+        {[...new Set(roles)].map((role, i) =>
+          <Chip key={i} label={role} />
         )}
       </Stack>
     </Container>

@@ -58,7 +58,7 @@ export default function Search({ networkData, setNetworkData, workNetworkData, s
     };
 
     return (
-        <div className='tab-wrapper'>
+        <div className='tab-wrapper-network'>
             <Box sx={{ width: '100%' }}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
@@ -73,7 +73,7 @@ export default function Search({ networkData, setNetworkData, workNetworkData, s
                 </TabPanel>}
                 {!showAdvanced &&
                     <TabPanel value={value} index={1}>
-                        <SearchTitle setWorkNetworkData={setWorkNetworkData} setSelectContent={setSelectContent}/>
+                        <SearchTitle setWorkNetworkData={setWorkNetworkData} setSelectContent={setSelectContent} setSearchID={setSearchID}/>
                     </TabPanel>
                 }
 
@@ -85,9 +85,9 @@ export default function Search({ networkData, setNetworkData, workNetworkData, s
                     </div>
                 </div>
                
-                {showAdvanced && value === 0 && <AdvancedSearchPeople setNetworkData={setNetworkData}
+                {showAdvanced && value === 0 && <AdvancedSearchPeople setNetworkData={setNetworkData} setSearchID={setSearchID}
                  setSelectContent={setSelectContent} setLoading={setLoading} />}
-                {showAdvanced && value === 1 && <AdvancedSearchWork setWorkNetworkData={setWorkNetworkData} setSelectContent={setSelectContent} />}
+                {showAdvanced && value === 1 && <AdvancedSearchWork setWorkNetworkData={setWorkNetworkData} setSearchID={setSearchID} setSelectContent={setSelectContent} />}
             </Box>
         </div>
     );

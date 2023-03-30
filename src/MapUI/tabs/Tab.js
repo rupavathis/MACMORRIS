@@ -108,10 +108,13 @@ export default function TabInfo({ info, countSites, sites, setShowImage, showIma
     }
 
 
+
     return (
       sitesInfo.map((site) => {
         indexCount = indexCount + 1;
         console.log("indexCount", indexCount, value, site)
+        const connectedPeople = [...new Set(site.person_id.map(e => e))]
+
 
         return <TabPanel value={value} index={indexCount}>
           <ListGroup className="list-group-flush">
@@ -125,8 +128,13 @@ export default function TabInfo({ info, countSites, sites, setShowImage, showIma
             <ListGroup.Item>
               <div className='list-header'>Text</div>
               <Card.Text style={{ paddingTop: 20 }}>
-                {isExpandSection && <div className='collapse-content'>
+                {site.gaelic_description === null && isExpandSection && <div className='collapse-content'>
                   <div className="two-lines">{site.description}
+                  </div>
+                  <Link className='link' to={`/site/${site.id}`} target="_blank" rel="noopener noreferrer">Read More/Translate</Link>
+                </div>}
+                {site.gaelic_description != null && isExpandSection && <div className='collapse-content'>
+                  <div className="two-lines">{site.gaelic_description}
                   </div>
                   <Link className='link' to={`/site/${site.id}`} target="_blank" rel="noopener noreferrer">Read More/Translate</Link>
                 </div>}
@@ -135,9 +143,19 @@ export default function TabInfo({ info, countSites, sites, setShowImage, showIma
             <ListGroup.Item>
               <div className='list-header'>Connected People</div>
               <Card.Text style={{ paddingTop: 20 }}>
-                {site.person_id.map((p) =>
-                (<div><Link className='link' target="_blank" rel="noopener noreferrer" to={`/profile/${p.macmorris_id}`}>{p.name}</Link></div>
-                ))}
+                {/* {connectedPeople.map((p) =>
+                (<Link className='link' target="_blank" rel="noopener noreferrer" to={`/profile/${p.macmorris_id}`}>{p.name}</Link>
+                )).join(',')} */}
+
+                {connectedPeople.map((p, index) =>
+                (<React.Fragment key={index}>
+                  <Link className='link' target="_blank" rel="noopener noreferrer" to={`/profile/${p.macmorris_id}`}>
+                    {p.name}
+                  </Link>
+                  {index !== connectedPeople.length - 1 && ', '}
+                </React.Fragment>)
+                )}
+
               </Card.Text>
             </ListGroup.Item>
           </ListGroup>
@@ -189,15 +207,15 @@ export default function TabInfo({ info, countSites, sites, setShowImage, showIma
   return (
     <div className='tab-wrapper'>
       {showCard && <Card style={{ width: '22rem' }}>
-        <div class="card-wrapper">
+        <div className="card-wrapper">
           <Card.Title style={{ paddingTop: 5, flexGrow: 1, textAlign: 'center' }}>{info.place.name} </Card.Title>
-          <FontAwesomeIcon icon={faCircleInfo} style={{ marginRight: '5px' }} onClick={() => setModalShow(!modalShow)} />
-          <FontAwesomeIcon icon={faCircleXmark} style={{ color: "#a22828", marginRight: '10px' }} onClick={() => setShowCard(false)} />
+          <div className="icon hoverable"><FontAwesomeIcon icon={faCircleInfo} style={{ marginRight: '5px' }} onClick={() => setModalShow(!modalShow)} /></div>
+          <div className="icon hoverable"><FontAwesomeIcon icon={faCircleXmark} style={{ color: "#a22828", marginRight: '10px' }} onClick={() => setShowCard(false)} /></div>
           {/* <FontAwesomeIcon icon="fa-solid fa-circle-xmark" style={{ color: "#d22d2d" }} /> */}
         </div>
 
         {showImage && <Card.Img variant="top"
-          src={`/images/map/places/${image}.jpg`}
+          src={`/images/map/places/${image}.webp`}
           onError={() => setShowImage(null)} />}
 
 

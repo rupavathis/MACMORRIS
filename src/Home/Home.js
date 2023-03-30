@@ -11,6 +11,7 @@ import { useState } from 'react';
 import Header from "./Header";
 import Sponsors from "./Sponsors";
 import About from './About';
+import Search from './Search';
 
 
 function Home({ setOpenNetwork, changeIrish, setSelectedCS, setRemoveHeader, setChangeIrish }) {
@@ -28,6 +29,7 @@ function Home({ setOpenNetwork, changeIrish, setSelectedCS, setRemoveHeader, set
          {!about && <Team />}
          {/* <Tweet /> */}
          {!about && <Sponsors />}
+
       </>
    );
 }

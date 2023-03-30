@@ -43,7 +43,7 @@ function Team() {
                            style={{ width: "300px", height: "300px", objectFit: "cover", objectPosition: "center" }}></img>
                      </div>
                      <div className="team-content">
-                        <h4>Deirdre Nic Chárthaigh</h4>
+                        <h3 style={{fontSize:'1.62rem'}}>Deirdre Nic Chárthaigh</h3>
                         <p className="nomargin">Postdoctoral Researcher/ Taighdeoir iardhochtúireachta</p>
                      </div>
                   </div>

@@ -25,3 +25,5 @@ yarn-error.log*
 public/images/map/munster.webp
 public/images/map/munster_rotated.webp
 src/images/map/globe.gif
+
+.env

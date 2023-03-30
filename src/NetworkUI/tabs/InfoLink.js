@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import '../Network.scss';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
-import infoData from '../../Profile/ContentBar/Biography';
+import InfoData from '../../Profile/ContentBar/Biography';
 import { Link } from 'react-router-dom'
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -52,10 +52,10 @@ function Info({ info }) {
             Date of flourishing: {infoData.flourishing_date}
             Gender: {infoData.gender?.name}
             Attributes: {infoData.attribs?.map(a => a.name)}  */}
-                <Card style={{ minWidth: '300px' }}>
+                <Card style={{ maxWidth: '500px' }}>
                     <Card.Body>
                         <Card.Text>
-                            <infoData infoData={infoData} />
+                            <InfoData infoData={infoData} />
                             <Table hover size="sm">
                                 {rows.map((row) => (
                                     <>

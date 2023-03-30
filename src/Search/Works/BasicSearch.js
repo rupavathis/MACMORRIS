@@ -7,14 +7,14 @@ import AdvancedSearch from './AdvancedSearch';
 import { API_URL } from '../../constants';
 
 
-export default function BasicSearch( {setWorksData, setSearchData, displayTitles, setLoading }) {
+export default function BasicSearch({ setWorksData, setSearchData, displayTitles, setLoading }) {
 
   console.log("basic")
   const [inputValue, setInputValue] = useState("");
 
-  
+
   const onSearchChange = async (
-    event   
+    event
   ) => {
     setLoading(true)
     const workRes = await fetch(`${API_URL}/search/works/${event.id}`);
@@ -29,8 +29,8 @@ export default function BasicSearch( {setWorksData, setSearchData, displayTitles
     return (displayTitles.map((d) => ({
       label: d.display_title,
       id: d.id
-    })))
-  };
+    }))).filter((i) => i.label.toLowerCase().startsWith(inputValue))
+  }   
 
   let timeoutId
 
@@ -64,14 +64,16 @@ export default function BasicSearch( {setWorksData, setSearchData, displayTitles
 
   return (
     <>
-        {displayTitles.length != 0 && <AsyncSelect
-          cacheOptions
-          loadOptions={loadOptions}
-          defaultOptions
-          onInputChange={handleInputChange}
-          onChange={(event) => onSearchChange(event)}
-          getOptionValue={(option) => option.label} 
-        />}
+      {displayTitles.length != 0 && <AsyncSelect
+        className="react-select-container"
+        cacheOptions
+        loadOptions={loadOptions}
+        defaultOptions
+        onInputChange={handleInputChange}
+        // onChange={(event) => onSearchChange(event)}
+        onChange={onSearchChange}
+        getOptionValue={(option) => option.label}
+      />}
     </>
   );
 }

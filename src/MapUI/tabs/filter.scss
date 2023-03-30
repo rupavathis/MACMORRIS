@@ -86,7 +86,7 @@
             padding-bottom: 5px;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            // align-items: center;
             opacity: 0.75;
             transition: opacity 0.3s ease-in-out;
 
@@ -201,6 +201,8 @@
 }
 
 .siteTypeClick {
+    display: flex;
+    align-items: center;
     cursor: pointer;
     text-align: left;
 }
@@ -217,9 +219,9 @@
     height: 50px;
     width: 50px;
     transform: scale(0.7);
-    transition: 1ms ease-in-out;
+    transition: all 100ms ease-in-out;
     &:hover {
-        transform: scale(0.9);
+        transform: scale(0.8);
     }
 }
 

@@ -76,10 +76,10 @@ function Filter({ nodes, setNodes, settings }) {
             count++;
         }
 
-        if (selectedRoles.length != 0) {
-            console.log({selectedRoles})
-            count++;
-        }
+        // if (selectedRoles.length != 0) {
+        //     console.log({selectedRoles})
+        //     count++;
+        // }
 
         if (selectedROrders.length != 0) {
             filterROrder = nodeData.filter((n) => n.religious_order_id === selectedROrders)
@@ -169,18 +169,18 @@ function Filter({ nodes, setNodes, settings }) {
 
 
     return (
-        <div className='tab-wrapper'>
+        <div className='tab-wrapper-network'>
             {[{
                 "name": "Gender",
                 "args": genders,
                 "func": setSelectedGenders
             },
-            {
-                "name": "Roles",
-                "args": roles,
-                "func": setSelectedRoles
+            // {
+            //     "name": "Roles",
+            //     "args": roles,
+            //     "func": setSelectedRoles
 
-            },
+            // },
             {
                 "name": "Attributes",
                 "args": attribs,
@@ -204,8 +204,8 @@ function Filter({ nodes, setNodes, settings }) {
                     id="auto-complete-filter"
                     autoComplete
                     includeInputInList
-                    renderInput={(params) => (
-                        <TextField {...params} label={f.name} variant="standard" />
+                    renderInput={(params, i) => (
+                        <TextField {...params} key={i} label={f.name} variant="standard" />
                     )}
                     onChange={(event, value) => { value === null ? f.func("") : f.func(value.id) }}
                 />)}

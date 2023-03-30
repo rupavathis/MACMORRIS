@@ -5,41 +5,33 @@ import Roles from './ContentBar/Roles.js';
 import './home.css';
 import { useNavigate, Link } from 'react-router-dom'
 import { API_URL } from '../constants';
-
+import Spinner from 'react-bootstrap/Spinner';
 
 function Home() {
-  // console.log("ID", id)
-  // if (id == null)
-  // id = 3190;
-  // id = 150;
   const [id, setId] = useState(-1);
-
-
-  const [authorName, setAuthorName] = useState("");
+  const [authorName, setAuthorName] = useState(null);
+  const [loading, setLoading] = useState(false)
   const history = useNavigate()
 
-  const [loading, setLoading] = useState(false)
-
   useEffect(() => {
-    console.log("In profile page")
-
+    console.log('History Changed');
     if (document.URL.includes('/profile')) {
       const url = document.URL;
       const id = url.substring(url.lastIndexOf('/') + 1);
-      console.log(id, id);
+      console.log('setting id', id);
       setId(id);
     }
-    console.log(id);
   }, [history])
 
   useEffect(() => {
+    console.log('ID Changed, current ID', id);
     if (id != -1) {
+      console.log('calling fetch as id is not -1');
       fetchData(id);
-
     }
   }, [id]);
 
-  const [bioInfo, setBioInfo] = useState([]);
+  const [bioInfo, setBioInfo] = useState(null);
   const [roles, setRoles] = useState([]);
   const [sources, setSources] = useState([]);
   const [works, setWorks] = useState([]);
@@ -47,14 +39,13 @@ function Home() {
   const [sites, setSites] = useState([]);
 
 
-  const fetchData = useCallback(async (id) => {
+  const fetchData = async (id) => {
+    console.log('executing fetch');
     setLoading(true)
     const url = `${API_URL}/profile/${id}`
     console.log({ url })
     const res = await fetch(url);
     console.log({ res });
-
-
 
     const urlConn = `${API_URL}/people/${id}/connections`;
     const connectionsRes = await fetch(urlConn);
@@ -89,8 +80,7 @@ function Home() {
     sources.push(resJson.ainm_id);
     sources.push(resJson.sdfb);
     // console.log(sources);
-    console.log("ESources", { resJson }, { sources })
-
+    console.log("ESources123", { resJson }, { sources })
     setSources(sources);
 
 
@@ -100,15 +90,10 @@ function Home() {
     const workResJson = await workRes.json();
     console.log({ workResJson });
 
-
     let worksRes = workResJson.reduce((ac, a) => ac.find(x => x.id === a.id) ? [...ac] : [...ac, a], []);
     setWorks(worksRes)
-
-
     setLoading(false)
-
-
-  }, [])
+  };
 
   return (
     <div className="Profile">
@@ -121,15 +106,19 @@ function Home() {
         </Link>
       </div>
 
-
-      <h1 className='Title'><Title author={authorName} /></h1>
-      {/* {loading && <div> Loading </div>} */}
-      <>
-        <div><Roles roles={roles} /></div>
-        <div className='ContentBar'>
-          <ContentBar bioInfo={bioInfo} roles={roles} sources={sources} connections={connections} works={works} sites={sites} />
-        </div>
-      </>
+      {authorName == null ? <div className="loading-container"><Spinner animation="grow" /></div> :
+        <>
+          <h1 className='Title'><Title author={authorName} /></h1>
+          {loading ? <div className="loading-container"><Spinner animation="grow" /></div> :
+            <>
+              <div><Roles roles={roles} /></div>
+              <div className='ContentBar'>
+                <ContentBar bioInfo={bioInfo} roles={roles} sources={sources} connections={connections} works={works} sites={sites} />
+              </div>
+            </>
+          }
+        </>
+      }
     </div>
 
   );

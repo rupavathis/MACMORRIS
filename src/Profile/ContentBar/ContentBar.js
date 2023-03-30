@@ -53,8 +53,6 @@ function ContentBar({bioInfo, roles, sources, connections, works, sites}) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  console.log("ESources",{sources})
  
   return (
     <Container>

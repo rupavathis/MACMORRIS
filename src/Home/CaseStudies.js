@@ -39,8 +39,8 @@ function CaseStudies({ setSelectedCS }) {
             <div className="heading-title wow fadeInUp" data-wow-delay="300ms">
               <span>Our Learning guides</span>
               <h2 className="darkcolor bottom10">Case Studies</h2>
-              <p className="heading_space">Explore our case studies to learn more about the project
-                and how to navigate the visualisations </p>
+              <div className="heading_space">Explore our case studies to learn more about the project
+                and how to navigate the visualisations </div>
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@ function CaseStudies({ setSelectedCS }) {
             <img src="images/case-studies/historic.jpg" alt="" />
             <div className="overlay center-block whitecolor">
               <h4 className="top30">Extending the Cast List</h4>
-              <p style={{ "padding": "10px" }}>Learn more about the minor figures in our database</p>
+              <div style={{ "padding": "10px" }}>Learn more about the minor figures in our database</div>
             </div>
           </div>
 
@@ -59,8 +59,8 @@ function CaseStudies({ setSelectedCS }) {
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
                 onClick={() => setSelectedCS("network-women")}>
                 <h4 className="top30">Networking Women</h4>
-                <p style={{ "padding": "10px" }}>Learn about our network and some of the women in our
-                  database</p>
+                <div style={{ "padding": "10px" }}>Learn about our network and some of the women in our
+                  database</div>
               </div>
             </Link>
           </div>
@@ -72,8 +72,8 @@ function CaseStudies({ setSelectedCS }) {
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
                 onClick={() => setSelectedCS("historic")}>
                 <h4 className="top30">Historical Overview</h4>
-                <p style={{ "padding": "10px", "cursor": "pointer" }}>Learn more about the dramatic period of conflict,
-                  change, and innovation which transformed Ireland.</p>
+                <div style={{ "padding": "10px", "cursor": "pointer" }}>Learn more about the dramatic period of conflict,
+                  change, and innovation which transformed Ireland.</div>
               </div>
 
             </Link>
@@ -86,7 +86,20 @@ function CaseStudies({ setSelectedCS }) {
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
                 onClick={() => setSelectedCS("munster")}>
                 <h4 className="top30">Spenser in Munster</h4>
-                <p style={{ "padding": "10px" }}>Who was Edmund Spenser and what was his connection to Munster?</p>
+                <div style={{ "padding": "10px" }}>Who was Edmund Spenser and what was his connection to Munster?</div>
+              </div>
+            </Link>
+          </div>
+          <div className="cbp-item web print graphic">
+            <img src="images/case-studies/bardic.jpg" alt="" />
+            <Link to="what-is-bardic-poetry">
+              <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
+                onClick={() => setSelectedCS("bardic-poetry")}>
+                <h4 className="top30">What is Bardic Poetry?</h4>
+                <div style={{ "padding": "10px" }}>Learn more about the literary landscape of Early Modern Ireland and
+                  the poetry
+                  composed by the professional caste of poets (or filidh) trained in the bardic schools.
+                </div>
               </div>
             </Link>
           </div>
@@ -96,8 +109,8 @@ function CaseStudies({ setSelectedCS }) {
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
                 onClick={() => setSelectedCS("modern-drama")}>
                 <h4 className="top30">Staging Early Modern Drama today</h4>
-                <p style={{ "padding": "10px" }}>A reflection on the staging of Hic Et
-                  Ubique in Smock Alley Theatre</p>
+                <div style={{ "padding": "10px" }}>A reflection on the staging of Hic Et
+                  Ubique in Smock Alley Theatre</div>
               </div>
             </Link>
           </div>
@@ -108,7 +121,7 @@ function CaseStudies({ setSelectedCS }) {
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
                 onClick={() => setSelectedCS("gaelic")}>
                 <h4 className="top30">Using Gaelic Sources</h4>
-                <p style={{ "padding": "10px" }}>Explore ways to use and engage with Gaelic sources.</p>
+                <div style={{ "padding": "10px" }}>Explore ways to use and engage with Gaelic sources.</div>
               </div>
             </Link>
           </div>
@@ -119,25 +132,13 @@ function CaseStudies({ setSelectedCS }) {
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
                 onClick={() => setSelectedCS("deep-map")}>
                 <h4 className="top30">Deep Mapping</h4>
-                <p style={{ "padding": "10px" }}>What is Deep Mapping and how does that allow us to explore
-                  cultural activity in Munster?</p>
+                <div style={{ "padding": "10px" }}>What is Deep Mapping and how does that allow us to explore
+                  cultural activity in Munster?</div>
               </div>
             </Link>
           </div>
 
-          <div className="cbp-item web print graphic">
-            <img src="images/case-studies/bardic.jpg" alt="" />
-            <Link to="what-is-bardic-poetry">
-              <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
-                onClick={() => setSelectedCS("bardic-poetry")}>
-                <h4 className="top30">What is Bardic Poetry?</h4>
-                <p style={{ "padding": "10px" }}>Learn more about the literary landscape of Early Modern Ireland and
-                  the poetry
-                  composed by the professional caste of poets (or filidh) trained in the bardic schools.
-                </p>
-              </div>
-            </Link>
-          </div>
+          
         </div>
       </div>
     </section>

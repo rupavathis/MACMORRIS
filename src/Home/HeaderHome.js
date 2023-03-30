@@ -9,7 +9,7 @@ function Header({ changeIrish, setChangeIrish }) {
          <nav className="navbar navbar-expand-lg bg-transparent-light static-nav">
             <div className="container">
                <Link to='/' className="navbar-brand" href="index.html">
-                  <div class="logo-item"><img style={{ 'object-fit': 'contain', 'width': '200px', 'scale': '2px' }} alt="" src="images/logos/macmorris.png" /></div>
+                  <div className="logo-item"><img style={{ 'object-fit': 'contain', 'width': '200px', 'scale': '2px' }} alt="" src="images/logos/macmorris.png" /></div>
                </Link>
                <button className="navbar-toggler navbar-toggler-right collapsed d-none" type="button" data-bs-toggle="collapse"
                   data-bs-target="#xenav">

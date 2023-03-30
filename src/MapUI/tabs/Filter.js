@@ -65,8 +65,8 @@ function Filter({ siteTypes, sites, setFilteredSites, filteredSites, setMapStyle
                         return <div className='section-info'>
                             <div className='collapsible'>
                                 <div className='collapse-icon-wrapper'>
-                                    <div className='collapse-header'>
-                                        <div className='icon hoverable' onClick={(item) => expandSection(item.id)}>
+                                    <div className='collapse-header' onClick={(item) => expandSection(item.id)}>
+                                        <div className='icon hoverable'>
                                             <FontAwesomeIcon icon={faChevronRight} className={clsx("turn-icon", { "active": isExpandSection })} />
                                         </div>
                                         <div className='title'>
@@ -103,7 +103,7 @@ function Filter({ siteTypes, sites, setFilteredSites, filteredSites, setMapStyle
                                 setShowSiteType(true);
                                 return filterSiteType(site)
                             }}>
-                            <svg className={`pointer pointer-${site.id}`}>
+                            <svg className={`pointer pointer-${site.id}`} width={20} height={20}>
                                 <use href={`${pointer}#mappointer`} xlinkHref={`${pointer}#mappointer`} />
                             </svg> {site.name}</div>)
                 })}

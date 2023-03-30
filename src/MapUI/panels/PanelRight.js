@@ -16,7 +16,7 @@ function Panel({hoverInfo, sites, countSites, showImage, setShowImage, showCard,
 
     return (
         <div className={clsx("panel-right-wrapper", { "active": expanded })}>
-            <div class="right-container">
+            <div className="right-container">
                 <TabInfo info={hoverInfo} sites={sites} 
                     countSites={countSites} showImage={showImage} setShowImage={setShowImage} setShowCard={setShowCard} showCard={showCard}/>
                 {/* <div

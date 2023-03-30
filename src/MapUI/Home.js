@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useEffect, useState } from "react";
 import './style.css'
 import './home.scss'
@@ -51,18 +51,20 @@ function Home() {
     console.log(sitesRes)
     var sitesJson = await sitesRes.json();
     console.log(sitesJson)
-    const siteTypesRes = await fetch(`${API_URL}site_types`);
+    const siteTypesRes = await fetch(`${API_URL}/site_types`);
+    console.log("9567", siteTypesRes);
     var siteTypesJson = await siteTypesRes.json();
     setSites(sitesJson)
     console.log("out if", { id });
 
-    if (id != 0) {
-      console.log("format", { id });
-      const filtered = sitesJson.filter(s => s.id === parseInt(id))
-      console.log("filtered", { filtered }, sitesJson);
-      setFilteredSites(filtered)
-    }
-    else setFilteredSites(sitesJson);
+    // if (id != 0) {
+    //   console.log("format", { id });
+    //   const filtered = sitesJson.filter(s => s.id === parseInt(id))
+    //   console.log("filtered", { filtered }, sitesJson);
+    //   setFilteredSites(filtered)
+    // }
+    // else setFilteredSites(sitesJson);
+
     setSiteTypes(siteTypesJson)
 
     console.log("filtered sites 2", filteredSites)
@@ -94,8 +96,21 @@ function Home() {
   };
 
   useEffect(() => {
-    fetchSiteData();
+    if (id != 0 && sites.length > 0) {
+      const fSites = sites.filter(s => s.id === parseInt(id))
+      setFilteredSites(fSites);
+    } else setFilteredSites(sites);
+  }, [id, sites]);
 
+  // const filteredSites = useMemo(() => {
+  //   if (id != 0 && sites.length > 0) {
+  //     const fSites = sites.filter(s => s.id === parseInt(id))
+  //     return fSites;
+  //   } else return sites;
+  // }, [id]);
+
+  useEffect(() => {
+    fetchSiteData();
   }, [])
 
   useEffect(() => {
@@ -126,9 +141,9 @@ function Home() {
         </Link>
       </div>
 
-      {loading2 && <div className={clsx('loading-wrapper', { "active": loading })}>
+      {/* {loading2 && <div className={clsx('loading-wrapper', { "active": loading })}>
         <img src={globe} alt="globe-gif" style={{ height: '100%', width: 'auto' }} />
-      </div>}
+      </div>} */}
 
 
     </div>

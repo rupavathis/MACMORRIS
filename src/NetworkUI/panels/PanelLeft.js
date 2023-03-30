@@ -39,7 +39,7 @@ function PanelLeft({ networkData, setNetworkData, setSelectedColor, setSelectedS
                 setLoading={setLoading} id={id} setSearchID={setSearchID}/>}
             {tab === "show-settings" && <Setting setSelectedColor={setSelectedColor}
                 setSelectedSize={setSelectedSize} selectedColor={selectedColor}
-                setSelectedLabelSize={setSelectedLabelSize} setShow3DText={setShow3DText} show3DText={show3DText} />}
+                setSelectedLabelSize={setSelectedLabelSize} setShow3DText={setShow3DText} show3DText={show3DText}  />}
         </div>
     )
 }

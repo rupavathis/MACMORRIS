@@ -29,36 +29,22 @@ export default function AdvancedSearch({ setSearchData, setPeopleData, setLoadin
 
 
   const handleSearch = async () => {
-    console.log('handle search aync')
+    console.log('handle search aync', selectedRoles)
 
     setSearch(true)
     setLoading(true)
+
     let url = `${API_URL}/advancedSearch/people?`;
     if (selectedGender != null) url += `gender=${selectedGender}`
     if (!(selectedRSubtype && selectedRSubtype.length === 0)) url += `&rSubtypes=${selectedRSubtype}`
     if (selectedROrder != null) url += `&rOrder=${selectedROrder}`
     if (!(selectedAttribs && selectedAttribs.length === 0)) url += `&attribs=${selectedAttribs}`
+    if (!(selectedRoles && selectedRoles.length === 0)) url += `&roles=${selectedRoles}`
+    if (!(selectedRDesignations && selectedRDesignations.length === 0)) url += `&attribs=${selectedRDesignations}`
 
     console.log({ url })
     const peopleRes = await fetch(url);
     const peopleJson = await peopleRes.json();
-
-    // convert ids to names
-    // const peopleWithAttribNames = peopleJson.map(person => {
-    //   const attribNames = person.attribs.map(attrib => {
-    //     const nameObj = roleAttribs.find(obj => obj.id === attrib.id);
-    //     return nameObj ? nameObj.name : null;
-    //   }
-    //   )
-    //   return { ...person, attribNames };
-    // });
-
-    // const peopleWithGender = peopleWithAttribNames.map(g => {
-    //   const genderId = genders.find(gender => gender.id === g.gender)
-    //   const genderNames = genderId ? genderId.name : ""
-    //   return { ...g, genderNames }
-    // }
-    // )
 
     setPeopleData(peopleJson);
     setSearchData('people');
@@ -91,6 +77,8 @@ export default function AdvancedSearch({ setSearchData, setPeopleData, setLoadin
   };
 
   const onRoleChange = async (e, v) => {
+    setSelectedRoles(v.map(t => t.id))
+    console.log({selectedRoles})
     const attribsRes = await fetch(`${API_URL}/attribs`);
     const attribsJson = await attribsRes.json();
     if (v != null) {
@@ -101,6 +89,7 @@ export default function AdvancedSearch({ setSearchData, setPeopleData, setLoadin
   }
 
   const onChangeRDesignation = async (v) => {
+    setsSelectedRDesignations(v)
     console.log("RDesign", v)
     const rSubTypes = await fetch(`${API_URL}/religious_subtypes`);
     const rSubTypesJson = await rSubTypes.json();
@@ -141,7 +130,7 @@ export default function AdvancedSearch({ setSearchData, setPeopleData, setLoadin
             getOptionLabel={(option) => option.name || ""}
             includeInputInList
             renderInput={(params) => (
-              <TextField {...params} label={item.label} variant="standard" />
+              <TextField key={item.id} {...params} label={item.label} variant="standard" />
             )}
             onChange={(event, value) => {
               if (value === null) {
@@ -161,9 +150,10 @@ export default function AdvancedSearch({ setSearchData, setPeopleData, setLoadin
         getOptionLabel={(option) => option.name || ""}
         autoComplete
         includeInputInList
-        renderInput={(params) => (
+        renderInput={(params, i) => (
           <TextField
             {...params}
+            key={i} 
             label="Religious Subtype"
             variant="standard"
           />
@@ -178,8 +168,8 @@ export default function AdvancedSearch({ setSearchData, setPeopleData, setLoadin
         getOptionLabel={(option) => option.name || ""}
         autoComplete
         includeInputInList
-        renderInput={(params) => (
-          <TextField {...params} label="Roles" variant="standard" />
+        renderInput={(params, i) => (
+          <TextField {...params} key={i} label="Roles" variant="standard" />
         )}
         onChange={(event, value) => onRoleChange(event, value)}
       />
@@ -192,8 +182,8 @@ export default function AdvancedSearch({ setSearchData, setPeopleData, setLoadin
         getOptionLabel={(option) => option.name || ""}
         autoComplete
         includeInputInList
-        renderInput={(params) => (
-          <TextField {...params} label="Attributes" variant="standard" />
+        renderInput={(params, i) => (
+          <TextField {...params} key={i} label="Attributes" variant="standard" />
         )}
         onChange={(event, value) => setSelectedAttribs(value.map(t => t.id))}
       />}

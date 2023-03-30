@@ -131,9 +131,7 @@ function Index({ changeIrish, setChangeIrish }) {
                             <span className="visually-hidden">Loading...</span>
                         </Spinner>
                     }
-
                 </Container>
-
             </Box>
         </>
     );

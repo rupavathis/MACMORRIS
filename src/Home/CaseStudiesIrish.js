@@ -86,6 +86,17 @@ function CaseStudiesIrish() {
               <p style={{ padding: "10px" }}>Cérbh é Edmund Spenser agus cén bhaint a bhí aige le Cúige Mumhan??</p>
             </div>
           </div>
+
+          <div className="cbp-item web print graphic">
+            <img src="images/case-studies/bardic.jpg" alt="" />
+            <div className="overlay center-block whitecolor">
+              <h4 className="top30">Cad atá i gceist le Filíocht na Sgol?</h4>
+              <p style={{ padding: "10px" }}>Tugtar eolas anseo faoi thírdhreach liteartha na hÉireann sa Nua-Aois Luath
+                agus faoin sórt filíochta a bhí á chumadh ag filí gairmiúla na sgol.
+              </p>
+            </div>
+          </div>
+          
           <div className="cbp-item">
             <img src="images/case-studies/drama.jpg" alt="" />
             <div className="overlay center-block whitecolor">
@@ -102,15 +113,7 @@ function CaseStudiesIrish() {
               <p style={{ padding: "10px" }}>Tugtar eolas anseo faoin dóigh is fearr le leas a bhaint as foinsí Gaelacha.</p>
             </div>
           </div>
-          <div className="cbp-item web print graphic">
-            <img src="images/case-studies/bardic.jpg" alt="" />
-            <div className="overlay center-block whitecolor">
-              <h4 className="top30">Cad atá i gceist le Filíocht na Sgol?</h4>
-              <p style={{ padding: "10px" }}>Tugtar eolas anseo faoi thírdhreach liteartha na hÉireann sa Nua-Aois Luath
-                agus faoin sórt filíochta a bhí á chumadh ag filí gairmiúla na sgol.
-              </p>
-            </div>
-          </div>
+          
           <div className="cbp-item print">
             <img src="images/case-studies/munster.png" alt="" />
             <div className="overlay center-block whitecolor">

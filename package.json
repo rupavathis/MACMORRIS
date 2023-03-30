@@ -24,6 +24,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.3",
+    "caniuse-lite": "^1.0.30001472",
     "d3": "^5.5.0",
     "deck.gl": "^8.8.26",
     "export-to-csv": "^0.2.1",
@@ -46,7 +47,8 @@
     "sass": "^1.58.3",
     "styled-components": "^5.3.6",
     "three-spritetext": "^1.6.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "worker-loader": "^3.0.8"
   },
   "scripts": {
     "start": "react-scripts start",

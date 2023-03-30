@@ -33,7 +33,7 @@ function Settings({ setSelectedColor, setSelectedSize, selectedColor, setSelecte
     }
 
     return (
-        <div className='tab-wrapper'>
+        <div className='tab-wrapper-network'>
             <div style={{ "border-bottom": "1px solid  #cabebe", padding: "10px"}}>
                 Set node colors
             </div>

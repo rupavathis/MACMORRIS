@@ -25,26 +25,26 @@ function intro({ changeIrish, setAbout, about }) {
                             léiriú.</h4> */}
                         {!changeIrish &&
                             <>
-                                <p className="bottom35">
+                                <div style={{ "textAlign": "justify"}}className="bottom35">
                                     Our project presents a picture of early modern Ireland, that goes against the prevailing
                                     Anglocentric perspective of literary-historical scholarship by developing this open-access
                                     resource that maps significant cultural actors (of whatever ethnicity) writing in,
                                     or engaging with, Gaelic, English, Latin, Scots, Spanish, Italian, Portuguese,
                                     and Dutch, in late 16th and early 17th century Ireland. In doing that, it provides,
                                     for the first time, an inclusive account of creative, scholarly, and intellectual
-                                    activity in the period. </p>
-                                <p>
+                                    activity in the period. </div>
+                                <div style={{ "textAlign": "justify"}}>
                                     In this account, Gaelic culture is vibrant; the English vernacular
                                     of the Pale is lively and colourful; agents of the Tudor conquest like
                                     Edmund Spenser bring the energies – often dark energies – of the English Renaissance to
                                     Ireland; and contact with mainland Europe is routine.
-                                </p>
+                                </div>
                             </>
                         }
 
                         {changeIrish &&
                             <>
-                                <p>
+                                <div style={{ "textAlign": "justify"}}>
                                     Is í aidhm an tionscadail seo léiriú a thabhairt ar Éirinn sa Nua-Aois Luath, a théann in
                                     éadan na ngnáthpheirspictíochtaí, síolraithe ó dhearcadh na gcoilíneach, ar stair agus
                                     litríocht na tíre ag an am. Baintear seo amach trí fhoinse nua a fhorbairt, a bhfuil teacht
@@ -53,17 +53,26 @@ function intro({ changeIrish, setAbout, about }) {
                                     sa Spáinnis, san Iodáilis, sa Phortaingéilis, agus san Ollainnis in Éirinn go mall sa 16ú haois
                                     agus go luath sa 17ú haois. Dá bharr seo, tá cuntas ionchuimsitheach ar ghníomhíocht cultúrtha,
                                     léannta, agus intleachtúil curtha ar fáil don chéad uair riamh.
-                                </p>
-                                <p>
+                                </div>
+                                <div style={{ "textAlign": "justify"}}>
                                     De réir an chuntais seo, tá cultúr na nGael faoi bhláth; tá Béarla na Páile beo bríomhar;
                                     tugann leithéidí Edmund Spenser agus gníomhairí na Corónach – go minic faoi scáth dorcha an
                                     choilínithe ­– blaiseadh dúinn de Renaissance Sasanach in Éirinn; agus neart nasc leis an
                                     mhór-roinn.
-                                </p>
+                                </div>
                             </>}
 
+                            {
+                                changeIrish && <div className="button btnsecondary pagescroll" style={{ "margin": "10px"}}
+                                 onClick={() => setAbout(!about)}>Faoin Tionscadal</div>
+                            }
+                            { 
+                               !changeIrish && <div className="button btnsecondary pagescroll" style={{ "margin": "10px"}}
+                                onClick={() => setAbout(!about)}>About us</div>
+                            }
+
                         {/* <Link to="about-us"> */}
-                            <div className="button btnsecondary pagescroll" onClick={() => setAbout(!about)}>About us</div>
+                           
                         {/* </Link> */}
                     </div>
                     <div className="col-md-6 col-sm-5 wow fadeInRight" data-wow-delay="350ms">

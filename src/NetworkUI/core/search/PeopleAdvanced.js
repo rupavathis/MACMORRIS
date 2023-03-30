@@ -6,7 +6,7 @@ import '../../Network.scss';
 import { API_URL } from '../../../constants';
 
 
-function AdvancedSearchPeople({ setNetworkData,setSelectContent, setLoading}) {
+function AdvancedSearchPeople({ setNetworkData,setSelectContent, setLoading, setSearchID}) {
 
     const [rOrders, setROrders] = useState([]);
     const [attribs, setAttribs] = useState([]);
@@ -47,6 +47,7 @@ function AdvancedSearchPeople({ setNetworkData,setSelectContent, setLoading}) {
             const output = await res.json();
             setNetworkData(output);
         }
+        setSearchID(null);
         setSelectContent(0)
         setLoading(false)
     }
@@ -75,8 +76,8 @@ function AdvancedSearchPeople({ setNetworkData,setSelectContent, setLoading}) {
                     getOptionLabel={(option) => `${option.name}` || ""}
                     autoComplete
                     includeInputInList
-                    renderInput={(params) => (
-                        <TextField {...params} label={type.type} variant="standard" />
+                    renderInput={(params, i) => (
+                        <TextField {...params} key={i} label={type.type} variant="standard" />
                     )}
                     onChange={(event, value) => type.func(value.map((v) => v.id))}
                 />))}              

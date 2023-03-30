@@ -1,31 +1,32 @@
 import React from 'react';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 // import async from 'react-select/dist/declarations/src/async';
 import '../Network.scss';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
-import infoData from '../../Profile/ContentBar/Biography';
+import InfoData from '../../Profile/ContentBar/Biography';
 import { Link } from 'react-router-dom';
 import { API_URL } from '../../constants';
+import Button from 'react-bootstrap/Button';
 
-
-function Info({ info }) {
-    console.log("info", { info })
+function Info({ info, setClose, close }) {
+    console.log("info", { info, setClose })
     const [infoData, setInfoData] = useState({})
 
-    useEffect(() => {
-        async function fetchInfo() {
-            if (info != null) {
-                let url = `${API_URL}/people/${info}`;
-                console.log(url)
-                const res = await fetch(url);
-                const infoJson = await res.json();
-                console.log("useeffect", infoJson);
-                setInfoData(infoJson)
-            }
+    const fetchInfo = async () => {
+        if (info != null) {
+            let url = `${API_URL}/people/${info}`;
+            console.log('infor', url)
+            const res = await fetch(url);
+            const infoJson = await res.json();
+            console.log("useeffect", infoJson);
+            setInfoData(infoJson)
         }
-        fetchInfo()
-    }, [info]);
+    }
+
+    useEffect(() => {
+        fetchInfo();
+    }, [info])
 
 
     function createData(name, values) {
@@ -60,7 +61,8 @@ function Info({ info }) {
         return { name, values };
     }
 
-    const rows = [
+
+    const rows = useMemo(() => infoData.id != null ? [
         createData('First Name', infoData.first_name),
         createData('Last Name', infoData.last_name),
         createData('Aristocratic title', infoData.aristocratic_title),
@@ -77,54 +79,59 @@ function Info({ info }) {
         createData('Religious Order', infoData.religious_order_id),
         createData('Self described identity ', infoData.self_described_identity),
         createData('Nationality', infoData.nationality),
-    ].filter(e => e.values != null);
+    ].filter((e) => e.values !== null) : []
+        , [infoData])
 
 
     console.log("info json", { infoData })
 
     return (
         <div>
-            {/* Name: {infoData.display_name}
-            Date of birth: {infoData.date_of_birth}
-            Date of death: {infoData.date_of_death}
-            Date of flourishing: {infoData.flourishing_date}
-            Gender: {infoData.gender?.name}
-            Attributes: {infoData.attribs?.map(a => a.name)}  */}
-            <Card style={{ width: '300px' }}>
-                <Card.Body>
-                    <Card.Title>
-                        <Link className='link' to={`/profile/${infoData.macmorris_id}`}
-                            target="_blank" rel="noopener noreferrer"> {infoData.display_name} </Link>
-                    </Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">{new Set(infoData.attribs?.map(a => a.name).join(' | '))}
-                    </Card.Subtitle>
-                    <hr />
-                    <Card.Text>
-                        {/* <div>
-                            Date of birth: {infoData.date_of_birth}
-                            Date of death: {infoData.date_of_death}
-                            Date of flourishing: {infoData.flourishing_date}
-                            Gender: {infoData.gender?.name}
-                        </div> */}
-                        <infoData infoData={infoData} />
-                        <Table hover size="sm">
-                            {rows.map((row) => (
-                                <>
+            {Object.keys(infoData).length > 0 && (
+                <Card style={{ width: '300px' }}>
+                    <Card.Body>
+                        <Card.Title>
+                            <Link
+                                className='link'
+                                to={`/profile/${infoData.macmorris_id}`}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                            >
+                                {infoData.display_name}
+                            </Link>
+                        </Card.Title>
+                        <Card.Subtitle className='mb-2 text-muted'>
+                            {(Array.from(new Set(infoData.attribs?.map((a) => a.name))).join(' | '))}
+                        </Card.Subtitle>
+                        <hr />
+                        <Card.Text>
+                            {/* {infoData.length !=0 && <InfoData bioInfo={infoData} />} */}
+                            <Table hover size='sm'>
+                                {rows.map((row) => (
                                     <tr style={{ justifyContent: 'space-between', display: 'flex' }}>
                                         <td>{row.name}</td>
                                         <td>{row.values}</td>
                                     </tr>
-                                </>
-                            ))}
-                        </Table>
-                    </Card.Text>
-                    <Link className='link' to={`/profile/${infoData.macmorris_id}`}
-                        target="_blank" rel="noopener noreferrer">Learn More</Link>
-                </Card.Body>
-            </Card>
-        </div >
-    )
-}
+                                ))}
+                            </Table>
+                            <Link
+                                className='link'
+                                to={`/Network?id=${infoData.id}`}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                            >
+                                Learn about {infoData.display_name}'s network
+                            </Link>
+                        </Card.Text>
+                        <Button variant='outline-primary' onClick={() => setClose(false)}>
+                            Close
+                        </Button>
+                    </Card.Body>
+                </Card>
+            )}
+        </div>
+    );
 
+}
 
 export default Info;
