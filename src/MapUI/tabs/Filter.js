@@ -20,7 +20,7 @@ function Filter({ siteTypes, sites, setFilteredSites, filteredSites, setMapStyle
     const [showSiteType, setShowSiteType] = useState(false);
     const [isMapStyleOn, setIsMapStyleOn] = useState(false);
 
-    const [isHistoricMapOn, setIsHistoricMapOn] = useState(false);
+    const [isHistoricMapOn, setIsHistoricMapOn] = useState(true);
     const [selectedSiteType, setSelectedSiteType] = useState([]);
     const [isIconLayer, setIsIconLayer] = useState(true);
     const [isExpandSection, setIsExpandSection] = useState(false);
@@ -51,40 +51,45 @@ function Filter({ siteTypes, sites, setFilteredSites, filteredSites, setMapStyle
                     {/* <div className='section-info'>
                         
                     </div> */}
-                   {[{
-                        title: "Historic Maps",
-                        fun: selectHistoricMap,
-                        id: 1
-                    },
-                    {
-                        title: "Map Layers",
-                        fun: changeMapLayers,
-                        id: 2
-                    }
-                    ].map((item) => {
-                        return <div className='section-info'>
+
+                    {/* {[
+                        {
+                            title: "Map Layers",
+                            fun: changeMapLayers,
+                            id: 2
+                        },
+                        {
+                            title: "Historic Map",
+                            fun: selectHistoricMap,
+                            id: 1
+                        },
+                    ].map((item) => { */}
+                       
+                       
+                        <div className='section-info'>
                             <div className='collapsible'>
                                 <div className='collapse-icon-wrapper'>
-                                    <div className='collapse-header' onClick={(item) => expandSection(item.id)}>
+                                    <div className='collapse-header' onClick={() => expandSection(true)}>
                                         <div className='icon hoverable'>
                                             <FontAwesomeIcon icon={faChevronRight} className={clsx("turn-icon", { "active": isExpandSection })} />
                                         </div>
                                         <div className='title'>
-                                            {item.title}
+                                            Map Layers
                                         </div>
                                         <div className='hline'>
-
                                         </div>
                                     </div>
                                     <div className='header-end-wrapper'>
+                                    {isExpandSection && <>
+                                    {changeMapLayers()}
+                                    {selectHistoricMap()}
+                                </>
+                                }
                                     </div>
                                 </div>
-                                {isExpandSection && <div className='collapse-content'>
-                                    {item.fun()}
-                                </div>}
+                                
                             </div>
                         </div>
-                    })} 
                 </div>
             </div>
         </div>
@@ -167,11 +172,12 @@ function Filter({ siteTypes, sites, setFilteredSites, filteredSites, setMapStyle
     function selectHistoricMap() {
         return (
             <div>
-                {["Map of Munster"].map((m) => {
+                {["Historic Map"].map((m) => {
                     return (<Form.Check
                         type="switch"
                         id="historic-map"
                         label={m}
+                        defaultChecked={isHistoricMapOn}
                         onChange={() => {
                             setIsHistoricMapOn(!isHistoricMapOn)
                             !isHistoricMapOn && setHistoricMap("munster")

@@ -67,13 +67,14 @@ export default function Search({ networkData, setNetworkData, workNetworkData, s
                     </Tabs>
                 </Box>
                 {!showAdvanced && <TabPanel value={value} index={0}>
-                    <SearchName setNetworkData={setNetworkData} setSelectContent={setSelectContent}
+                    <SearchName setNetworkData={setNetworkData} setSelectContent={setSelectContent} setLoading={setLoading}
                     setDisplayNames={setDisplayNames} displayNames={displayNames} id={id} setSearchID={setSearchID}
                     />
                 </TabPanel>}
                 {!showAdvanced &&
                     <TabPanel value={value} index={1}>
-                        <SearchTitle setWorkNetworkData={setWorkNetworkData} setSelectContent={setSelectContent} setSearchID={setSearchID}/>
+                        <SearchTitle setWorkNetworkData={setWorkNetworkData} setSelectContent={setSelectContent} setLoading={setLoading}
+                        setSearchID={setSearchID}/>
                     </TabPanel>
                 }
 
@@ -87,7 +88,8 @@ export default function Search({ networkData, setNetworkData, workNetworkData, s
                
                 {showAdvanced && value === 0 && <AdvancedSearchPeople setNetworkData={setNetworkData} setSearchID={setSearchID}
                  setSelectContent={setSelectContent} setLoading={setLoading} />}
-                {showAdvanced && value === 1 && <AdvancedSearchWork setWorkNetworkData={setWorkNetworkData} setSearchID={setSearchID} setSelectContent={setSelectContent} />}
+                {showAdvanced && value === 1 && <AdvancedSearchWork setWorkNetworkData={setWorkNetworkData} setLoading={setLoading} 
+                setSearchID={setSearchID} setSelectContent={setSelectContent} />}
             </Box>
         </div>
     );

@@ -16,6 +16,10 @@ export default function AdvancedSearch({ setSearchData, setWorksData, setLoading
   const [workClassifications, setWorkClassifications] = useState([]);
   const [dateRange, setDateRange] = useState([
     {
+      name: "1540 - 1550",
+      id: 1
+    },
+    {
       name: "1600 - 1610",
       id: 1
     },
@@ -34,7 +38,7 @@ export default function AdvancedSearch({ setSearchData, setWorksData, setLoading
   ]);
   const [places, setPlaces] = useState([]);
   const [displayTitles, setDisplayTitles] = useState([]);
-  const [peopleData, setPeopleData] = useState([]);
+  const [authors, setAuthors] = useState([]);
   const [search, setSearch] = useState(false);
 
   const [selectedWorkFormats, setSelectedWorkFormats] = useState();
@@ -42,6 +46,8 @@ export default function AdvancedSearch({ setSearchData, setWorksData, setLoading
   const [selectedWorkClassifications, setSelectedWorkClassifications] = useState();
   const [selectedPlaces, setSelectedPlaces] = useState();
   const [selectBardic, setSelectedBardic] = useState(false);
+  const [selectedAuthor, setSelectedAuthor] = useState();
+
 
   const handleSearch = async () => {
     setLoading(true)
@@ -52,10 +58,12 @@ export default function AdvancedSearch({ setSearchData, setWorksData, setLoading
     if (selectedWorkClassifications != null) url += `&wClassification=${selectedWorkClassifications}`
     if (selectedPlaces != null) url += `&place=${selectedPlaces}`
     if (selectBardic === true) url += `&bardic=${selectBardic}`
+    if (selectedAuthor != null) url += `&author=${selectedAuthor}`
 
     console.log({ url })
     const workRes = await fetch(url);
     const worksJson = await workRes.json();
+    console.log({ worksJson })
     setWorksData(worksJson);
     setSearchData('works');
     setLoading(false)
@@ -78,6 +86,10 @@ export default function AdvancedSearch({ setSearchData, setWorksData, setLoading
     const placesRes = await fetch(`${API_URL}/places`);
     const placesJson = await placesRes.json();
     setPlaces(placesJson);
+
+    const authorsRes = await fetch(`${API_URL}/authorship_types`);
+    const authorsJson = await authorsRes.json();
+    setAuthors(authorsJson[0].people);
 
   };
 
@@ -109,18 +121,24 @@ export default function AdvancedSearch({ setSearchData, setWorksData, setLoading
           },
           {
             id: 4,
+            options: authors,
+            label: "Author",
+            fun: setSelectedAuthor
+          },
+          {
+            id: 5,
             options: workClassifications,
             label: "Work Classification",
             fun: setSelectedWorkClassifications
           },
           {
-            id: 5,
+            id: 6,
             options: places,
             label: "Place",
             fun: setSelectedPlaces
           },
           {
-            id: 6,
+            id: 7,
             options: dateRange,
             label: "Date Range",
             fun: setDateRange
@@ -128,7 +146,7 @@ export default function AdvancedSearch({ setSearchData, setWorksData, setLoading
         ].map(item =>
           <>
             {item.id !== 2 && <Autocomplete
-              id="auto-complete"
+              id={item.id}
               options={item.options}
               getOptionLabel={(option) => option.name || ""}
               autoComplete

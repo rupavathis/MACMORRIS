@@ -7,7 +7,7 @@ import { API_URL } from '../../../constants';
 
 
 export default function SearchName({ setNetworkData, setSelectContent, setDisplayNames, displayNames, id,
-    setSearchID}) {
+    setSearchID, setLoading}) {
 
 
     const [searchData, setSearchData] = React.useState(false);
@@ -67,11 +67,14 @@ export default function SearchName({ setNetworkData, setSelectContent, setDispla
     }, [id!='-1'])
 
     const fetchData = async(id) => {
+        setLoading(true)
         const peopleRes = await fetch(`${API_URL}/showConnection/${id}`);
         const peopleJson = await peopleRes.json();
         console.log("people json in 12345", peopleJson);
         setNetworkData(peopleJson);
         setSearchID(() => id)
+        setLoading(false)
+
     }
 
     const onSearchChange = async (

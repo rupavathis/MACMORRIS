@@ -20,7 +20,7 @@ import mapboxgl from 'mapbox-gl';
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 // Set your mapbox access token here
-const MAPBOX_ACCESS_TOKEN = process.env.MAPBOX_ACCESS_TOKEN
+const MAPBOX_ACCESS_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 
 
 // Viewport settings
@@ -115,10 +115,10 @@ export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, 
         let countingSites = []
 
         if (d.site_type_id === 1) return [76, 0, 153];
-        if (d.site_type_id === 2) return [204, 204, 0];
-        if (d.site_type_id === 3) return [0, 0, 180];
-        if (d.site_type_id === 4) return [255, 128, 0];
-        if (d.site_type_id === 5) return [255, 0, 0];
+        if (d.site_type_id === 2) return [219, 209, 27];
+        if (d.site_type_id === 3) return [4, 145, 197];
+        if (d.site_type_id === 4) return [212, 140, 16];
+        if (d.site_type_id === 5) return [203, 6, 6];
         if (d.site_type_id === 6) return [216, 22, 200];
         if (d.site_type_id === 7) return [0, 153, 0];
     }

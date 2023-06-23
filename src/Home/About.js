@@ -91,7 +91,7 @@ function About() {
                                 <p>
                                     <a href='https://www.dib.ie/'>
                                         Dictionary of Irish Biography </a>: Thanks to the DIB for sharing with the backend .xml files of the DIB,
-                                    from which we were able to extract the embedded network connections from. (https://www.dib.ie/)
+                                    from which we were able to extract the embedded network connections from.
                                 </p>
                             </li>
 
@@ -99,7 +99,18 @@ function About() {
                                 <p>
                                     <a href='https://www.Léamh.org/'>
                                         Léamh</a>: Thanks to Léamh for collaborating with us on producing, alongside hosting, a number of quatrains
-                                    from different bardic poems from our Munster case study. (Léamh.org)
+                                    from different bardic poems from our Munster case study.
+                                </p>
+                            </li>
+
+                            <li>
+                                <p>
+                                    <a href='https://www.maynoothuniversity.ie/experiential-learning/students/research'>
+                                    Maynooth SPUR Programme</a>:Thanks to the SPUR programme for funding and facilitating three different 
+                                    student projects affiliated with MACMORRIS between 2020 and 2023. Thanks to Éabha Puirséil for her work 
+                                    on the MACMORRIS bibliography and one of the texts available on Léamh. Thanks to Conor Killian for 
+                                    his work on data cleaning and data entry of biographical metadata and network connection metadata. 
+                                    Thanks to Emma Cooling for her work on the MACMORRIS learning guides 
                                 </p>
                             </li>
 

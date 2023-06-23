@@ -32,6 +32,7 @@
 .panel-top {
     right: 0;
     position: absolute;
+    z-index: 1000;
 }
 
 .tab-wrapper-network {
@@ -117,7 +118,7 @@ label {
     position: absolute;
     right: 0;
     top: 70px;
-    min-height: 200px;
+    // min-height: 200px;
     margin: 30px;
 }
 

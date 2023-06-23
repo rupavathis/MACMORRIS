@@ -44,8 +44,7 @@ function Sites() {
     }
 
     const rows = useMemo(() => sites != null ? [
-        createData('Name', sites.name),
-        createData('Other name', sites.gaelic_name),
+        createData('Alternative Title', sites.gaelic_name),
         createData('Site Type', sites.site_type?.name),
         createData('Place', sites.place?.name),
         createData('References', sites.reference_text),
@@ -78,20 +77,8 @@ function Sites() {
                                 },
                             }}
                         >
-                            <Paper variant="outlined" style={{ textAlign: 'justify', padding: 10 }}>
-                                <div className='desc-header'>Description</div>
-                                <div style={{ paddingTop: 20 }}>
-                                    {sites.description && sites.description.split('_x000B_').map((line, index) => (
-                                        <React.Fragment key={index}>
-                                            {line}
-                                            {index !== sites.description.split('_x000B_').length - 1 && <br />}
-                                        </React.Fragment>
-                                    ))}
-                                </div>
-                            </Paper>
-
                             {sites.gaelic_description && <Paper variant="outlined" style={{ textAlign: 'justify', padding: 10 }}>
-                                <div className='desc-header'>Description</div>
+                                <div className='desc-header'>Text</div>
                                 <div style={{ paddingTop: 20 }}>
                                     {sites.gaelic_description && sites.gaelic_description.split('_x000B_').map((line, index) => (
                                         <React.Fragment key={index}>
@@ -101,6 +88,18 @@ function Sites() {
                                     ))}
                                 </div>
                             </Paper>}
+
+                            <Paper variant="outlined" style={{ textAlign: 'justify', padding: 10 }}>
+                                <div className='desc-header'>Text</div>
+                                <div style={{ paddingTop: 20 }}>
+                                    {sites.description && sites.description.split('_x000B_').map((line, index) => (
+                                        <React.Fragment key={index}>
+                                            {line}
+                                            {index !== sites.description.split('_x000B_').length - 1 && <br />}
+                                        </React.Fragment>
+                                    ))}
+                                </div>
+                            </Paper>
                         </Box>
                     </Container>
                     <TableContainer component={Paper}>
@@ -122,7 +121,12 @@ function Sites() {
                                             }
                                             {row.name === 'References' && row.name != "Connected People" &&
                                                 <TableCell component="th" scope="row" align="right">
-                                                    <a href={row.value} target="_blank" rel="noopener noreferrer">{row.value}</a>
+                                                    {row.value.includes("http") &&
+                                                        <a href={row.value} target="_blank" rel="noopener noreferrer">{row.value}</a>
+                                                    }
+                                                    {!row.value.includes("http") &&
+                                                       <>{row.value}</>
+                                                    }
                                                 </TableCell>
                                             }
                                             {(row.name === "Connected People") && sites.person_id != null &&
@@ -130,7 +134,7 @@ function Sites() {
                                                     {sites.person_id?.map((n, index) =>
                                                         <React.Fragment key={index}>
                                                             <Link to={`/profile/${n.macmorris_id}`}>{n.name}</Link>
-                                                            {index < sites.person_id.length - 1 && ", "}
+                                                            {index < sites.person_id.length - 1 && " | "}
                                                         </React.Fragment>
                                                     )}
                                                 </TableCell>

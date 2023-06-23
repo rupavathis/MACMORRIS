@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom';
 
 
 function intro({ changeIrish, setAbout, about }) {
+
+    console.log("intro about", about)
+
     return (
         <section id="about-us" className="padding single-feature">
             <div className="container">

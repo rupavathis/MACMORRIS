@@ -29,7 +29,7 @@ function Header({ changeIrish, setChangeIrish, setAbout }) {
                         <HashLink className="nav-link pagescroll" to="/#our-viz">Explore</HashLink>
                      </li>
                      <li className="nav-item">
-                        <HashLink className="nav-link pagescroll" to="/#our-casestudies">Case Studies</HashLink>
+                        <HashLink className="nav-link pagescroll" to="/#our-casestudies">Resources</HashLink>
                      </li>
                      <li className="nav-item">
                         <HashLink className="nav-link pagescroll" to="/#our-team">Team</HashLink>

@@ -25,6 +25,7 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
 
     console.log('works 54321', searchID)
 
+    const [noResults, setNoResults] = useState(false);
 
     const obj = displayNames.reduce((obj, item) => Object.assign(obj, { [item.id]: item.display_name }), {})
 
@@ -49,14 +50,19 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
 
         console.log("Fetch nodes 654321")
 
-        const firstDegreeProps = { color: "#3f48cc", val: 1 };
-        const secondDegreeProps = { color: "#8cb316", val: 1 };
-        const searchedNodeProps = { color: "#ee0000", val: 1, batch: 'work1', type: "work"  };
+        // const firstDegreeProps = { color: "#3f48cc", val: 1, "batch": "people1"  };
+        // const secondDegreeProps = { color: "#8cb316", val: 1 , "batch": "work2" };
+        // const searchedNodeProps = { color: "#ee0000", val: 1, batch: 'work1', type: "work"  };
+
+        const firstDegreeProps = { color: settings[0].node2, val: settings[1].node1, batch: 'people1' };
+        const secondDegreeProps = { color: settings[0].node3, val: settings[1].node2 , batch: 'work2'};
+        const searchedNodeProps = { color: settings[0].node1, val: settings[1].node13, batch: 'work1' };
 
         const source1 = networkData1.map((c) => {
             return {
                 id: c.display_title === null ? "" : c.display_title,
                 uid: c.id,
+                type: "work",
                 ...firstDegreeProps 
             }
         })
@@ -67,7 +73,6 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
 
         const assoc_people = networkData1.map((c) => [c.patron_id_ids, c.printer_id_ids, c.publisher_id_ids, c.bookseller_id_ids]
             .map(d => {
-            console.log("assoc people eye", { d })
             return d?.map(e => {
                 console.log("assoc people", { d, e })
                 const v = e === null ? "" : obj[`${e}`];
@@ -78,7 +83,6 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
 
         const nodes1 = [...source1, ...assoc_author, ...assoc_people]
 
-        console.log({ nodes1 })
 
         let nodes = []
 
@@ -147,7 +151,7 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
         const link1 = [...author_works, ...w2p].filter(e => e != undefined)
         console.log( "remove undefined", links )
         setLinks(link1)
-        console.log({ "out assoc": assoc_author, networkData2 })
+        // console.log({ "out assoc": assoc_author, networkData2 })
 
 
         if (secondDegree) {
@@ -159,7 +163,7 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
                 }
             })
 
-            console.log({ author_works_2, "assoc": assoc_author[0].uid, networkData2 })
+            // console.log({ author_works_2, "assoc": assoc_author[0].uid, networkData2 })
 
    
             const getAllIds = (p) => [].concat(
@@ -196,16 +200,22 @@ const Work = ({ workNetworkData, settings, secondDegree, threeD, tab, show3DText
 
     console.log({ nodes, links })
 
+    // if (nodes.length === 0 && links.length === 0) {
+    //     console.log('no results set true')
+    //     setNoResults(true)
+    // }
+    // else setNoResults(false)
+
     const data = { nodes: nodes, links: links }
     console.log({ data })
 
     return (
         <>
-            {!threeD && data.nodes.length != 0 && <GraphForce2D data1={data}  zoom={zoom} setFgRef={setFgRef}  />}
-            {threeD && data.nodes.length != 0 && <Graph3D data={data} show3DText={show3DText} />}
+            {!threeD &&  !noResults &&  data.nodes.length != 0 && <GraphForce2D data1={data}  zoom={zoom} setFgRef={setFgRef}  />}
+            {threeD &&  !noResults && data.nodes.length != 0 && <Graph3D data={data} show3DText={show3DText} zoom={zoom} setFgRef={setFgRef} />}
 
             {tab === "show-filter" && <Filter nodes={data.nodes} setNodes={setNodes} settings={settings} />}
-
+            {noResults && <div className="no-results"> No results to display</div>}
         </>
     );
 };

@@ -47,7 +47,7 @@ function Filter({ nodes, setNodes, settings }) {
 
     async function fetchNodeData() {
         if (nodes != null) {
-            const nodeIds = nodes.map((n) => n.people_id)
+            const nodeIds = nodes.map((n) => n.uid)
             const res = await fetch(`${API_URL}/filterData/${nodeIds}`);
             const peopleJson = await res.json();
             setNodeData(peopleJson);
@@ -103,10 +103,10 @@ function Filter({ nodes, setNodes, settings }) {
         flatNodes.flat()
         // Get the count of duplicate nodes
         const countedNodes = flatNodes.reduce((allNames, name) => {
-            const currCount = allNames[name.people_id] ?? 0;
+            const currCount = allNames[name.uid] ?? 0;
             return {
                 ...allNames,
-                [name.people_id]: currCount + 1,
+                [name.uid]: currCount + 1,
             };
         }, {});
 
@@ -116,12 +116,15 @@ function Filter({ nodes, setNodes, settings }) {
             if (value === count) {
                 a = [...a, parseInt(key)]
             }
-        })
+        })  
+
+        console.log({a, countedNodes});
 
         // const filteredNodes58 = nodes.forEach(n => {
         nodes.forEach(n => {
-            // return a.includes(n.people_id) ? {...n, val: n.val *2, color: 'black'} : n;
-            if (a.includes(n.people_id)) {
+            // return a.includes(n.uid) ? {...n, val: n.val *2, color: 'black'} : n;
+            if (a.includes(n.uid)) {
+
                 if (n.batch === "node1") {
                     n.color = "black";
                     n.val = settings[1].node1 === '0' ? 1 : settings[1].node1 * 4;
@@ -130,7 +133,7 @@ function Filter({ nodes, setNodes, settings }) {
                     n.color = "black";
                     n.val = settings[1].node2 === '0' ? 1 : settings[1].node2 * 4;
                 }
-                if (n.batch === "nodes2") {
+                if (n.batch === "node2") {
                     n.color = "black"
                     n.val = settings[1].node3 === '0' ? 1 : settings[1].node3 * 4;
                 }
@@ -145,7 +148,7 @@ function Filter({ nodes, setNodes, settings }) {
                     n.color = settings[0].node2;
                     n.val = settings[1].node2 === '0' ? 1 : settings[1].node2 * 2;
                 }
-                if (n.batch === "nodes2") {
+                if (n.batch === "node2") {
                     n.color = settings[0].node3;
                     n.val = settings[1].node3 === '0' ? 1 : settings[1].node3 * 2;
                 }

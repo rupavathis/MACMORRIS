@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import { API_URL } from '../../../constants';
 
 
-export default function SearchWorkNetwork({ workNetworkData, setWorkNetworkData, setSelectContent, setSearchID}) {
+export default function SearchWorkNetwork({ workNetworkData, setWorkNetworkData, setSelectContent, setSearchID , setLoading }) {
 
     const [authors, setAuthors] = useState([]);
     const [selectedAuthor, setSelectedAuthor] = useState([]);
@@ -65,7 +65,9 @@ export default function SearchWorkNetwork({ workNetworkData, setWorkNetworkData,
 
 
     async function searchPeople() {
-         let url = `worksPeopleSearch?authors=${selectedAuthor}&patrons=${selectedPatrons}&
+        setLoading(true)
+
+        let url = `worksPeopleSearch?authors=${selectedAuthor}&patrons=${selectedPatrons}&
                  printers=${selectedPrinters}&publishers=${selectedPublishers}&booksellers=${selectedBooksellers}`
         // let url = `worksPeopleSearch?authors=9`
         console.log(url)
@@ -75,6 +77,9 @@ export default function SearchWorkNetwork({ workNetworkData, setWorkNetworkData,
         console.log("workNetworkData in Search", worksJson)
         setSelectContent(1)
         setSearchID(null)
+
+        setLoading(false)
+
 
     }
 
@@ -110,11 +115,20 @@ export default function SearchWorkNetwork({ workNetworkData, setWorkNetworkData,
                     getOptionLabel={(option) => ` ${option.macmorris_id} - ${option.display_name}` || ""}
                     id="auto-complete"
                     autoComplete
+                    noOptionsText={`Loading ${type.type}...`}
                     includeInputInList
                     renderInput={(params, i) => (
                         <TextField {...params} key={i} label={`${type.type}`} variant="standard" />
                     )}
-                    onChange={(event, value) => { type.func(value.id) }}
+                    onChange={(event, value) => {
+                        {
+                            if (value === null) {
+                                type.func()
+                            }
+
+                            else type.func(value.id)
+                        }
+                    }}
                 />))}
             <Button onClick={() => searchPeople()}>Search</Button>
         </div>

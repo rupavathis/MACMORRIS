@@ -44,6 +44,30 @@ function CaseStudiesIrish() {
             </div>
           </div>
         </div>
+        <div className="cbp-item web print graphic">
+          <img src="images/case-studies/historic.jpg" alt="" />
+          <div className="overlay center-block whitecolor">
+            <h4 className="top30">Léargas Stairiúil</h4>
+            <p style={{ padding: "10px" }}>Tugtar eolas anseo faoin tréimhse achrannach,
+              lán le coinbhleacht, le claochlú, agus le nuálaíocht a d'athraigh an tír ó bhonn.</p>
+          </div>
+
+        </div>
+
+
+
+        <div className="cbp-item">
+          <img src="images/case-studies/women.png" alt="" />
+          <div className="overlay center-block whitecolor">
+            <a className="plus" data-fancybox="gallery" href="images/gallery-flat4.jpg"></a>
+            <h4 className="top30">Mná sna Líonraí</h4>
+            <p style={{ padding: "10px" }}>Tugtar eolas anseo faoi na líonraí agus faoi chuid de na mná sa
+              bhunachar sonraí</p>
+
+          </div>
+
+        </div>
+
         <div id="flat-gallery" className="cbp dark_overlay">
           <div className="cbp-item web logo">
             <img src="images/case-studies/yettoname.jpg" alt="" />
@@ -54,28 +78,6 @@ function CaseStudiesIrish() {
                 Ag leathnú an liostaNíos mó faoi na mioncharachtair sa bhunachar sonraí
               </p>
             </div>
-          </div>
-
-          <div className="cbp-item">
-            <img src="images/case-studies/women.png" alt="" />
-            <div className="overlay center-block whitecolor">
-              <a className="plus" data-fancybox="gallery" href="images/gallery-flat4.jpg"></a>
-              <h4 className="top30">Mná sna Líonraí</h4>
-              <p style={{ padding: "10px" }}>Tugtar eolas anseo faoi na líonraí agus faoi chuid de na mná sa
-                bhunachar sonraí</p>
-
-            </div>
-
-          </div>
-
-          <div className="cbp-item web print graphic">
-            <img src="images/case-studies/historic.jpg" alt="" />
-            <div className="overlay center-block whitecolor">
-              <h4 className="top30">Léargas Stairiúil</h4>
-              <p style={{ padding: "10px" }}>Tugtar eolas anseo faoin tréimhse achrannach,
-                lán le coinbhleacht, le claochlú, agus le nuálaíocht a d'athraigh an tír ó bhonn.</p>
-            </div>
-
           </div>
 
           <div className="cbp-item">
@@ -96,7 +98,7 @@ function CaseStudiesIrish() {
               </p>
             </div>
           </div>
-          
+
           <div className="cbp-item">
             <img src="images/case-studies/drama.jpg" alt="" />
             <div className="overlay center-block whitecolor">
@@ -113,7 +115,7 @@ function CaseStudiesIrish() {
               <p style={{ padding: "10px" }}>Tugtar eolas anseo faoin dóigh is fearr le leas a bhaint as foinsí Gaelacha.</p>
             </div>
           </div>
-          
+
           <div className="cbp-item print">
             <img src="images/case-studies/munster.png" alt="" />
             <div className="overlay center-block whitecolor">
@@ -122,6 +124,18 @@ function CaseStudiesIrish() {
                 dúinn léargas a fháil ar ghníomhaíochtaí cultúrtha i gCúige Mumhan?</p>
             </div>
           </div>
+
+          <div className="cbp-item print">
+            <img src="images/case-studies/munster.png" alt="" />
+            <div className="overlay center-block whitecolor">
+              <h4 className="top30">Ag Cruthú Léarscáil Dhomhain</h4>
+              <p style={{ padding: "10px" }}>Cad atá i gceist le Léarscáil Dhomhain agus cén dóigh a ligeann a léithéid
+                dúinn léargas a fháil ar ghníomhaíochtaí cultúrtha i gCúige Mumhan?</p>
+            </div>
+          </div>
+
+
+
         </div>
       </div>
     </section>

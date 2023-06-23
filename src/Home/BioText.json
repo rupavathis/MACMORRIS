@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "name": "Pat Palmer",
+        "title": "Professor of Renaissance Literature, Maynooth University",
+        "email": "pat.palmer@mu.ie",
+        "text": "Patricia Palmer is Professor of Renaissance Literature in Maynooth University. She works on cultures in contact, principally in early modern Ireland – on the conflictual exchange between English colonists and the Gaelic world; linguistic colonisation; the aesthetics of violence; and the politics of translation. \n She is the author of Language and Conquest in Early Modern Ireland: English Renaissance Literature and Elizabeth Imperial Expansion (Cambridge University Press, 2001) and The Severed Head and the Grafted Tongue: Translating Violence in Early Modern Ireland (Cambridge University Press, 2014). There is a strong comparative element to her work: she has written on translations of Ariosto, Ercilla, and Virgil, and on bardic poetry. She has published with English Literary Renaissance, Translation Studies, Renaissance Quarterly, Irish Historical Studies, and Literature Compass and in various edited collections, on subjects as diverse as the body in pain, subalterns in the historical record, occluded interpreters, the Flight of the Earls, writing from exile, Edmund Spenser in Ireland, Richard Stanihurst and translation, and colonial rhetoric. \n After graduating with an MA from University College Cork, she worked in Athens and Brussels before taking a D.Phil. in English literature at the University of Oxford. She was Senior Lecturer in the University of York (2000-2008) and Reader in King’s College London (2008-2016), and took up the chair of Renaissance Literature in Maynooth University in 2017. Her current book project studies the polyphonic and intersecting literary cultures of early modern Ireland, Darkness Echoing, or Did Ireland Have a Renaissance?"
+    },
+    {
+        "id": "2",
+        "name": "Evan Bourke",
+        "title": "Arts & Humanities Institute Maynooth University",
+        "email": "evan.bourke@mu.ie",
+        "twitter": "evan_bourke",
+        "text": "Evan Bourke is a literary historian with a particular interest in the literature of early modern Ireland and digital humanities. He is especially interested in the study of life writing and  women’s writing, and the use of network analysis and data visualisation as a tool for examining early modern texts. He completed his PhD (RECIRC and NUI Galway-funded) at the National University of Ireland, Galway in 2018. \n Evan’s doctoral thesis analysed the formation and representation of the reputations of three women connected to Samuel Hartlib’s correspondence network: Katherine Jones, Viscountess Ranelagh (1615-1691); Dorothy Moore Dury (c.1612-1664); and Jean Appelius (fl.1638-1648). \n Prior to joining MACMORRIS, Evan was a postdoctoral researcher for RECIRC (The Reception and Circulation of Early Modern Women’s Writing, 1550-1700), where he was involved in the design of the RECIRC website and exhibition. He has published in Literature Compass and The Seventeenth Century on a network analysis of Samuel Hartlib’s correspondence network and the reception of women writers in Hartlib’s network respectively."
+    },
+    {
+        "id": "3",
+        "name": "Deirdre Nic Chárthaigh",
+        "title": "Arts & Humanities Institute Maynooth University",
+        "email": "deirdre.niccharthaigh@mu.ie",
+        "twitter": "Deirdrenicc",
+        "text": "Deirdre Nic Chárthaigh completed her PhD (IRC and TCD-funded) in the Department of Irish at Trinity College Dublin in 2019 under the supervision of Dr. Eoin Mac Cárthaigh. \n Her thesis was an edition of the Early Modern Irish tale Bodach an Chóta Lachtna, and her wider research interests include Early Modern Irish prose, Classical Modern Irish poetry and the Irish manuscript tradition in the post-classical period. She has taught undergraduate courses on Classical Irish poetry and prose and is keenly interested in the development of pedagogical material for the acquisition of Early Modern Irish. Since 2018 she has been working on the digital humanities project Léamh.org. \n Since October 2021, Deirdre is a postdoctoral fellow at the Dublin Institute of Advanced Studies where she is examining the representations of the Irish Harp in Bardic Poetry."
+    },
+    {
+        "id": "4",
+        "name": "Philip Mac a’ Ghoill",
+        "title": "Arts & Humanities Institute Maynooth University",
+        "email": "Philip.MacAGhoill@mu.ie",
+        "text": "Philip Mac a’ Ghoill completed his PhD with Trinity College Dublin in March 2021. His research focuses mainly on Classical Irish poetry, examining the language, literary aspects, and historical context of poems from the Early Modern Irish period. He is also interested in the use digital humanities technology to promote research in this field, and he was involved in the Léamh.org project and SketchEngine Bardic Poetry Corpus project before beginning work with MACMORRIS. \n More recently, he has spent time in the field of socio-linguistics working as Language Planning Officer in the Cloich Cheann Fhaola language planning district in the Donegal Gaeltacht. He has recently published a critical edition of the 16th century Irish poem Trom an suan-sa ort, a Aodh in Celtica which includes a translation as well as notes on the language and historical context."
+    },
+    {
+        "id": "5",
+        "name": "Rupavathi S",
+        "title": "Arts & Humanities Institute Maynooth University",
+        "email": "rupavathi.subramani@mu.ie",
+        "text": "Rupavathi Subramani is a Database Programmer and Backend Developer in the Arts and Humanities Institute at Maynooth University. \n For the MACMORRIS project, Rupavathi is responsible for the design and development of the infrastructure, database and related web applications used by the research team. This includes the creation of data visualisation tools for the project, including interactive maps and network visualisations. \n Rupavathi completed her Bachelors in Information Technology in 2016 and worked as a software developer in India and the UK."
+    },
+    {
+        "id": "6",
+        "name": "Alan Waldron",
+        "title": "Arts & Humanities Institute Maynooth University",
+        "email": "alan.waldron.2021@mumail.ie",
+        "twitter": "AlWaldron",
+        "text": "Alan Waldron is a creative arts practitioner with an academic interest in adaptation studies, performance studies and the representations of Irish cultural trauma on stage and screen. He holds a Masters from Cardiff University in Global Cultures. \n His PhD research is concerned with how contemporary performing arts practitioners can take largely forgotten “Irish” playtexts from the Early Modern period and use them as a basis for engagement with contemporary Irish culture’s tensions and traumas."
+    }
+]

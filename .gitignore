@@ -22,8 +22,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-public/images/map/munster.webp
+public/images/
 public/images/map/munster_rotated.webp
 src/images/map/globe.gif
 
 .env
+.env.production

@@ -101,7 +101,9 @@ function Index({ changeIrish, setChangeIrish }) {
                         <FormControlLabel value="works" control={<Radio />} label="Work" />
                     </RadioGroup>
                 </FormControl>
-
+                {/* <Container>
+                    <Search />
+                </Container> */}
                 <Container>
                     {selectedValue === "people" && <People setSearchData={setSearchData} setPeopleData={setPeopleData}
                         displayNames={displayNames} setLoading={setLoading} />}

@@ -16,7 +16,7 @@ mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worke
 
 
 // Set your mapbox access token here
-const MAPBOX_ACCESS_TOKEN = process.env.MAPBOX_ACCESS_TOKEN
+const MAPBOX_ACCESS_TOKEN = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {

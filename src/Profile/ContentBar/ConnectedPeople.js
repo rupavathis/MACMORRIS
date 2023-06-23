@@ -21,7 +21,7 @@ export default function Connections({ connections }) {
   }
 
   const rows = connections.map((conn) => createData(conn.id, conn.source_id?.macmorris_id, conn.source_id?.name,
-    conn.target_id?.macmorris_id, conn.target_id?.name, [... new Set(conn.relationship_types.map((r) => r.name).join('/ '))],
+    conn.target_id?.macmorris_id, conn.target_id?.name,  Array.from(new Set(conn.relationship_types.map((a) => a.name))).join(' | '),
     conn.source_id?.id));
   // const rows = rows_duplicates.filter((item, index) => rows_duplicates(item) === index);
 

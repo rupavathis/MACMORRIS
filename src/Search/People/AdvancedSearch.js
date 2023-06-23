@@ -21,7 +21,7 @@ export default function AdvancedSearch({ setSearchData, setPeopleData, setLoadin
   const [roleAttribs, setRoleAttribs] = useState([]);
   const [search, setSearch] = useState(false);
   const [selectedGender, setSelectedGender] = useState();
-  const [selectedRDesignations, setsSelectedRDesignations] = useState([]);
+  const [selectedRDesignations, setSelectedRDesignations] = useState([]);
   const [selectedROrder, setSelectedROrder] = useState();
   const [selectedAttribs, setSelectedAttribs] = useState([]);
   const [selectedRSubtype, setSelectedRSubtype] = useState([]);
@@ -29,7 +29,7 @@ export default function AdvancedSearch({ setSearchData, setPeopleData, setLoadin
 
 
   const handleSearch = async () => {
-    console.log('handle search aync', selectedRoles)
+    console.log('R Designation  ', selectedRDesignations)
 
     setSearch(true)
     setLoading(true)
@@ -40,7 +40,7 @@ export default function AdvancedSearch({ setSearchData, setPeopleData, setLoadin
     if (selectedROrder != null) url += `&rOrder=${selectedROrder}`
     if (!(selectedAttribs && selectedAttribs.length === 0)) url += `&attribs=${selectedAttribs}`
     if (!(selectedRoles && selectedRoles.length === 0)) url += `&roles=${selectedRoles}`
-    if (!(selectedRDesignations && selectedRDesignations.length === 0)) url += `&attribs=${selectedRDesignations}`
+    if (!(selectedRDesignations && selectedRDesignations.length === 0)) url += `&rDes=${selectedRDesignations}`
 
     console.log({ url })
     const peopleRes = await fetch(url);
@@ -89,13 +89,18 @@ export default function AdvancedSearch({ setSearchData, setPeopleData, setLoadin
   }
 
   const onChangeRDesignation = async (v) => {
-    setsSelectedRDesignations(v)
+    if(v) setSelectedRDesignations(v)
+    else setSelectedRDesignations("")
     console.log("RDesign", v)
     const rSubTypes = await fetch(`${API_URL}/religious_subtypes`);
     const rSubTypesJson = await rSubTypes.json();
-    const rSubtypes = rSubTypesJson.filter((r) => r.religious_designation_id === v)
-    console.log({ rSubtypes })
-    setRSubTypes(rSubtypes);
+    if(v != null){
+      const rSubtypes = rSubTypesJson.filter((r) => r.religious_designation_id === v)
+      console.log({ rSubtypes })
+      setRSubTypes(rSubtypes);
+    }
+    else setRSubTypes([])
+   
   }
 
   useEffect(() => {

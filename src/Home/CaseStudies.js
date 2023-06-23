@@ -38,7 +38,7 @@ function CaseStudies({ setSelectedCS }) {
           <div className="col-md-8 offset-md-2 col-sm-12 text-center">
             <div className="heading-title wow fadeInUp" data-wow-delay="300ms">
               <span>Our Learning guides</span>
-              <h2 className="darkcolor bottom10">Case Studies</h2>
+              <h2 className="darkcolor bottom10">Resources</h2>
               <div className="heading_space">Explore our case studies to learn more about the project
                 and how to navigate the visualisations </div>
             </div>
@@ -48,7 +48,7 @@ function CaseStudies({ setSelectedCS }) {
           <div className="cbp-item web logo">
             <img src="images/case-studies/historic.jpg" alt="" />
             <div className="overlay center-block whitecolor">
-              <h4 className="top30">Extending the Cast List</h4>
+              <h4 className="top30">Learning guides</h4>
               <div style={{ "padding": "10px" }}>Learn more about the minor figures in our database</div>
             </div>
           </div>
@@ -58,7 +58,7 @@ function CaseStudies({ setSelectedCS }) {
             <Link to="networking-women">
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
                 onClick={() => setSelectedCS("network-women")}>
-                <h4 className="top30">Networking Women</h4>
+                <h4 className="top30">What are networks?</h4>
                 <div style={{ "padding": "10px" }}>Learn about our network and some of the women in our
                   database</div>
               </div>
@@ -132,6 +132,18 @@ function CaseStudies({ setSelectedCS }) {
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
                 onClick={() => setSelectedCS("deep-map")}>
                 <h4 className="top30">Deep Mapping</h4>
+                <div style={{ "padding": "10px" }}>What is Deep Mapping and how does that allow us to explore
+                  cultural activity in Munster?</div>
+              </div>
+            </Link>
+          </div>
+
+          <div className="cbp-item print">
+            <img src="images/case-studies/munster.png" alt="" />
+            <Link to="deep-mapping">
+              <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
+                onClick={() => setSelectedCS("sec-bib")}>
+                <h4 className="top30">Secondary Bibiliography</h4>
                 <div style={{ "padding": "10px" }}>What is Deep Mapping and how does that allow us to explore
                   cultural activity in Munster?</div>
               </div>

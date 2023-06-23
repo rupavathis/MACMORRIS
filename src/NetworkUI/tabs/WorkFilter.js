@@ -8,10 +8,6 @@ import { API_URL } from '../../constants';
 
 
 function WorkFilter({ nodes, setNodes, settings }) {
-    console.log("in work filter", nodes)
-    useEffect(() => { fetchFilters(); fetchNodeData() }, [])
-
-
     const [languages, setLanguages] = useState([])
     const [places, setPlaces] = useState([])
     const [wClassifications, setWClassifications] = useState([])
@@ -22,6 +18,11 @@ function WorkFilter({ nodes, setNodes, settings }) {
 
     const [nodeData, setNodeData] = useState([]);
 
+    useEffect(() => { fetchFiltersNodeData(); }, [nodes])
+    const fetchFiltersNodeData = async () => {
+        await fetchNodeData();
+        await fetchFilters();
+    }
 
     async function fetchFilters() {
         const res = await fetch(`${API_URL}/languages`);
@@ -33,26 +34,24 @@ function WorkFilter({ nodes, setNodes, settings }) {
         const workClassRes = await fetch(`${API_URL}/work_classifications`);
         const workClassJson = await workClassRes.json();
         setWClassifications(workClassJson); 
-        console.log("in work filter fetch filters", )
+        console.log("dropdown fetched", )
 
     }
 
     async function fetchNodeData() {
         if (nodes != null) {
-            const nodeIds = nodes.map((n) => n.work_id)
+            const nodeIds = nodes.filter(n => n.type === 'work').map((n) => n.uid);
             const res = await fetch(`${API_URL}/filterWorkData/${nodeIds}`);
             const worksJson = await res.json();
+            console.log('nodeData fetched', { worksJson })
             setNodeData(worksJson);
-            console.log({ worksJson })
         }
     }
 
 
     const filterNodes = () => {
-        console.log("Filter nodes", nodes)
-
         let filteredNodes = []
-        console.log({ nodes, nodeData })
+        console.log('filter nodes called', { nodes, nodeData })
         let count = 0;
 
         let filterLanguages = []
@@ -60,6 +59,7 @@ function WorkFilter({ nodes, setNodes, settings }) {
         let filterWClassifications = []
         
         if (selectedlanguage.length != 0) {
+            console.log("selected lang",{nodeData})
             filterLanguages = nodeData.filter((n) => n.languages.some(b => b.id === selectedlanguage))
             console.log({filterLanguages})
             count++;

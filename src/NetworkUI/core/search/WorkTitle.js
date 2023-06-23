@@ -7,7 +7,7 @@ import '../../Network.scss';
 import { API_URL } from '../../../constants';
 
 
-export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSelectContent, setSearchID }) {
+export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSelectContent, setSearchID, setLoading={setLoading} }) {
 
     const [displayTitles, setDisplayTitles] = useState([]);
     const [workClassifications, setWorkClassifications] = useState([]);
@@ -27,6 +27,7 @@ export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSe
     }
 
     async function fetchWorkNetWorkData(value) {
+        setLoading(true)
         if (value != null) {
             let url = `${API_URL}/showWorkTitleConnections/${value.id}`;
             console.log(url)
@@ -38,10 +39,12 @@ export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSe
 
         }
         setSelectContent(1)
+        setLoading(false)
 
     }
 
     async function fetchWorkClassificationData(value) {
+        setLoading(true)
         if (value != null) {
             let url = `${API_URL}/advancedWorkSearch?wClassification=${value.id}`;
             console.log(url)
@@ -52,18 +55,21 @@ export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSe
             setSearchID(null)
         }
         setSelectContent(1)
+        setLoading(false)
+
     }
 
     return (
         <div className='searchTitle-wrapper'>        
             <Autocomplete
                 options={displayTitles}
-                getOptionLabel={(option) => ` ${option.id} ${option.display_title}` || ""}
+                getOptionLabel={(option) => `${option.display_title}` || ""}
                 id="auto-complete"
                 autoComplete
                 includeInputInList
+                noOptionsText={'Loading Work Titles...'}
                 renderInput={(params) => (
-                    <TextField {...params} lkey={params.id} abel="Works Title" variant="standard" />
+                    <TextField {...params} key={params.id} label="Works Title" variant="standard" />
                 )}
                 onChange={(event, value) =>  fetchWorkNetWorkData(value) }
             />
@@ -73,6 +79,7 @@ export default function SearchTitle({ workNetworkData, setWorkNetworkData, setSe
                 getOptionLabel={(option) => ` ${option.name}` || ""}
                 id="auto-complete"
                 autoComplete
+                noOptionsText={'Loading Work Classifications...'}
                 includeInputInList
                 renderInput={(params, i) => (
                     <TextField {...params} key={i} label="Work Classifications" variant="standard" />

@@ -1,5 +1,5 @@
 
-import Banner from "./Banner";
+import Banner from "./Banner1";
 import Intro from "./Intro";
 import Viz from "./Viz";
 import CaseStudies from "./CaseStudies";
@@ -11,7 +11,9 @@ import { useState } from 'react';
 import Header from "./Header";
 import Sponsors from "./Sponsors";
 import About from './About';
+import TeamIrish from './TeamIrish';
 import Search from './Search';
+import Publications from "./Publications";
 
 
 function Home({ setOpenNetwork, changeIrish, setSelectedCS, setRemoveHeader, setChangeIrish }) {
@@ -26,10 +28,11 @@ function Home({ setOpenNetwork, changeIrish, setSelectedCS, setRemoveHeader, set
          {!about && <Viz changeIrish={changeIrish} setRemoveHeader={setRemoveHeader} />}
          {!about && !changeIrish && <CaseStudies setSelectedCS={setSelectedCS} />}
          {!about && changeIrish && <CaseStudiesIrish />}
-         {!about && <Team />}
-         {/* <Tweet /> */}
+         {!about && !changeIrish && <Team />}
+         {!about && changeIrish && <TeamIrish />}
+         {!about && <Publications />}
+         {!about && <Tweet />}    
          {!about && <Sponsors />}
-
       </>
    );
 }

@@ -1,6 +1,6 @@
 import Biography from "./Biographies/Biography";
 import React, { useState } from 'react';
-import BioText from './BioText.json';
+import BioText from './BioTextIrish.json';
 
 function Team() {
 
@@ -20,7 +20,7 @@ function Team() {
             <div className="row">
                <div className="col-md-8 offset-md-2 col-sm-12 text-center">
                   <div className="heading-title wow fadeInUp" data-wow-delay="300ms">
-                     <span>Meet the Team</span>
+                     <span>Foireann MACMORRIS </span>
                      <h2 className="darkcolor bottom20">MACMORRIS Team</h2>
                   </div>
                </div>

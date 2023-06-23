@@ -18,7 +18,7 @@ function Home() {
   const [siteTypes, setSiteTypes] = React.useState([]);
   const [filteredSites, setFilteredSites] = React.useState([]);
   const [mapStyle, setMapStyle] = React.useState(darkStyle);
-  const [historicMap, setHistoricMap] = React.useState("");
+  const [historicMap, setHistoricMap] = React.useState("munster");
   const [countSites, setCountSites] = React.useState([]);
   const [hoverInfo, setHoverInfo] = useState({});
   const [layer, setLayer] = useState([1]);
