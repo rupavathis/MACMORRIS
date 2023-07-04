@@ -1,6 +1,6 @@
 .Profile{
     height: 100%;
-    flex-direction: row;
+    display: flex;
 }
 
 .Header{
@@ -31,3 +31,8 @@
     align-items: center;
     justify-content: center;
 }
+
+.top-wrapper{
+    background-color: #a228280d;
+}
+

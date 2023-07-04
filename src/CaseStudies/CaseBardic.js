@@ -18,7 +18,7 @@ function CaseBardic() {
                             <h1 className="header-text"><strong>Introduction to Bardic Poetry</strong></h1>
                         </div>
                     </div>
-
+                    <div className='insider-subscribe'></div>
                     <div style={{ color: "#585858" }}>
                         <p className='para-style'>
                             <span className="dropcap">C</span>
@@ -55,13 +55,13 @@ function CaseBardic() {
 
                         <p className='para-style'>Both Gaelic and Anglo-Norman noble families embraced the bardic literary tradition and patronised professional poets. The role of a professional poet was a hereditary one, and often one poetic family remained closely associated with one family of patronage over several generations, such as the Mac an Bhaird poets and the Ó Domhnaills of Tír Chonaill (see below). Even Old English noblemen such as <Link to='/profile/m1685'>Tomás Dubh Buitléar</Link>, a consistent ally of the English, was an enthusiastic patron of Gaelic poets who eulogised him in works such as <Link to='/map?id=D1004'>Taghaim Tomás ragha is róghrádh</Link>. Even those operating well outside of Gaelic society knew the advantage of patronising poets as a way to gain public support, as with <Link to='/profile/m2145'>Sir Dominick Sarsfield</Link> when appointed <Link to='/map?id=D1070'>Chief Justice of Munster</Link> in 1604/5.
                         </p>
-                        
-                        <img src="/images/case-studies/bardic/bardic.png" alt="" style={{ width: "auto", height: "auto" }} />
-                
+
+                        <img src="/images/case-studies/bardic/bardic.webp" alt="" style={{ width: "auto", height: "auto" }} />
+
 
                         <figcaption> Bardic Poetry Family Patronage Network. From Bourke and Nic Chárthaigh, “Patronage networks in Gaelic Ireland ca. 1541 – ca. 1660”. </figcaption>
 
-<br />
+                        <br />
                         <p className='para-style'><strong>What were bardic poems about?</strong></p>
 
                         <p className='para-style'>The content of Bardic court poetry ranged from <Link to='/map?id=D1155'>poems of praise</Link> and <Link to='/map?id=D1184'>satire</Link>, to <Link to='/map?id=D1046'>petitions</Link> and <Link to='/map?id=D1138'>criticisms</Link>. (see <Link to='/using-gaelic-sources'>Using Gaelic Sources</Link>)

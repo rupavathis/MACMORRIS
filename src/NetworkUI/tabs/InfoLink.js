@@ -10,9 +10,11 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import { API_URL } from '../../constants';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
 
 
-function Info({ info }) {
+function Info({ info, setClose, close }) {
     console.log("info", { info })
     const [infoData, setInfoData] = useState([])
 
@@ -46,21 +48,14 @@ function Info({ info }) {
     return (
         <>
             <div>
-                {/* Name: {infoData.display_name}
-            Date of birth: {infoData.date_of_birth}
-            Date of death: {infoData.date_of_death}
-            Date of flourishing: {infoData.flourishing_date}
-            Gender: {infoData.gender?.name}
-            Attributes: {infoData.attribs?.map(a => a.name)}  */}
                 <Card style={{ maxWidth: '500px' }}>
                     <Card.Body>
                         <Card.Text>
                             <InfoData infoData={infoData} />
-                            <Table hover size="sm">
+                            <Table hover size="sm" style={{ margin: 0 }}>
                                 {rows.map((row) => (
                                     <>
                                         <tr style={{ justifyContent: 'space-between', display: 'flex' }}>
-                                            <td>{row.name}</td>
                                             <td>
                                                 <Link className='link' to={`/profile/${row.value2}`}>
                                                     {row.value3}
@@ -71,7 +66,19 @@ function Info({ info }) {
                                                 {row.value5}
                                             </Link>
                                             </td>
+                                            <td>
+                                                <IconButton
+                                                    sx={{ "&:hover": { color: "red" } }}
+                                                    size="small"
+                                                    aria-label="close"
+                                                    color="inherit"
+                                                    onClick={() => setClose(false)}
+                                                >
+                                                    <CloseIcon fontSize="small" />
+                                                </IconButton>
+                                            </td>
                                         </tr>
+
                                     </>
                                 ))}
                             </Table>
@@ -79,28 +86,6 @@ function Info({ info }) {
                     </Card.Body>
                 </Card>
             </div>
-            {/* <div style={{ border: '1px solid gray', borderRadius: 10}}>
-            <Table sx={{ minWidth: 150 }} size="small" aria-label="simple table">
-                <TableBody>
-                    {rows.map((row) => (
-                        <TableRow
-                            key={row.value1}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            <TableCell align="left">
-                                <Link className='link' to={`/profile/${row.value2}`}>
-                                    {row.value3}
-                                </Link></TableCell>
-                            <TableCell align='center'>{row.value6}</TableCell>
-                            <TableCell align="right">
-                                <Link className='link' to={`/profile/${row.value4}`}>
-                                    {row.value5}
-                                </Link></TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </div> */}
         </>
     )
 }

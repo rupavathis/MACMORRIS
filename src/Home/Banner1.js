@@ -25,7 +25,7 @@ function Banner() {
                onMouseEnter={() => setActiveItem(2)}
                onMouseLeave={() => setActiveItem(4)}
             >
-               <img src="/images/banner/Search.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+               <img src="/images/banner/search.webp" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                {activeItem === 2 && <div className="accordion__text">
                   <p>Search</p>
                </div>
@@ -85,7 +85,7 @@ function Banner() {
                </div>
                }
             </div>
-            
+
          </div>
       </>
    );

@@ -1,125 +1,178 @@
 .casestudy-title {
-    text-align: "center"; 
-    padding: "10px"; 
-    color:  #a22828;
-    font-weight: bold;
+  text-align: "center"; 
+  padding: "10px"; 
+  color:  #a22828;
+  font-weight: bold;
 }
 
 .chapter-header-media {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    margin-bottom: 5%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-bottom: 5%;
 }
 
 
 .chapter-header-media--featured-image {
-    background-size: cover;
-    background-position: center center;
+  background-size: cover;
+  background-position: center center;
 }
 
 .header-text-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color:#232323;
-    padding: 20px;
-    // background-color: #a22828;
-    backdrop-filter: blur(5px);
-    
-  }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color:#232323;
+  padding: 20px;
+  // background-color: #a22828;
+  backdrop-filter: blur(5px);
   
-  .header-text {
-    margin: 0;
-  }
+}
 
-  .para-style {
-    font-weight: 400;
-    font-size: 1.365em;
-    line-height: 1.6;
-    margin-bottom: 1em;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    text-align: justify;
-  }
+.header-text {
+  margin: 0;
+}
 
-  .dropcap {
-    line-height: .9;
-    margin-top: 0.01em;
-    display: inline-block;
-    color: #232323;
-    padding: 0em 0em;
-    margin-right: 0.22em;
-    margin-bottom: 0em;
-    vertical-align: top;
-    float: left;
-    font-size: 5.2em;
+.para-style {
+  font-weight: 400;
+  font-size: 1.365em;
+  line-height: 1.6;
+  margin-bottom: 1em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  text-align: justify;
+}
+
+.dropcap {
+  line-height: .9;
+  margin-top: 0.01em;
+  display: inline-block;
+  color: #232323;
+  padding: 0em 0em;
+  margin-right: 0.22em;
+  margin-bottom: 0em;
+  vertical-align: top;
+  float: left;
+  font-size: 5.2em;
 }
 
 blockquote {
-    p {
-       color: #989898;
-       margin: 0 0 45px;
-       border-left: 0;
-       background: #ebeced;
-       padding: 30px 30px 10px;
-       overflow: auto;
-    }
+  p {
+     color: #989898;
+     margin: 0 0 45px;
+     border-left: 0;
+     background: #ebeced;
+     padding: 30px 30px 10px;
+     overflow: auto;
+  }
 }
 
 
 .image-container {
-  display: flex;
-  align-items: flex-start;
+display: flex;
+align-items: flex-start;
 }
 
 .para-style {
-  margin-right: 20px;
+margin-right: 20px;
 }
 
 .image-wrapper {
-  position: relative;
+position: relative;
 }
 
 .image {
-  width: auto;
-  height: 600px;
-  margin: 10px;
+width: auto;
+height: 600px;
+margin: 10px;
 }
 
 figcaption {
-  // position: absolute;
-  // bottom: 0;
-  // left: 0;
-  color: #989898;
+// position: absolute;
+// bottom: 0;
+// left: 0;
+color: #989898;
 
 }
 
 .text-container {
-  padding: 10px;
+padding: 10px;
 }
 
-@media (min-width: 768px) {
-  .image-container {
-    flex-direction: row;
-  }
 
-  .image-wrapper {
-    flex: 1;
-    text-align: left;
-  }
+.insider-subscribe {
+  background-image: url(http://localhost:3001/images/case-studies/spenser/fig3.webp);
+  background-size: cover;
+  background-position: 0 100%;
+  background-position-y: bottom;
+  padding-top: 6rem;
+  padding-bottom: 10.5rem;
 
-  .image {
-    max-width: none;
-    height: 580px;
-    margin: 10px;
-  }
+}
 
-  .text-container {
-    flex: 1;
-    padding: 0 10px;
-  }
+
+.page-container {
+  position: relative;
+  width: 100%;
+  // width: calc(83% + var(--page-margin)*2);
+  // max-width: calc(3184px + var(--page-margin)*2);
+  // padding-left: var(--page-margin);
+  // padding-right: var(--page-margin);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.insider-subscribe__card {
+max-width: 50%;
+margin-right: 0;
+background-blend-mode: overlay;
+background-size: 256px,100%;
+background-image: url(https://www.ageofempires.com/wp-content/themes/ageOfEmpires/dist/images/ui/textile-60c.webp),linear-gradient(#394766,#292418);
+position: relative;
+margin-bottom: 1.5rem;
+color: #c7c7c7;
+text-shadow: 1px 1px 0 rgba(0,0,0,.6);
+box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,.6);
+margin-left: auto;
+padding: 10px;
+}
+// @media (min-width: 768px) {
+//   .image-container {
+//     flex-direction: row;
+//   }
+
+//   .image-wrapper {
+//     flex: 1;
+//     text-align: left;
+//   }
+
+//   .image {
+//     max-width: none;
+//     height: 580px;
+//     margin: 10px;
+//   }
+
+//   .text-container {
+//     flex: 1;
+//     padding: 0 10px;
+//   }
+// }
+
+.image-wrapper {
+flex: 1;
+text-align: left;
+}
+
+.image {
+max-width: none;
+height: 580px;
+margin: 10px;
+}
+
+.text-container {
+flex: 1;
+padding: 0 10px;
 }

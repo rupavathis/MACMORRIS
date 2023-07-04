@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Form from 'react-bootstrap/Form'
 import clsx from 'clsx'
 import { useState } from "react"
@@ -16,7 +16,7 @@ const satelliteStyle = 'mapbox://styles/mapbox/satellite-v9';
 
 function Filter({ siteTypes, sites, setFilteredSites, filteredSites, setMapStyle, setHistoricMap, setCountSites,
     setLayer, layer }) {
-    const [selectPointer, setSelectPointer] = useState([]);
+    const [selectPointer, setSelectPointer] = useState([1, 2, 3, 4, 5, 6, 7, 8]);
     const [showSiteType, setShowSiteType] = useState(false);
     const [isMapStyleOn, setIsMapStyleOn] = useState(false);
 
@@ -25,13 +25,26 @@ function Filter({ siteTypes, sites, setFilteredSites, filteredSites, setMapStyle
     const [isIconLayer, setIsIconLayer] = useState(true);
     const [isExpandSection, setIsExpandSection] = useState(false);
 
+    useEffect(() => {
+        filterCountSites()
+    }, [selectPointer])
+
 
     const expandSection = () => {
         console.log("expand section")
         setIsExpandSection(!isExpandSection)
     }
 
-    let addRemoveSelectedPointer = [];
+    const activePointers = (id) => {
+        if (id === 8) {
+            if (selectPointer.length != 8)
+                return false;
+            else return true
+        }
+
+        return selectPointer.includes(id)
+    }
+
 
     return (
         <div className="filter-wrapper">
@@ -64,36 +77,37 @@ function Filter({ siteTypes, sites, setFilteredSites, filteredSites, setMapStyle
                             id: 1
                         },
                     ].map((item) => { */}
-                       
-                       
-                        <div className='section-info'>
-                            <div className='collapsible'>
-                                <div className='collapse-icon-wrapper'>
-                                    <div className='collapse-header' onClick={() => expandSection(true)}>
-                                        <div className='icon hoverable'>
-                                            <FontAwesomeIcon icon={faChevronRight} className={clsx("turn-icon", { "active": isExpandSection })} />
-                                        </div>
-                                        <div className='title'>
-                                            Map Layers
-                                        </div>
-                                        <div className='hline'>
-                                        </div>
+
+
+                    <div className='section-info'>
+                        <div className='collapsible'>
+                            <div className='collapse-icon-wrapper'>
+                                <div className='collapse-header' onClick={() => expandSection(true)}>
+                                    <div className='icon hoverable'>
+                                        <FontAwesomeIcon icon={faChevronRight} className={clsx("turn-icon", { "active": isExpandSection })} />
                                     </div>
-                                    <div className='header-end-wrapper'>
-                                    {isExpandSection && <>
-                                    {changeMapLayers()}
-                                    {selectHistoricMap()}
-                                </>
-                                }
+                                    <div className='title'>
+                                        Map Layers
+                                    </div>
+                                    <div className='hline'>
                                     </div>
                                 </div>
-                                
+                                <div className='header-end-wrapper'>
+                                    {isExpandSection && <>
+                                        {changeMapLayers()}
+                                        {selectHistoricMap()}
+                                    </>
+                                    }
+                                </div>
                             </div>
+
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
     );
+
 
 
     function switchSites() {
@@ -102,7 +116,7 @@ function Filter({ siteTypes, sites, setFilteredSites, filteredSites, setMapStyle
                 {/* Showing {siteLength} sites */}
                 {siteTypes.map((site) => {
                     return (
-                        <div className={clsx("siteTypeClick", { "active": selectPointer.includes(site.id) })}
+                        <div className={clsx("siteTypeClick", { "active": activePointers(site.id) })}
                             id={site.id}
                             onClick={(event) => {
                                 setShowSiteType(true);
@@ -110,11 +124,22 @@ function Filter({ siteTypes, sites, setFilteredSites, filteredSites, setMapStyle
                             }}>
                             <svg className={`pointer pointer-${site.id}`} width={20} height={20}>
                                 <use href={`${pointer}#mappointer`} xlinkHref={`${pointer}#mappointer`} />
-                            </svg> {site.name}</div>)
+                            </svg>
+                            {
+                                selectPointer.length != 8 && site.id === 8 && 'Select All'
+                            }
+                            {
+                                selectPointer.length == 8 && site.id === 8 && 'Select None'
+                            }
+                            {site.id !== 8 && `${site.name}`}
+
+                        </div>)
                 })}
             </div>
         )
     }
+
+
 
     function changeMapLayers() {
         return (
@@ -195,28 +220,69 @@ function Filter({ siteTypes, sites, setFilteredSites, filteredSites, setMapStyle
         return site.name + " - " + count.length;
     }
 
-    function filterSiteType(site) {
+    // async function filterSites(site) {
+    //     const x = filterSiteType(site)
+    //     await filterCountSites()
+    // }
+
+    async function filterSiteType(site) {
         const id = parseInt(site.id);
+        console.log('im in filtersite type', site.id)
+
+        const pointer = selectPointer;
+        let newPointer;
+
         if (!selectPointer.includes(id)) {
-            addRemoveSelectedPointer = [...selectPointer, id]
-            setSelectPointer(addRemoveSelectedPointer)
+
+            console.log('start', { selectPointer })
+            if (id === 8) {
+                // setSelectPointer([1, 2, 3, 4, 5, 6, 7])
+                newPointer = [1, 2, 3, 4, 5, 6, 7, 8]
+            }
+
+            else {
+                console.log('id', { id })
+                // setSelectPointer([...selectPointer, id])
+                newPointer = [...pointer, id]
+            }
         }
         else {
-            addRemoveSelectedPointer = selectPointer.filter((s) => s !== id)
-            setSelectPointer(addRemoveSelectedPointer)
+            if (id === 8 && selectPointer.length == 8) {
+                // setSelectPointer([])
+                console.log('hi []')
+                newPointer = []
 
+            }
+
+            else if (id === 8 && selectPointer.length != 8) {
+                newPointer = [1, 2, 3, 4, 5, 6, 7, 8]
+            }
+            else {
+                // setSelectPointer(selectPointer.filter((s) => s !== id))
+                newPointer = pointer.filter((s) => s !== id)
+            }
         }
-        console.log({ addRemoveSelectedPointer })
-        const sitesReq = addRemoveSelectedPointer.map((sp) => {
+
+        setSelectPointer(newPointer)
+    }
+
+    async function filterCountSites() {
+
+        console.log({ selectPointer })
+
+        const sitesReq = selectPointer.map((sp) => {
             return sites.filter(s => s.site_type_id === sp)
         })
-        const flattenedSitesReq = sitesReq.reduce((a, c) => a.concat(c), [])
-        setFilteredSites(flattenedSitesReq);
+
+        console.log({ sitesReq })
+
+        const flattenedSitesReq = await sitesReq.reduce((a, c) => a.concat(c), [])
+        await setFilteredSites(flattenedSitesReq);
         const countSites = flattenedSitesReq.reduce((a, c) => {
             const count = a[c.place_id] ?? 0;
             return { ...a, [c.place_id]: count + 1 }
         }, {})
-        setCountSites(countSites)
+        await setCountSites(countSites)
     }
 
     function changeSites() {

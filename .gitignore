@@ -28,3 +28,4 @@ src/images/map/globe.gif
 
 .env
 .env.production
+build.tar.gz

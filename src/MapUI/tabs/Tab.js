@@ -34,7 +34,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 3, padding: '10px' }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -129,12 +129,13 @@ export default function TabInfo({ info, countSites, sites, setShowImage, showIma
               <div className='list-header'>Text</div>
               <Card.Text style={{ paddingTop: 20 }}>
                 {site.gaelic_description === null && isExpandSection && <div className='collapse-content'>
-                  <div className="two-lines">{site.description}
+                  <div className="two-lines">
+                    {site.description.replaceAll('_x000B_', "")}
                   </div>
                   <Link className='link' to={`/site/${site.id}`} target="_blank" rel="noopener noreferrer">Read More/Translate</Link>
                 </div>}
                 {site.gaelic_description != null && isExpandSection && <div className='collapse-content'>
-                  <div className="two-lines">{site.gaelic_description}
+                  <div className="two-lines">{site.gaelic_description.replaceAll('_x000B_', "")}
                   </div>
                   <Link className='link' to={`/site/${site.id}`} target="_blank" rel="noopener noreferrer">Read More/Translate</Link>
                 </div>}
@@ -143,9 +144,6 @@ export default function TabInfo({ info, countSites, sites, setShowImage, showIma
             <ListGroup.Item>
               <div className='list-header'>Connected People</div>
               <Card.Text style={{ paddingTop: 20 }}>
-                {/* {connectedPeople.map((p) =>
-                (<Link className='link' target="_blank" rel="noopener noreferrer" to={`/profile/${p.macmorris_id}`}>{p.name}</Link>
-                )).join(',')} */}
 
                 {connectedPeople.map((p, index) =>
                 (<React.Fragment key={index}>
@@ -160,47 +158,6 @@ export default function TabInfo({ info, countSites, sites, setShowImage, showIma
             </ListGroup.Item>
           </ListGroup>
         </TabPanel>
-        // return <TabPanel value={value} index={indexCount}>
-        //   <div className="info-wrapper">
-        //     <div className="filter-container">
-        //       <div className='filter-body'>
-        //         <div className='section-info'>
-        //           <div className='collapsible'>
-        //             <div className='collapse-icon-wrapper'>
-        //               <div className='collapse-header'>
-        //                 <div className='icon hoverable' onClick={() => expandSection()}>
-        //                   <FontAwesomeIcon icon={faChevronRight} className={clsx("turn-icon", { "active": isExpandSection })} />
-        //                 </div>
-        //                 <div className='title'>
-        //                   Description
-        //                 </div>
-        //                 <div className='header-end-wrapper'>
-        //                 </div>
-        //               </div>
-        //               {isExpandSection && <div className='collapse-content'>
-        //                 <div className='hline'>
-        //                   {site.description}
-        //                 </div>
-        //                 <Link className='link' to={`/site/${info.id}`} target="_blank" rel="noopener noreferrer">Read More/Translate</Link>
-        //               </div>}
-        //             </div>
-        //           </div>
-        //           {/* <div>{site.name}</div>
-        //   <div>{site.gaelic_name}</div>
-        //   <hr />
-        //   <div className="two-lines">{site.description}
-        //   </div>
-        //   <Link className='link' to={`/site/${info.id}`} target="_blank" rel="noopener noreferrer">Read More/Translate</Link>
-        //   <hr />
-        //   <div>People Connected </div>
-        //   {site.person_id.map((p) =>
-        //   (<div><Link className='link' to={`/profile/${p.id}`}>{p.name}</Link></div>
-        //   ))} */}
-        //         </div>
-        //       </div>
-        //     </div>
-        //   </div>
-        // </TabPanel>
       }))
   }
 

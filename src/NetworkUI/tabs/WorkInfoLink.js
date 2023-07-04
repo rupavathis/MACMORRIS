@@ -7,6 +7,8 @@ import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
 import { API_URL } from '../../constants';
 import Button from 'react-bootstrap/Button';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
 
 function Person({ person }) {
     return <Link className='link' to={`/profile/${person.macmorris_id}`}>
@@ -20,7 +22,7 @@ function Work({ work }) {
     </Link>
 }
 
-function Resource({resource}) {
+function Resource({ resource }) {
     if (resource.type === "work")
         return <Work work={resource} />
     if (resource.type === "person")
@@ -40,13 +42,13 @@ function WorkInfoLink({ setClose, info }) {
         const peopleRes = await fetch(`${API_URL}/people/${id}`);
         const peopleJson = await peopleRes.json();
         console.log("person fetched", peopleJson)
-        setFn({...peopleJson, type: 'person'})
+        setFn({ ...peopleJson, type: 'person' })
     }
     const fetchWork = async (id, setFn) => {
         const workRes = await fetch(`${API_URL}/works/${id}`);
         const workResJson = await workRes.json();
         console.log("work fetched", workResJson)
-        setFn({...workResJson, type: 'work'})
+        setFn({ ...workResJson, type: 'work' })
     }
 
     const fetchData = async () => {
@@ -105,6 +107,17 @@ function WorkInfoLink({ setClose, info }) {
                                     <td align='center'> related to </td>
                                     <td>
                                         <Resource resource={target} />
+                                    </td>
+                                    <td>
+                                        <IconButton
+                                            sx={{ "&:hover": { color: "red" } }}
+                                            size="small"
+                                            aria-label="close"
+                                            color="inherit"
+                                            onClick={() => setClose(false)}
+                                        >
+                                            <CloseIcon fontSize="small" />
+                                        </IconButton>
                                     </td>
                                 </tr>
                             </Table>

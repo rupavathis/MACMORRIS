@@ -7,6 +7,8 @@ import { useNavigate, Link } from 'react-router-dom'
 import { API_URL } from '../constants';
 import Spinner from 'react-bootstrap/Spinner';
 
+import Header from '../Home/Header1';
+
 function Home() {
   const [id, setId] = useState(-1);
   const [authorName, setAuthorName] = useState(null);
@@ -97,18 +99,46 @@ function Home() {
 
   return (
     <div className="Profile">
-      <div className="top-panel">
+      {/* <div className="top-panel">
         <Link to='/' href="index.html">
           <img style={{
             objectFit: 'contain', 'width': '200px', height: '80px', margin: '10px',
             opacity: '0.8'
           }} alt="" src="/images/logos/macmorris.png" />
         </Link>
+      </div> */}
+
+      <Header />
+
+      <div>
+        {authorName == null ? <div className="loading-container"><Spinner animation="grow" /></div> :
+          <>
+            <h1 className='Title'><Title author={authorName} /></h1>
+            {loading ? <div className="loading-container"><Spinner animation="grow" /></div> :
+              <>
+                <div><Roles roles={roles} /></div>
+                <div className='ContentBar'>
+                  <ContentBar bioInfo={bioInfo} roles={roles} sources={sources} connections={connections} works={works} sites={sites} />
+                </div>
+              </>
+            }
+          </>
+        }
+
       </div>
 
-      {authorName == null ? <div className="loading-container"><Spinner animation="grow" /></div> :
+      {/* <div className="top-wrapper">
+        <Link to='/' href="index.html">
+          <img style={{
+            objectFit: 'contain', 'width': '50%', height: '80px', margin: '10px',
+            opacity: '0.8'
+          }} alt="" src="/images/logos/macmorris.png" />
+        </Link>
+
+      </div> */}
+      {/* {authorName == null ? <div className="loading-container"><Spinner animation="grow" /></div> :
         <>
-          <h1 className='Title'><Title author={authorName} /></h1>
+          <h3 className='Title'><Title author={authorName} /></h3>
           {loading ? <div className="loading-container"><Spinner animation="grow" /></div> :
             <>
               <div><Roles roles={roles} /></div>
@@ -118,9 +148,8 @@ function Home() {
             </>
           }
         </>
-      }
+      } */}
     </div>
-
   );
 }
 

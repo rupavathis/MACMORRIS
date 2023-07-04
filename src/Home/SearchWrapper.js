@@ -22,7 +22,7 @@ function SearchWrapper() {
     useEffect(() => {
         const handleScroll = () => {
             if (sRef.current) {
-                setPosition((sRef.current.getBoundingClientRect().top - window.innerHeight)/2);
+                setPosition((sRef.current.getBoundingClientRect().top - window.innerHeight) / 2);
             }
         };
         handleScroll();
@@ -37,8 +37,8 @@ function SearchWrapper() {
     return (
         <div className="image hover-effect img-container" onClick={(() => <Link to='map' target="_blank" rel="noopener noreferrer"></Link>)}>
             <Search className="equalheight" />
-            <img src='/images/banner/tower.png' style={{ position: "absolute", top: `${position}px`}} /> 
-             <div style={{ maxHeight: '300px' }} ref={sRef}>
+            {/* <img src='/images/banner/tower.png' style={{ position: "absolute", top: `${position}px`}} />  */}
+            <div style={{ maxHeight: '300px' }} ref={sRef}>
                 <img src='/images/banner/names-right.png' style={{
                     height: '100%',
                     objectFit: 'cover',

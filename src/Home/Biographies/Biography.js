@@ -16,7 +16,7 @@ export default function Biography({ show, handleClose, text }) {
 
   return (
     <>
-      <Modal show={show} onHide={handleClose} size="lg">
+      <Modal show={show} onHide={handleClose} size="lg" backdrop="static" keyboard={false}>
         <Modal.Header closeButton>
           <div style={{ "display": "flex", "flexDirection": "column" }}>
             <Modal.Title style={{ "color": "#a22828" }}>{text.name}</Modal.Title>

@@ -52,9 +52,10 @@ function Home() {
     var sitesJson = await sitesRes.json();
     console.log(sitesJson)
     const siteTypesRes = await fetch(`${API_URL}/site_types`);
-    console.log("9567", siteTypesRes);
     var siteTypesJson = await siteTypesRes.json();
+    siteTypesJson = [...siteTypesJson, {id: 8, name: 'Select All'}]
     setSites(sitesJson)
+    console.log("9567", siteTypesJson);
     console.log("out if", { id });
 
     // if (id != 0) {
