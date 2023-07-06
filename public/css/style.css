@@ -2285,7 +2285,7 @@ i::before,i::after{
    z-index: 1;
    -webkit-border-radius: 50%;
    border-radius: 50%;
-   background: rgba(0, 207, 204, .9);
+   background: rgba(237, 206, 157, 0.56);
    -webkit-transition: all .5s ease-in .1s;
    -o-transition: all .5s ease-in .1s;
    transition: all .5s ease-in .1s;
@@ -2294,9 +2294,18 @@ i::before,i::after{
    -webkit-border-radius: 0;
    border-radius: 0;
 }
-.dark_overlay .overlay {
+/* .dark_overlay .overlay {
    background: rgba(33,35,49, .9);
+} */
+
+/* .dark_overlay .overlay {
+   background: rgba(46, 65, 44, 0.9);
+} */
+
+.dark_overlay .overlay {
+   background: rgba(51, 2, 2, 0.9);
 }
+
 .cbp-item:hover .overlay,
 .cbp-item:focus .overlay {
 	opacity: 1; visibility: visible;

@@ -18,6 +18,20 @@ function Header1({ changeIrish, setChangeIrish, setAbout }) {
                             src="/images/logos/macmorris.png" />
                     </Link>
                 </div>
+
+                <div class="header__menu --right js-header-menu --desktop">
+                    <div class="header__menu__item header__search js-search pagescroll wow fadeInUp">
+                        <a className="nav-link pagescroll " href="#" onClick={() => {
+                            setChangeIrish(!changeIrish)
+                        }}>
+                            {changeIrish && <span>View in English</span>}
+                            {!changeIrish && <span>View in Irish</span>}
+                        </a>
+                    </div>
+
+                </div>
+
+
             </header>
             {/* <div className="navbar">
                 <div className="navbar__container">

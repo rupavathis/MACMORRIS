@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { Link } from 'react-router-dom';
+import './home.scss';
+
 function Sponsors() {
 
    useEffect(() => {
@@ -37,6 +39,7 @@ function Sponsors() {
 
    return (
       <section id="our-sponsors" className="padding_bottom">
+         <div className='header'></div>
          <div className="container">
             <h3 className="invisible">hidden</h3>
             <div className="row">

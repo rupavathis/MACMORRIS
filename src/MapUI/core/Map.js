@@ -75,12 +75,14 @@ const ELEVATION_DECODER = {
 const transitionInterpolator = new LinearInterpolator();
 
 
-export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, countSites, setHoverInfo, layer, showImage, setShowImage , setShowCard }) {
+export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, countSites, setHoverInfo, layer, showImage, setShowImage, setShowCard }) {
 
     const [tabClose, setTabClose] = useState(false);
     const [iconClick, setIconClick] = useState(false);
     const [viewState, updateViewState] = useState(INITIAL_VIEW_STATE);
     const [showAnimation, setShowAnimation] = useState(true);
+
+    console.log("get sites", sites)
 
     // useEffect(() => {
     //     setTimeout(() => setShowAnimation(false), 1000);
@@ -104,12 +106,12 @@ export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, 
     // }, [showAnimation]);
 
     const rotateCamera = () => updateViewState(v => ({
-                ...v,
-                bearing: v.bearing + 10,
-                transitionDuration: 10000,
-                transitionInterpolator,
-                // onTransitionEnd: rotateCamera,
-            }));
+        ...v,
+        bearing: v.bearing + 10,
+        transitionDuration: 10000,
+        transitionInterpolator,
+        // onTransitionEnd: rotateCamera,
+    }));
 
     function setSiteColor(d) {
         let countingSites = []
@@ -153,7 +155,7 @@ export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, 
         if (object.points != undefined) {
             const count = object.points.length;
             const place = object.points[0].source.place.name
-            if(count > 1) return `${place} - ${count} texts`;
+            if (count > 1) return `${place} - ${count} texts`;
             else return `${place} - ${count} text`;
         }
         else {
@@ -221,8 +223,8 @@ export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, 
                     onClick={expandHexagon}
                     transitions={{
                         getElevationValue: {
-                          duration: 2000,
-                          enter: () => [0]
+                            duration: 2000,
+                            enter: () => [0]
                         },
                     }}
                 />}

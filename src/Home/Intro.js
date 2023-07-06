@@ -6,7 +6,7 @@ function intro({ changeIrish, setAbout, about }) {
     console.log("intro about", about)
 
     return (
-        <section id="about-us" className="padding single-feature">
+        <section id="about-us" className="padding single-feature bg">
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 col-sm-7 text-md-start text-center wow fadeInLeft" data-wow-delay="300ms">
@@ -28,26 +28,24 @@ function intro({ changeIrish, setAbout, about }) {
                             léiriú.</h4> */}
                         {!changeIrish &&
                             <>
-                                <div style={{ "textAlign": "justify"}}className="bottom35">
-                                    Our project presents a picture of early modern Ireland, that goes against the prevailing
+                                <div style={{ "textAlign": "justify" }} className="bottom35">
+                                    {/* Our project presents a picture of early modern Ireland, that goes against the prevailing
                                     Anglocentric perspective of literary-historical scholarship by developing this open-access
                                     resource that maps significant cultural actors (of whatever ethnicity) writing in,
                                     or engaging with, Gaelic, English, Latin, Scots, Spanish, Italian, Portuguese,
                                     and Dutch, in late 16th and early 17th century Ireland. In doing that, it provides,
                                     for the first time, an inclusive account of creative, scholarly, and intellectual
-                                    activity in the period. </div>
-                                <div style={{ "textAlign": "justify"}}>
-                                    In this account, Gaelic culture is vibrant; the English vernacular
-                                    of the Pale is lively and colourful; agents of the Tudor conquest like
-                                    Edmund Spenser bring the energies – often dark energies – of the English Renaissance to
-                                    Ireland; and contact with mainland Europe is routine.
+                                    activity in the period. </div> */}
+
+                                    The MACMORRIS project seeks to capture the complexity and richness of early modern Ireland, by mapping the full range of cultural activity, across languages and ethnic groups, from 1541 to 1660. It provides the first inclusive account of creative, scholarly, and intellectual activity in a time of conquest, plantation, and colonisation. It opens a window on a world on the cusp of drastic change and puts in place the resources for understanding what stood to be lost in a time of dynamic and often violent encounter.
                                 </div>
+
                             </>
                         }
 
                         {changeIrish &&
                             <>
-                                <div style={{ "textAlign": "justify"}}>
+                                <div style={{ "textAlign": "justify" }}>
                                     Is í aidhm an tionscadail seo léiriú a thabhairt ar Éirinn sa Nua-Aois Luath, a théann in
                                     éadan na ngnáthpheirspictíochtaí, síolraithe ó dhearcadh na gcoilíneach, ar stair agus
                                     litríocht na tíre ag an am. Baintear seo amach trí fhoinse nua a fhorbairt, a bhfuil teacht
@@ -57,26 +55,18 @@ function intro({ changeIrish, setAbout, about }) {
                                     agus go luath sa 17ú haois. Dá bharr seo, tá cuntas ionchuimsitheach ar ghníomhíocht cultúrtha,
                                     léannta, agus intleachtúil curtha ar fáil don chéad uair riamh.
                                 </div>
-                                <div style={{ "textAlign": "justify"}}>
-                                    De réir an chuntais seo, tá cultúr na nGael faoi bhláth; tá Béarla na Páile beo bríomhar;
-                                    tugann leithéidí Edmund Spenser agus gníomhairí na Corónach – go minic faoi scáth dorcha an
-                                    choilínithe ­– blaiseadh dúinn de Renaissance Sasanach in Éirinn; agus neart nasc leis an
-                                    mhór-roinn.
-                                </div>
+
                             </>}
 
-                            {
-                                changeIrish && <div className="button btnsecondary pagescroll" style={{ "margin": "10px"}}
-                                 onClick={() => setAbout(!about)}>Faoin Tionscadal</div>
-                            }
-                            { 
-                               !changeIrish && <div className="button btnsecondary pagescroll" style={{ "margin": "10px"}}
+                        {/* {
+                            changeIrish && <div className="button btnsecondary pagescroll" style={{ "margin": "10px" }}
+                                onClick={() => setAbout(!about)}>Faoin Tionscadal</div>
+                        }
+                        {
+                            !changeIrish && <div className="button btnsecondary pagescroll" style={{ "margin": "10px" }}
                                 onClick={() => setAbout(!about)}>About us</div>
-                            }
+                        } */}
 
-                        {/* <Link to="about-us"> */}
-                           
-                        {/* </Link> */}
                     </div>
                     <div className="col-md-6 col-sm-5 wow fadeInRight" data-wow-delay="350ms">
 
@@ -86,13 +76,17 @@ function intro({ changeIrish, setAbout, about }) {
                             allowFullScreen></iframe> */}
 
                         <iframe
-                            width="853"
-                            height="480"
-                            src="https://www.youtube.com/embed/dZn47_whvEg"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            title="Embedded youtube"
-                        />
+                            // width="853"
+                            // height="480"
+                            width="560"
+                            height="315"
+                            src="https://www.youtube.com/embed/twSvAgHA67U"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+
+                        </iframe>
 
                     </div>
                 </div>

@@ -629,9 +629,9 @@ function Home() {
                 node.fy = node.y;
                 node.fz = node.z;
             }}
-        // warmupTicks={50}
-        // cooldownTicks={1}
-        // onEngineStop={() => fgRef.current.zoomToFit(400)}
+            // warmupTicks={50}
+            // cooldownTicks={1}
+            onEngineStop={() => fgRef.current.zoomToFit(400)}
         />
     );
 }
