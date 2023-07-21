@@ -2,7 +2,7 @@
   "name": "macmorris-home",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://40.115.27.249:3000",
+  "proxy": "http://localhost:3000",
   "dependencies": {
     "@deck.gl/layers": "^8.8.26",
     "@deck.gl/react": "^8.8.26",

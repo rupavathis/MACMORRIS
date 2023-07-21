@@ -29,15 +29,14 @@ function intro({ changeIrish, setAbout, about }) {
                         {!changeIrish &&
                             <>
                                 <div style={{ "textAlign": "justify" }} className="bottom35">
-                                    {/* Our project presents a picture of early modern Ireland, that goes against the prevailing
-                                    Anglocentric perspective of literary-historical scholarship by developing this open-access
-                                    resource that maps significant cultural actors (of whatever ethnicity) writing in,
-                                    or engaging with, Gaelic, English, Latin, Scots, Spanish, Italian, Portuguese,
-                                    and Dutch, in late 16th and early 17th century Ireland. In doing that, it provides,
-                                    for the first time, an inclusive account of creative, scholarly, and intellectual
-                                    activity in the period. </div> */}
 
-                                    The MACMORRIS project seeks to capture the complexity and richness of early modern Ireland, by mapping the full range of cultural activity, across languages and ethnic groups, from 1541 to 1660. It provides the first inclusive account of creative, scholarly, and intellectual activity in a time of conquest, plantation, and colonisation. It opens a window on a world on the cusp of drastic change and puts in place the resources for understanding what stood to be lost in a time of dynamic and often violent encounter.
+                                    The MACMORRIS project seeks to capture the complexity and richness of early modern
+                                    Ireland, by mapping the full range of cultural activity, across languages and ethnic
+                                    groups, from 1541 to 1660. This largely bilingual resource provides the first inclusive
+                                    account of creative, scholarly, and intellectual activity in a time of conquest,
+                                    plantation, and colonisation. It opens a window on a world on the cusp of drastic
+                                    change and puts in place the resources for understanding what stood to be lost in a
+                                    time of dynamic and often violent encounter.
                                 </div>
 
                             </>
@@ -75,7 +74,7 @@ function intro({ changeIrish, setAbout, about }) {
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowFullScreen></iframe> */}
 
-                        <iframe
+                        {/* {!changeIrish ? <iframe
                             // width="853"
                             // height="480"
                             width="560"
@@ -86,7 +85,16 @@ function intro({ changeIrish, setAbout, about }) {
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowfullscreen>
 
-                        </iframe>
+                        </iframe> :
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/xpunqllv6Q0"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen>
+
+                            </iframe>
+
+
+                        } */}
 
                     </div>
                 </div>

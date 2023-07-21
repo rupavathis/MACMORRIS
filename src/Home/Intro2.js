@@ -10,21 +10,13 @@ function Intro2({ changeIrish, setAbout, about }) {
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 col-sm-7 text-md-start text-center wow fadeInLeft" data-wow-delay="300ms">
-                        {/* <iframe
-                            width="853"
-                            height="480"
-                            src="https://www.youtube.com/embed/dZn47_whvEg"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            title="Embedded youtube"
-                        /> */}
 
-                        <iframe width="853" height="480"
+                        {/* <iframe width="853" height="480"
                             src="https://www.youtube.com/embed/nKnrtMleVBg"
                             title="YouTube video player"
                             frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen></iframe>
+                            allowfullscreen></iframe> */}
 
                     </div>
                     <div className="col-md-6 col-sm-5 wow fadeInRight" data-wow-delay="350ms">
@@ -45,7 +37,7 @@ function Intro2({ changeIrish, setAbout, about }) {
                         {changeIrish &&
                             <>
 
-                                <div style={{ "textAlign": "justify" }}>
+                                <div style={{ "textAlign": "justify", paddingBottom: '20px' }}>
                                     De réir an chuntais seo, tá cultúr na nGael faoi bhláth; tá Béarla na Páile beo bríomhar;
                                     tugann leithéidí Edmund Spenser agus gníomhairí na Corónach – go minic faoi scáth dorcha an
                                     choilínithe ­– blaiseadh dúinn de Renaissance Sasanach in Éirinn; agus neart nasc leis an

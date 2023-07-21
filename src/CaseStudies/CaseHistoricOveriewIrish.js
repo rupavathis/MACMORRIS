@@ -10,11 +10,16 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { Link } from 'react-router-dom';
 import Header from "../Home/Header";
+import ScrollToTop from '../Home/ScrollToTop';
+import Footer from '../Home/Sponsors';
+
 
 function CaseHistoricOverviewIrish({ changeIrish, setChangeIrish }) {
 
     return (
         <>
+            <ScrollToTop />
+
 
             <h3 style={{ textAlign: "center", padding: "10px", color: 'maroon' }}>Léargas Ginearálta Staire</h3>
 

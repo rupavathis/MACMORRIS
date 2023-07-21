@@ -141,12 +141,6 @@ export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, 
         setShowCard(true)
     };
 
-    // const getTooltipInfo = (object) => {
-    //     console.log({ object })
-    //     if (object && countSites[object.place_id] != 1)
-    //         return object && `${object.place.name} - ${countSites[object.place_id]} sites`
-    //     return object && `${object.place.name}`
-    // }
 
     function getTooltipInfo({ object }) {
         if (!object) {
@@ -159,7 +153,7 @@ export default function MapContainer({ sites, siteTypes, mapStyle, historicMap, 
             else return `${place} - ${count} text`;
         }
         else {
-            return object && `${object.place.name}`
+            return object && `${object.place.name} | ${object.place.gaelic_name}`
         }
     }
 

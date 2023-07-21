@@ -16,13 +16,14 @@ import {
 export default function Connections({ connections }) {
 
   console.log("in fun con", { connections })
-  function createData(value1, value2, value3, value4, value5, value6, value7) {
-    return { value1, value2, value3, value4, value5, value6, value7 };
+  function createData(value1, value2, value3, value4, value5, value6, value7, value8) {
+    return { value1, value2, value3, value4, value5, value6, value7, value8 };
   }
 
   const rows = connections.map((conn) => createData(conn.id, conn.source_id?.macmorris_id, conn.source_id?.name,
-    conn.target_id?.macmorris_id, conn.target_id?.name,  Array.from(new Set(conn.relationship_types.map((a) => a.name))).join(' | '),
-    conn.source_id?.id));
+    conn.target_id?.macmorris_id, conn.target_id?.name,
+    Array.from(new Set(conn.relationship_types.map((a) => a.name))).join(' | '),
+    conn.source_id?.id, conn.reference));
   // const rows = rows_duplicates.filter((item, index) => rows_duplicates(item) === index);
 
   // const [linkClicked, setLinkClicked] = useState(false);
@@ -36,6 +37,7 @@ export default function Connections({ connections }) {
         <Table sx={{ minWidth: 150 }} size="small" aria-label="simple table">
           <TableHead>
             <TableRow>
+              <TableCell align="right"></TableCell>
               <TableCell align="right"></TableCell>
               <TableCell align="right"></TableCell>
               <TableCell align="right">
@@ -61,6 +63,9 @@ export default function Connections({ connections }) {
                   <Link className='link' to={`/profile/${row.value4}`}>
                     {row.value5}
                   </Link>
+                </TableCell>
+                <TableCell align="right">
+                  {row.value8}
                 </TableCell>
               </TableRow>
             ))}

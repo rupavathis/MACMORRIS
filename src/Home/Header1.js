@@ -19,8 +19,8 @@ function Header1({ changeIrish, setChangeIrish, setAbout }) {
                     </Link>
                 </div>
 
-                <div class="header__menu --right js-header-menu --desktop">
-                    <div class="header__menu__item header__search js-search pagescroll wow fadeInUp">
+                <div className="header__menu --right js-header-menu --desktop">
+                    <div className="header__menu__item header__search js-search pagescroll wow fadeInUp">
                         <a className="nav-link pagescroll " href="#" onClick={() => {
                             setChangeIrish(!changeIrish)
                         }}>
@@ -33,19 +33,7 @@ function Header1({ changeIrish, setChangeIrish, setAbout }) {
 
 
             </header>
-            {/* <div className="navbar">
-                <div className="navbar__container">
-                    <nav className="primary-nav js-nav">
-                        <ul className="primary-nav__menu">
-                            <li className='menu__item'>Network</li>
-                            <li className='menu__item'>Search</li>
-                            <li className='menu__item'>Case studies</li>
-                            <li className='menu__item'>Map</li>
 
-                        </ul>
-                    </nav>
-                </div>
-            </div> */}
 
         </div>
     );

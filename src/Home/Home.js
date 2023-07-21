@@ -4,7 +4,7 @@ import Intro from "./Intro";
 import Intro2 from "./Intro2";
 import Viz from "./Viz";
 import CaseStudies from "./CaseStudies";
-import Team from "./Team";
+import Team from "./TeamClean";
 import Tweet from "./Tweet";
 import Footer from "./Footer";
 import CaseStudiesIrish from "./CaseStudiesIrish";
@@ -12,7 +12,6 @@ import { useState } from 'react';
 import Header from "./Header1";
 import Sponsors from "./Sponsors";
 import About from './About';
-import TeamIrish from './TeamIrish';
 import Search from './Search';
 import Publications from "./Publications";
 
@@ -24,16 +23,15 @@ function Home({ setOpenNetwork, changeIrish, setSelectedCS, setRemoveHeader, set
       <>
          <Header changeIrish={changeIrish} setChangeIrish={setChangeIrish} setAbout={setAbout} />
          {about && <About about={about} setAbout={setAbout} />}
-         {!about && <Banner />}
+         {!about && <Banner changeIrish={changeIrish} />}
          {!about && <Intro changeIrish={changeIrish} setAbout={setAbout} about={about} />}
          {!about && <Intro2 changeIrish={changeIrish} setAbout={setAbout} about={about} />}
          {!about && <Viz changeIrish={changeIrish} setRemoveHeader={setRemoveHeader} />}
          {!about && !changeIrish && <CaseStudies setSelectedCS={setSelectedCS} />}
          {!about && changeIrish && <CaseStudiesIrish />}
-         {!about && !changeIrish && <Team />}
-         {!about && changeIrish && <TeamIrish />}
-         {!about && <Publications />}
-         {!about && <Tweet />}
+         {!about && <Team changeIrish={changeIrish} />}
+         {!about && <Publications changeIrish={changeIrish} />}
+         {!about && <Tweet changeIrish={changeIrish} />}
          {!about && <Sponsors />}
       </>
    );

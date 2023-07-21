@@ -38,7 +38,7 @@ function Sponsors() {
 
 
    return (
-      <section id="our-sponsors" className="padding_bottom">
+      <section id="our-sponsors" className="padding_bottom_half footer_color">
          <div className='header'></div>
          <div className="container">
             <h3 className="invisible">hidden</h3>
@@ -47,42 +47,42 @@ function Sponsors() {
                   <div id="partners-slider" className="owl-carousel">
                      <div className="item">
                         <div className="logo-item"> <a href="https://www.maynoothuniversity.ie/arts-and-humanities-institute">
-                           <img alt="" src="images/logos/ahi.png" />
+                           <img alt="" src="/images/logos/ahi.png" />
                         </a></div>
                      </div>
                      <div className="item">
                         <div className="logo-item">
                            <a href="https://bardic.celt.dias.ie/">
-                              <img alt="" src="images/logos/bpd.png" />
+                              <img alt="" src="/images/logos/bpd.png" />
                            </a>
                         </div>
                      </div>
                      <div className="item">
                         <div className="logo-item">
                            <a href="https://www.dib.ie/">
-                              <img alt="" src="images/logos/dib.png" />
+                              <img alt="" src="/images/logos/dib.png" />
                            </a>
                         </div>
                      </div>
                      <div className="item">
                         <div className="logo-item">
                            <a href="https://research.ie/">
-                              <img alt="" src="images/logos/irc.jpg" />
+                              <img alt="" src="/images/logos/irc.jpg" />
                            </a></div>
                      </div>
                      <div className="item">
                         <div className="logo-item">
                            <a href="https://xn--lamh-bpa.org/">
-                              <img alt="" src="images/logos/leamh.png" />
+                              <img alt="" src="/images/logos/leamh.png" />
                            </a></div>
                      </div>
                      <div className="item">
-                        <div className="logo-item"><img alt="" src="images/logos/macmorris.png" /></div>
+                        <div className="logo-item"><img alt="" src="/images/logos/macmorris.png" /></div>
                      </div>
                      <div className="item">
                         <div className="logo-item">
                            <a href="https://maynoothuniversity.ie/">
-                              <img alt="" src="images/logos/maynooth.png" />
+                              <img alt="" src="/images/logos/maynooth.png" />
                            </a>
                         </div>
                      </div>

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import PreLoader from "./Home/PreLoader";
 import Header from "./Home/Header";
 import CaseStudyText from './CaseStudyText';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, RouterProvider } from 'react-router-dom';
 import Search from './Search/Index.js';
 import Network from './NetworkUI/index';
 import CaseHistoricOverview from "./CaseStudies/CaseHistoricOverview";
@@ -18,6 +18,8 @@ import Map from './MapUI/Home'
 import Site from './Sites/Index'
 import About from './Home/About';
 import Work from './WorksUI/Home';
+import CaseBibiliography from './CaseStudies/CaseBibiliography';
+import router from './Routes/routes';
 
 function App() {
 
@@ -25,14 +27,12 @@ function App() {
   const [changeIrish, setChangeIrish] = useState(false);
   const [removeHeader, setRemoveHeader] = useState(true);
 
-  // const [selectedCS, setSelectedCS] = useState("")
-
   return (
     <div className="App">
-      {/* <PreLoader /> */}
-      
+
+      {/* <RouterProvider router={router} /> */}
       <Routes>
-        <Route path='/' element={<Home changeIrish={changeIrish} setChangeIrish={setChangeIrish} 
+        <Route path='/' element={<Home changeIrish={changeIrish} setChangeIrish={setChangeIrish}
           setRemoveHeader={setRemoveHeader}
         />} />
         <Route path='/historical-overview' element={<CaseHistoricOverview changeIrish={changeIrish} setChangeIrish={setChangeIrish} />} />
@@ -42,6 +42,7 @@ function App() {
         <Route path='/early-modern-drama' element={<CaseEarlyModernDrama changeIrish={changeIrish} setChangeIrish={setChangeIrish} />} />
         <Route path='/deep-mapping' element={<CaseDeepMap changeIrish={changeIrish} setChangeIrish={setChangeIrish} />} />
         <Route path='/what-is-bardic-poetry' element={<CaseBardic changeIrish={changeIrish} setChangeIrish={setChangeIrish} />} />
+        <Route path='/bibiliography' element={<CaseBibiliography changeIrish={changeIrish} setChangeIrish={setChangeIrish} />} />
         <Route path='/search' element={<Search changeIrish={changeIrish} setChangeIrish={setChangeIrish} />} />
         <Route path='/map' element={<Map />} />
         <Route path='/map/*' element={<Map />} />
@@ -53,6 +54,7 @@ function App() {
         <Route path='/works/*' element={<Work />} />
 
       </Routes>
+
     </div>
   );
 }

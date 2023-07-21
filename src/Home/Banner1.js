@@ -4,7 +4,7 @@ import { Opacity } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 
-function Banner() {
+function Banner({ changeIrish }) {
 
    const [activeItem, setActiveItem] = useState(4);
 
@@ -22,7 +22,8 @@ function Banner() {
                   <div className="overlay-accordion overlay center-block whitecolor" >
                      {activeItem === 1 && <div className="accordion__text">
                         <div className="nav-item active">
-                           <div className="whitecolor">Publications</div>
+                           {!changeIrish ? <div className="whitecolor">Publications</div> :
+                              <div className="whitecolor">Foilsiúcháin</div>}
                         </div>
                      </div>
                      }
@@ -40,7 +41,8 @@ function Banner() {
                   <div className="overlay-accordion overlay center-block whitecolor">
                      {activeItem === 2 && <div className="accordion__text">
                         <div className="nav-item active">
-                           <div className="whitecolor">Search</div>
+                           {!changeIrish ? <div className="whitecolor">Search</div> :
+                              <div className="whitecolor">Cuardaigh</div>}
                         </div>
                      </div>
                      }
@@ -61,7 +63,8 @@ function Banner() {
                   <div className="overlay-accordion overlay center-block whitecolor">
                      {activeItem === 3 && <div className="accordion__text">
                         <div className="nav-item active">
-                           <div className="whitecolor" to="/#about-us">Networks</div>
+                           {!changeIrish ? <div className="whitecolor" to="/#about-us">Networks</div> :
+                              <div className="whitecolor" to="/#about-us">Líonraí</div>}
                         </div>
                      </div>
                      }
@@ -79,7 +82,8 @@ function Banner() {
                   <div className="overlay-accordion overlay center-block whitecolor" to="/#our-publications">
                      {activeItem === 4 && <div className="accordion__text">
                         <div className="nav-item active">
-                           <div className="whitecolor">What is MACMORRIS</div>
+                           {!changeIrish ? <div className="whitecolor">What is MACMORRIS</div> :
+                              <div className="whitecolor">Cad atá i gceist le MACMORRIS?</div>}
                         </div>
                      </div>
                      }
@@ -98,7 +102,8 @@ function Banner() {
                   <div className="overlay-accordion overlay center-block whitecolor">
                      {activeItem === 5 && <div className="accordion__text">
                         <div className="nav-item active">
-                           <div className="whitecolor">Map</div>
+                           {!changeIrish ? <div className="whitecolor">Map</div> :
+                              <div className="whitecolor">Léarscáil</div>}
                         </div>
                      </div>
                      }
@@ -116,7 +121,15 @@ function Banner() {
                   <div className="overlay-accordion overlay center-block whitecolor">
                      {activeItem === 6 && <div className="accordion__text">
                         <div className="nav-item active">
-                           <div className="whitecolor" to="/#about-us">Resources</div>
+                           {!changeIrish ? <div className="whitecolor" to="/#about-us">Resources</div> :
+                              <div className="whitecolor" to="/#about-us">
+
+                                 Acmhainní
+
+
+
+
+                              </div>}
                         </div>
                      </div>
                      }
@@ -124,8 +137,7 @@ function Banner() {
 
                </div>
             </HashLink>
-
-         </div >
+         </div>
       </div>
    );
 

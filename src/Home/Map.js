@@ -46,7 +46,7 @@ export default function MapHome() {
     bearing: v.bearing + 10,
     transitionDuration: 10000,
     transitionInterpolator,
-    onTransitionEnd: rotateCamera,
+    // onTransitionEnd: rotateCamera,
   }));
 
   return (

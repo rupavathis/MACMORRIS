@@ -39,8 +39,8 @@ function CaseStudies({ setSelectedCS }) {
         <div className="row">
           <div className="col-md-8 offset-md-2 col-sm-12 text-center">
             <div className="heading-title wow fadeInUp" data-wow-delay="300ms">
-              <span>Our Learning guides</span>
-              <h2 className="darkcolor bottom10">Resources</h2>
+              <span style={{ fontSize: '2rem' }}>Our Learning guides</span>
+              {/* <h2 className="darkcolor bottom10">Resources</h2> */}
               <div className="heading_space">Explore our case studies to learn more about the project
                 and how to navigate the visualisations </div>
             </div>
@@ -49,7 +49,7 @@ function CaseStudies({ setSelectedCS }) {
         <div id="flat-gallery" className="cbp dark_overlay">
 
           <div className="cbp-item print">
-            <img src="images/case-studies/munster.png" alt="" />
+            <img src="images/case-studies/munster.webp" alt="" />
             <div className="case-study-tile">Deep Mapping</div>
             <Link to="deep-mapping">
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
@@ -61,17 +61,17 @@ function CaseStudies({ setSelectedCS }) {
           </div>
 
           <div className="cbp-item web logo">
-            <img src="images/case-studies/historic.jpg" alt="" />
+            <img src="images/case-studies/historic.webp" alt="" />
             <div className='case-study-tile'>Learning guides</div>
             <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}>
-              <div style={{ "padding": "10px" }}>Learn more about the minor figures in our database</div>
+              <div style={{ "padding": "10px" }}>See our lesson plans for how to use the website in the classroom.</div>
             </div>
           </div>
 
 
 
           <div className="cbp-item web print graphic">
-            <img src="images/case-studies/gaelic.png" alt="" />
+            <img src="images/case-studies/gaelic.webp" alt="" />
             <div className="case-study-tile">Using Gaelic Sources</div>
             <Link to="using-gaelic-sources">
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
@@ -83,7 +83,7 @@ function CaseStudies({ setSelectedCS }) {
 
 
           <div className="cbp-item web print graphic">
-            <img src="images/case-studies/yettoname.jpg" alt="" />
+            <img src="images/case-studies/yettoname.webp" alt="" />
             <div className="case-study-tile">Historical Overview</div>
             <Link to="historical-overview">
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
@@ -95,18 +95,16 @@ function CaseStudies({ setSelectedCS }) {
           </div>
 
           <div className="cbp-item print">
-            <img src="images/case-studies/bibilio.jpg" alt="" />
+            <img src="images/case-studies/bibilio.webp" alt="" />
             {/* <div>Secondary Bibiliography</div> */}
             <div className="case-study-tile">Secondary Bibiliography</div>
-            <Link to="deep-mapping">
+            <Link to="bibiliography">
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
                 onClick={() => setSelectedCS("sec-bib")}>
-                <div style={{ "padding": "10px" }}>See our lesson plans for how to use the website in the classroom.</div>
+                <div style={{ "padding": "10px" }}>Select bibliography of published works relating to Early Modern Ireland.  </div>
               </div>
             </Link>
           </div>
-
-
 
           <div className="cbp-item">
             {/* <img src="images/case-studies/women.png" alt="" /> */}
@@ -115,17 +113,14 @@ function CaseStudies({ setSelectedCS }) {
             <Link to="networking-women">
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}
                 onClick={() => setSelectedCS("network-women")}>
-                <div style={{ "padding": "10px" }}>Learn about our network and some of the women in our
-                  database</div>
+                <div style={{ "padding": "10px" }}>Learn about our network interface</div>
               </div>
             </Link>
           </div>
 
 
-
-
           <div className="cbp-item web print graphic">
-            <img src="images/case-studies/bardic.jpg" alt="" />
+            <img src="images/case-studies/bardic.webp" alt="" />
             <div className="case-study-tile">What is Bardic Poetry?</div>
             <Link to="what-is-bardic-poetry">
               <div className="overlay center-block whitecolor" style={{ "cursor": "pointer" }}

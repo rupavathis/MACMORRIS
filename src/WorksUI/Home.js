@@ -1,19 +1,24 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Container from "@mui/material/Container";
-import Table from '@mui/material/Table';
+// import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import WebLink from '@mui/material/Link';
 import { Link } from "react-router-dom";
 import { API_URL } from '../constants';
+import Footer from '../Home/Sponsors';
+import Header from '../Home/Header1';
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
+import BreadcrumbProfile from '../Home/BreadcrumbProfile';
+import Table from 'react-bootstrap/Table';
+import './home.scss';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 
 function Works() {
-    console.log("hi", 5679045);
-
 
     const [workID, setWorkId] = useState(-1);
     const [works, setWorks] = useState({});
@@ -64,105 +69,102 @@ function Works() {
         createData('Title', works.title),
         createData('Date', works.work_date),
         createData('Place', works.places.map(n => n.name).join(', ')),
-        createData('Read the text', works.link_uri)
+        createData('Written by an Irish Actor', works.by_irish),
+        createData('Wrtten about Ireland', works.about_ireland),
+        createData('Written bf/af time in Ireland', works.bf_af_ireland),
+        createData('Printed in Ireland', works.printed_in_ireland),
+        createData('Written while in Ireland', works.while_ireland)
     ].filter(e => e.value != null) : [], [works])
 
     return (
-        <div>
-            <div className="top-panel">
-                <Link to='/' href="index.html">
-                    <img style={{
-                        objectFit: 'contain', 'width': '200px', height: '80px', margin: '10px',
-                        opacity: '0.8'
-                    }} alt="" src="/images/logos/macmorris.png" />
-                </Link>
-            </div>
-            <Container>
-                <div style={{ marginTop: '30px' }}></div>
-                <h2>Details of Work</h2>
-                {works.length != 0 && <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="Details of works table">
-                        <TableBody>
-                            {rows.map((row) => {
-                                return (
-                                    <TableRow
-                                        key={row.name}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
-                                        <TableCell component="th" scope="row">
-                                            <b>{row.name}</b>
+        <div style={{ backgroundColor: 'whitesmoke' }}>
+            <Header />
+            <BreadcrumbProfile page="Works" />
+            {/* <Container> */}
+            <h4>Details of Work</h4>
+            {works.length != 0 &&
+                <Table className="table-wrapper-works" striped bordered hover aria-label="Details of works table">
+                    <TableBody>
+                        {rows.map((row) => {
+                            return (
+                                <TableRow
+                                    key={row.name}
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                >
+                                    <TableCell component="th" scope="row">
+                                        <b>{row.name}</b>
+
+                                    </TableCell>
+                                    {row.name === "Read the text" && <TableCell align="left">
+                                        <WebLink href={row.value}>{row.value}</WebLink>
+                                    </TableCell>
+                                    }
+                                    {row.name === "Author" && <TableCell align="left">
+                                        <Link to={`/profile/${row.id}`}>{row.value}</Link>
+
+                                    </TableCell>
+                                    }
+
+                                    {(row.name !== "Read the text" && row.name !== "Patron" && row.name !== "Printer" && row.name !== "Publisher" && row.name !== "Bookseller"
+                                        && row.name !== "Author")
+                                        && <TableCell align="right">
+                                            {row.value === true ? <CheckIcon /> : row.value === false ? <CloseIcon /> : row.value}
                                         </TableCell>
-                                        {row.name === "Read the text" && <TableCell align="right">
-                                            <WebLink href={row.value}>{row.value}</WebLink>
-                                        </TableCell>
-                                        }
-                                        {row.name === "Author" && <TableCell align="right">
-                                            <Link to={`/profile/${row.id}`}>{row.value}</Link>
+                                    }
 
-                                        </TableCell>
-                                        }
-                                        {/* {(row.name === "Patron" || row.name === "Printer" || row.name === "Publisher" || row.name === "Bookseller"
-                                            || row.name === "Author") && <TableCell align="right">
-                                                <Link to={`/profile/${row.macmorris_id}`}>{works.author_id.display_name.join(', ')}</Link>
 
-                                            </TableCell>
-                                        } */}
-                                        {(row.name !== "Read the text" && row.name !== "Patron" && row.name !== "Printer" && row.name !== "Publisher" && row.name !== "Bookseller"
-                                            && row.name !== "Author")
-                                            && <TableCell align="right">
-                                                {row.value}
-                                            </TableCell>
-                                        }
+                                    {row.name === "Patron" && <TableCell align="right">
+                                        {row.value?.map((p, index) =>
+                                            <>
+                                                <Link to={`/profile/${p.macmorris_id}`}>{p.display_name}</Link>
+                                                {index < row.value.length - 1 && " | "}
 
-                                        {row.name === "Patron" && <TableCell align="right">
-                                            {row.value?.map((p, index) =>
-                                                <>
-                                                    <Link to={`/profile/${p.macmorris_id}`}>{p.display_name}</Link>
-                                                    {index < row.value.length - 1 && " | "}
+                                            </>
+                                        )}
+                                    </TableCell>
+                                    }
+                                    {row.name === "Printer" && <TableCell align="right">
+                                        {row.value?.map((p, index) =>
+                                            <>
+                                                <Link to={`/profile/${p.macmorris_id}`}>{p.display_name}</Link>
+                                                {index < row.value.length - 1 && " | "}
 
-                                                </>
-                                            )}
-                                        </TableCell>
-                                        }
-                                        {row.name === "Printer" && <TableCell align="right">
-                                            {row.value?.map((p, index) =>
-                                                <>
-                                                    <Link to={`/profile/${p.macmorris_id}`}>{p.display_name}</Link>
-                                                    {index < row.value.length - 1 && " | "}
+                                            </>
+                                        )}
+                                    </TableCell>
+                                    }
+                                    {row.name === "Publisher" && <TableCell align="right">
+                                        {row.value?.map((p, index) =>
+                                            <>
+                                                <Link to={`/profile/${p.macmorris_id}`}>{p.display_name}</Link>
+                                                {index < row.value.length - 1 && " | "}
 
-                                                </>
-                                            )}
-                                        </TableCell>
-                                        }
-                                        {row.name === "Publisher" && <TableCell align="right">
-                                            {row.value?.map((p, index) =>
-                                                <>
-                                                    <Link to={`/profile/${p.macmorris_id}`}>{p.display_name}</Link>
-                                                    {index < row.value.length - 1 && " | "}
+                                            </>
+                                        )}
+                                    </TableCell>
+                                    }
+                                    {row.name === "Bookseller" && <TableCell align="right">
+                                        {row.value?.map((p, index) =>
+                                            <>
+                                                <Link to={`/profile/${p.macmorris_id}`}>{p.display_name}</Link>
+                                                {index < row.value.length - 1 && " | "}
 
-                                                </>
-                                            )}
-                                        </TableCell>
-                                        }
-                                        {row.name === "Bookseller" && <TableCell align="right">
-                                            {row.value?.map((p, index) =>
-                                                <>
-                                                    <Link to={`/profile/${p.macmorris_id}`}>{p.display_name}</Link>
-                                                    {index < row.value.length - 1 && " | "}
+                                            </>
+                                        )}
+                                    </TableCell>
+                                    }
 
-                                                </>
-                                            )}
-                                        </TableCell>
-                                        }
 
-                                    </TableRow>
-                                )
-                            })}
 
-                        </TableBody>
-                    </Table>
-                </TableContainer>}
-            </Container>
+                                </TableRow>
+                            )
+                        })}
+
+                    </TableBody>
+                </Table>
+            }
+            {/* </Container> */}
+            <Footer />
         </div>
     );
 }

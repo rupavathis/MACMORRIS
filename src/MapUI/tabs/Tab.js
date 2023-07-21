@@ -165,23 +165,15 @@ export default function TabInfo({ info, countSites, sites, setShowImage, showIma
     <div className='tab-wrapper'>
       {showCard && <Card style={{ width: '22rem' }}>
         <div className="card-wrapper">
-          <Card.Title style={{ paddingTop: 5, flexGrow: 1, textAlign: 'center' }}>{info.place.name} </Card.Title>
+          <Card.Title style={{ paddingTop: 5, flexGrow: 1, textAlign: 'center' }}>{info.place.name} | {info.place.gaelic_name} </Card.Title>
           <div className="icon hoverable"><FontAwesomeIcon icon={faCircleInfo} style={{ marginRight: '5px' }} onClick={() => setModalShow(!modalShow)} /></div>
           <div className="icon hoverable"><FontAwesomeIcon icon={faCircleXmark} style={{ color: "#a22828", marginRight: '10px' }} onClick={() => setShowCard(false)} /></div>
-          {/* <FontAwesomeIcon icon="fa-solid fa-circle-xmark" style={{ color: "#d22d2d" }} /> */}
         </div>
 
         {showImage && <Card.Img variant="top"
           src={`/images/map/places/${image}.webp`}
           onError={() => setShowImage(null)} />}
 
-
-        {/* <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text> */}
-        {/* <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}> */}
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example"
           variant="scrollable"
           scrollButtons="auto">
